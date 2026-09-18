@@ -33,11 +33,11 @@ const capSVG = (uid) => `
   </g>
 
   <!-- bordado -->
-  <g fill="var(--thread)" text-anchor="middle"
-     font-family="'Bebas Neue',Impact,sans-serif">
-    <text x="200" y="107" font-size="19" letter-spacing="5">MAKE</text>
-    <text x="200" y="152" font-size="48" letter-spacing="1">CUMBRES</text>
-    <text x="200" y="178" font-size="17" letter-spacing="3">CHINGÓN AGAIN</text>
+  <g fill="var(--thread)" text-anchor="middle" font-weight="500"
+     font-family="'Jost',system-ui,sans-serif">
+    <text x="200" y="112" font-size="14" letter-spacing="6">MAKE</text>
+    <text x="200" y="150" font-size="35" letter-spacing="2.5">CUMBRES</text>
+    <text x="200" y="174" font-size="12.5" letter-spacing="3.4">CHINGÓN AGAIN</text>
   </g>
 
   <!-- visera -->
@@ -52,13 +52,13 @@ const LIGHT = { stroke:'rgba(21,26,33,.18)', seam:'rgba(21,26,33,.10)', shade:'r
 const DARK  = { stroke:'rgba(10,16,24,.35)', seam:'rgba(255,255,255,.16)', shade:'rgba(9,14,21,.42)' };
 
 const products = [
-  { id:'niebla', name:'Niebla',       sub:'Snapback · lana 80/20',     price:849, tag:'Más vendida', hot:true,
+  { id:'orizaba', name:'Orizaba',     sub:'Snapback · lana 80/20',     price:849, tag:'Más vendida', hot:true,
     crown:'#f3f5f8', brim:'#e6eaf0', thread:'#41607f', ...LIGHT },
-  { id:'cerro',  name:'Cerro Silla',  sub:'Dad hat · algodón lavado',  price:699, tag:'Nuevo', hot:false,
+  { id:'nevado',  name:'Nevado',       sub:'Dad hat · algodón lavado',  price:699, tag:'Nuevo', hot:false,
     crown:'#ced5de', brim:'#bfc8d3', thread:'#232f3e', ...LIGHT },
-  { id:'regia',  name:'Regia Bone',   sub:'Trucker · malla premium',   price:779, tag:'Edición 300', hot:false,
+  { id:'tacana',  name:'Tacaná',       sub:'Trucker · malla premium',   price:779, tag:'Edición 300', hot:false,
     crown:'#eae5da', brim:'#ded8ca', thread:'#4c586e', ...LIGHT },
-  { id:'acero',  name:'Acero 5 Panel',sub:'5 panel · nylon técnico',   price:899, tag:'Últimas 12', hot:true,
+  { id:'malinche',name:'Malinche',     sub:'5 panel · nylon técnico',   price:899, tag:'Últimas 12', hot:true,
     crown:'#465d78', brim:'#3a4f68', thread:'#eef1f5', ...DARK }
 ];
 
@@ -207,7 +207,7 @@ document.getElementById('map').innerHTML = `
     <circle class="pulse" cx="${c.x}" cy="${c.y}" r="3" style="animation-delay:${i * 0.5}s"/>
     <circle class="pin"   cx="${c.x}" cy="${c.y}" r="3.4" style="animation-delay:${i * 0.15}s"/>
     <text x="${c.x + (c.dx || 9)}" y="${c.y + 3.5}" text-anchor="${c.anchor || 'start'}"
-          fill="#6d7683" font-size="8" font-family="Inter,sans-serif"
+          fill="#6d7683" font-size="8" font-family="Jost,system-ui,sans-serif"
           letter-spacing=".08em">${c.name.toUpperCase()}</text>
   `).join('')}
 </svg>`;

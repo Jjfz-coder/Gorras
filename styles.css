@@ -16,6 +16,8 @@
   --ink-b:     rgba(21,26,33,.10);
   --shadow:    0 1px 2px rgba(21,26,33,.04), 0 12px 32px rgba(21,26,33,.05);
   --shadow-lg: 0 2px 4px rgba(21,26,33,.05), 0 24px 56px rgba(21,26,33,.10);
+  --serif:     'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:      'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
   --radius:    14px;
   --pad:       clamp(20px, 5vw, 72px);
   --ease:      cubic-bezier(.22,.61,.36,1);
@@ -27,39 +29,47 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:16px;
-  line-height:1.6;
+  font-family:var(--sans);
+  font-size:16.5px;
+  font-weight:400;
+  line-height:1.62;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-h1,h2,h3{
-  font-family:"Bebas Neue","Inter",sans-serif;
+h1,h2{
+  font-family:var(--serif);
   font-weight:400;
-  letter-spacing:.02em;
-  line-height:.95;
+  letter-spacing:-.012em;
+  line-height:1.03;
   margin:0;
 }
-h1{font-size:clamp(3.2rem,9vw,6.6rem)}
-h2{font-size:clamp(2rem,4.5vw,3.4rem)}
-h3{font-size:1.4rem}
-h1 em{font-style:normal;color:var(--accent)}
+h3{
+  font-family:var(--serif);
+  font-weight:600;
+  letter-spacing:-.005em;
+  line-height:1.2;
+  margin:0;
+  font-size:1.35rem;
+}
+h1{font-size:clamp(3.4rem,8.6vw,6.8rem)}
+h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+h1 em{font-style:italic;color:var(--accent)}
 p{margin:0}
 
 .eyebrow{
-  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:18px;
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;font-weight:400;
 }
-.lede{color:var(--muted);max-width:46ch;font-size:1.02rem}
+.lede{color:var(--muted);max-width:46ch;font-size:1.04rem;font-weight:300}
 .fine{color:var(--muted);font-size:.82rem}
 
 /* ---------- botones ---------- */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;
   gap:8px;padding:14px 26px;border-radius:999px;border:1px solid transparent;
-  font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
   font-weight:500;cursor:pointer;transition:all .25s var(--ease);
 }
 .btn--primary{background:var(--text);color:#fff}
@@ -95,10 +105,10 @@ p{margin:0}
 .nav__mark{
   display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;
   border:1px solid var(--accent-dim);border-radius:8px;
-  color:var(--accent);font-family:"Bebas Neue",sans-serif;font-size:.95rem;
-  letter-spacing:.06em;
+  color:var(--accent);font-family:var(--serif);font-weight:600;font-size:1.05rem;
+  letter-spacing:.04em;
 }
-.nav__name{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase}
+.nav__name{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:400}
 .nav__links{display:flex;gap:30px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .nav__links a{transition:color .2s}
 .nav__links a:hover{color:var(--text)}
@@ -159,7 +169,7 @@ p{margin:0}
   border-left:1px solid var(--line);
 }
 .strip div:first-child{border-left:none}
-.strip strong{font-size:1rem;letter-spacing:.02em}
+.strip strong{font-family:var(--serif);font-weight:600;font-size:1.25rem;letter-spacing:0}
 .strip span{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
 /* ---------- secciones ---------- */
@@ -168,7 +178,7 @@ p{margin:0}
   display:flex;justify-content:space-between;align-items:flex-end;
   gap:40px;flex-wrap:wrap;margin-bottom:54px;
 }
-.section__head p{color:var(--muted);max-width:44ch;font-size:.95rem}
+.section__head p{color:var(--muted);max-width:44ch;font-size:.95rem;font-weight:300}
 
 /* ---------- grid de producto ---------- */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -193,10 +203,10 @@ p{margin:0}
 }
 .card__tag.is-hot{color:var(--accent);border-color:var(--accent-dim);background:rgba(65,96,127,.07)}
 .card__body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
-.card__name{font-size:1.02rem;font-weight:500;letter-spacing:.01em}
-.card__sub{font-size:.8rem;color:var(--muted);flex:1}
+.card__name{font-family:var(--serif);font-size:1.4rem;font-weight:600;letter-spacing:-.005em}
+.card__sub{font-size:.82rem;color:var(--muted);flex:1;font-weight:300}
 .card__row{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
-.card__price{font-size:1.05rem;letter-spacing:.02em}
+.card__price{font-size:.95rem;letter-spacing:.04em}
 .card__add{
   background:none;border:1px solid var(--line);border-radius:999px;color:var(--text);
   padding:8px 16px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
@@ -223,15 +233,16 @@ p{margin:0}
   padding:18px 0;border-top:1px solid var(--line);
 }
 .specs li:last-child{border-bottom:1px solid var(--line)}
-.specs strong{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.specs span{color:var(--muted);font-size:.92rem}
+.specs strong{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.specs span{color:var(--muted);font-size:.94rem;font-weight:300}
 
 /* ---------- quote ---------- */
 .quote{text-align:center;padding-block:clamp(56px,7vw,96px)}
 .quote blockquote{
-  margin:0 auto;max-width:22ch;
-  font-family:"Bebas Neue",sans-serif;font-size:clamp(1.9rem,4vw,3rem);
-  line-height:1.05;letter-spacing:.01em;
+  margin:0 auto;max-width:26ch;
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(2rem,4.2vw,3.2rem);
+  line-height:1.16;letter-spacing:-.01em;
 }
 .quote cite{
   display:block;margin-top:22px;font-style:normal;color:var(--muted);
@@ -308,7 +319,7 @@ p{margin:0}
 }
 .line__art .cap{width:100%;animation:none}
 .line__info{flex:1;min-width:0}
-.line__name{font-size:.9rem}
+.line__name{font-family:var(--serif);font-weight:600;font-size:1.1rem}
 .line__sub{font-size:.76rem;color:var(--muted)}
 .line__qty{display:flex;align-items:center;gap:10px;margin-top:6px}
 .line__qty button{
@@ -320,7 +331,7 @@ p{margin:0}
 .line__price{font-size:.9rem;white-space:nowrap}
 .drawer__foot{padding:20px 24px 26px;border-top:1px solid var(--line);display:grid;gap:12px}
 .drawer__row{display:flex;justify-content:space-between;align-items:baseline}
-.drawer__row strong{font-size:1.15rem}
+.drawer__row strong{font-family:var(--serif);font-weight:600;font-size:1.4rem}
 
 /* ---------- toast ---------- */
 .toast{
@@ -360,7 +371,7 @@ p{margin:0}
 
 /* ---------- tabla de envíos ---------- */
 .ship{width:100%;border-collapse:collapse;margin-bottom:18px}
-.ship td{padding:14px 0;border-top:1px solid var(--line);font-size:.92rem}
+.ship td{padding:15px 0;border-top:1px solid var(--line);font-size:.93rem;font-weight:300}
 .ship tr:last-child td{border-bottom:1px solid var(--line)}
 .ship td:nth-child(2){color:var(--muted);text-align:center}
 .ship td:last-child{text-align:right;color:var(--accent)}
