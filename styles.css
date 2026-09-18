@@ -55,7 +55,7 @@ h3{
 }
 h1{font-size:clamp(3.4rem,8.6vw,6.8rem)}
 h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
-h1 em{font-style:italic;color:var(--accent)}
+h1 em,h2 em{font-style:italic;color:var(--accent)}
 p{margin:0}
 
 .eyebrow{
