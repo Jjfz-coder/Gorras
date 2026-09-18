@@ -66,7 +66,11 @@
            style="--crown:#f4f6f9;--brim:#e6eaf0;--thread:#41607f;--stroke:rgba(21,26,33,.20);--seam:rgba(21,26,33,.11);--shade:rgba(21,26,33,.13)">
         <div class="cap cap--fallback"></div>
       </div>
-      <p class="stage__hint" aria-hidden="true">Arrastra para girar</p>
+      <div class="hero__pick">
+        <p class="stage__hint" aria-hidden="true">Arrastra para girar</p>
+        <div class="swatches" id="heroSwatches" role="radiogroup" aria-label="Colorway"></div>
+        <p class="hero__pickLabel"><span id="heroPickName">Orizaba</span><span class="hero__pickDot">·</span><span id="heroPickPrice">$849 MXN</span></p>
+      </div>
     </div>
 
     <ul class="hero__meta">
@@ -188,10 +192,32 @@
   </aside>
 </div>
 
+<div class="qv" id="qv" aria-hidden="true">
+  <div class="qv__scrim" data-qv-close></div>
+  <div class="qv__panel" role="dialog" aria-modal="true" aria-label="Vista rápida">
+    <button class="qv__x" data-qv-close aria-label="Cerrar">&times;</button>
+    <div class="qv__art">
+      <div class="stage stage--qv" id="qvStage"><div class="cap cap--fallback"></div></div>
+      <p class="stage__hint" aria-hidden="true">Arrastra para girar</p>
+    </div>
+    <div class="qv__info">
+      <p class="eyebrow" id="qvTag"></p>
+      <h3 class="qv__name" id="qvName"></h3>
+      <p class="qv__sub" id="qvSub"></p>
+      <p class="qv__price" id="qvPrice"></p>
+      <ul class="qv__specs">
+        <li>Bordado 3D · 12,400 puntadas</li>
+        <li>Talla única ajustable · 56–60 cm</li>
+        <li>Etiqueta interior numerada</li>
+      </ul>
+      <button class="btn btn--primary btn--full" id="qvAdd"><span>Agregar a la bolsa</span></button>
+      <p class="fine">Envío gratis desde $1,200 · Cambios sin costo 30 días</p>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status"></div>
 
-<script src="assets/vendor/three.min.js" defer></script>
-<script src="assets/cap3d.js" charset="utf-8" defer></script>
 <script src="script.js" charset="utf-8" defer></script>
 </body>
 </html>

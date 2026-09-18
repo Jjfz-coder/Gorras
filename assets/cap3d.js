@@ -33,9 +33,10 @@
     const c = document.createElement('canvas');
     c.width = 1024; c.height = 1024;
     const x = c.getContext('2d');
+    let color = thread;
     const paint = () => {
       x.clearRect(0, 0, c.width, c.height);
-      x.fillStyle = thread;
+      x.fillStyle = color;
       x.textAlign = 'center'; x.textBaseline = 'middle';
       x.font = '500 54px Jost, system-ui, sans-serif';
       drawTracked(x, 'MAKE', 512, 380, 26);
@@ -51,6 +52,7 @@
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => { paint(); tex.needsUpdate = true; });
     }
+    tex.recolor = (next) => { color = next; paint(); tex.needsUpdate = true; };
     return tex;
   }
 
@@ -142,21 +144,23 @@
     const seamC = crown.clone().multiplyScalar(0.82);
     const isDark = crown.getHSL({}).l < 0.5;
 
-    const fabric = (color) => new T.MeshPhysicalMaterial({
-      color, roughness: .78, metalness: 0,
-      sheen: isDark ? .5 : .9, sheenRoughness: .6,
-      sheenColor: color.clone().lerp(new T.Color('#ffffff'), isDark ? .35 : .6),
-      clearcoat: 0
-    });
+    const sheenFor = (color) => {
+      const dark = color.getHSL({}).l < 0.5;
+      return { sheen: dark ? .5 : .9, sheenColor: color.clone().lerp(new T.Color('#ffffff'), dark ? .35 : .6) };
+    };
+    const fabric = (color) => new T.MeshPhysicalMaterial(Object.assign({
+      color, roughness: .78, metalness: 0, sheenRoughness: .6, clearcoat: 0
+    }, sheenFor(color)));
 
+    const crownMat = fabric(crown), brimMat = fabric(brimC);
     const group = new T.Group();
 
     // copa
     const dome = new T.LatheGeometry(sampleProfile(48), 128);
-    group.add(new T.Mesh(dome, fabric(crown)));
+    group.add(new T.Mesh(dome, crownMat));
 
     // banda inferior + cierre interior
-    const band = new T.Mesh(new T.CylinderGeometry(1, 1, .06, 96, 1, true), fabric(crown));
+    const band = new T.Mesh(new T.CylinderGeometry(1, 1, .06, 96, 1, true), crownMat);
     band.position.y = -.03;
     group.add(band);
     const inner = new T.Mesh(
@@ -177,7 +181,7 @@
     });
 
     // botón
-    const button = new T.Mesh(new T.SphereGeometry(.075, 32, 20), fabric(crown));
+    const button = new T.Mesh(new T.SphereGeometry(.075, 32, 20), crownMat);
     button.scale.y = .55; button.position.y = .975;
     group.add(button);
 
@@ -192,7 +196,7 @@
     });
 
     // visera
-    const brim = new T.Mesh(brimGeometry(), fabric(brimC));
+    const brim = new T.Mesh(brimGeometry(), brimMat);
     group.add(brim);
 
     // bordado frontal (segmento de esfera con textura)
@@ -212,9 +216,10 @@
     const shadow = new T.Mesh(new T.PlaneGeometry(4.2, 4.2), new T.MeshBasicMaterial({
       map: shadowTexture(), transparent: true, depthWrite: false
     }));
-    shadow.rotation.x = -Math.PI / 2; shadow.position.y = -.3; shadow.scale.set(1.05, .9, 1);
+    shadow.rotation.x = -Math.PI / 2; shadow.position.y = -.24; shadow.scale.set(1.05, .9, 1);
 
-    return { group, shadow };
+    const mats = { crown: crownMat, brim: brimMat, seam: seamMat, eye: eyeMat, tex, sheenFor };
+    return { group, shadow, mats };
   }
 
   /* ---------- montaje ---------- */
@@ -243,10 +248,10 @@
     const rim = new T.DirectionalLight(0xd6e2f0, .9); rim.position.set(3.5, 2, -4); scene.add(rim);
     const fill = new T.DirectionalLight(0xffffff, .35); fill.position.set(3, .2, 3.5); scene.add(fill);
 
-    const { group, shadow } = buildCap(opts, renderer);
+    const { group, shadow, mats } = buildCap(opts, renderer);
     const pivot = new T.Group();
     pivot.add(group);
-    pivot.position.y = -.05;
+    pivot.position.y = .04;
     const rig = new T.Group();
     rig.add(pivot, shadow);
     scene.add(rig);
@@ -265,9 +270,8 @@
       canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
       camera.aspect = w / h; camera.updateProjectionMatrix();
       const s = Math.min(1, Math.min(w, h) / 560);
-      rig.scale.setScalar(.70 + .16 * s);
+      rig.scale.setScalar(.64 + .14 * s);
     };
-    new ResizeObserver(resize).observe(el);
     resize();
 
     // interacción: el puntero inclina, arrastrar gira
@@ -288,6 +292,30 @@
     addEventListener('scroll', () => { state.scroll = scrollY; }, { passive: true });
 
     const lerp = (a, b, k) => a + (b - a) * k;
+
+    // transición de colorway: interpola materiales y repinta el bordado a mitad de camino
+    const tween = { t: 1, from: null, to: null, thread: null, swapped: true };
+    const setColors = (next) => {
+      const crownTo = new T.Color(next.crown), brimTo = new T.Color(next.brim);
+      tween.from = { crown: mats.crown.color.clone(), brim: mats.brim.color.clone(),
+                     seam: mats.seam.color.clone(), sheen: mats.crown.sheenColor.clone() };
+      const s = mats.sheenFor(crownTo);
+      tween.to = { crown: crownTo, brim: brimTo, seam: crownTo.clone().multiplyScalar(.82), sheen: s.sheenColor, sheenK: s.sheen };
+      tween.thread = next.thread; tween.t = 0; tween.swapped = false;
+    };
+    const stepTween = () => {
+      if (tween.t >= 1) return;
+      tween.t = Math.min(1, tween.t + .045);
+      const k = 1 - Math.pow(1 - tween.t, 3);
+      mats.crown.color.copy(tween.from.crown).lerp(tween.to.crown, k);
+      mats.brim.color.copy(tween.from.brim).lerp(tween.to.brim, k);
+      mats.seam.color.copy(tween.from.seam).lerp(tween.to.seam, k);
+      mats.eye.color.copy(mats.seam.color).multiplyScalar(.9);
+      mats.crown.sheenColor.copy(tween.from.sheen).lerp(tween.to.sheen, k);
+      mats.brim.sheenColor.copy(mats.crown.sheenColor);
+      if (!tween.swapped && tween.t > .45) { mats.tex.recolor(tween.thread); tween.swapped = true; }
+      if (tween.t >= 1) { mats.crown.sheen = mats.brim.sheen = tween.to.sheenK; }
+    };
     let raf;
     const tick = () => {
       raf = requestAnimationFrame(tick);
@@ -299,16 +327,25 @@
       const targetX = opts.tilt + state.my * .16;
       state.ry = lerp(state.ry, targetY, .06);
       state.rx = lerp(state.rx, targetX, .06);
+      stepTween();
       pivot.rotation.set(state.rx, state.ry, 0);
-      pivot.position.y = -.05 + (reduceMotion ? 0 : Math.sin(t * .9) * .035);
+      pivot.position.y = .04 + (reduceMotion ? 0 : Math.sin(t * .9) * .035);
       shadow.scale.x = 1.05 - Math.abs(Math.sin(t * .9)) * .04;
       renderer.render(scene, camera);
       if (!el.classList.contains('is-3d')) el.classList.add('is-3d');
     };
     tick();
 
+    const onResize = new ResizeObserver(resize); onResize.observe(el);
     return {
-      dispose() { cancelAnimationFrame(raf); renderer.dispose(); canvas.remove(); el.classList.remove('is-3d'); }
+      setColors,
+      spin(dx) { state.drag += dx; },
+      dispose() {
+        cancelAnimationFrame(raf); onResize.disconnect();
+        removeEventListener('pointermove', onMove);
+        scene.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { if (o.material.map) o.material.map.dispose(); o.material.dispose(); } });
+        renderer.dispose(); canvas.remove(); el.classList.remove('is-3d');
+      }
     };
   };
 })();

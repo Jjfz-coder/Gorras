@@ -16,9 +16,11 @@ npx http-server . -p 8080
 
 ## Qué incluye
 
-- **Hero** con la gorra en 3D real (three.js): gira sola, sigue el puntero y se puede arrastrar.
+- **Hero** con la gorra en 3D real (three.js): gira sola, sigue el puntero, se puede arrastrar
+  y cambia de colorway en vivo con los swatches (transición de material + vuelta completa).
 - **Colección** de 4 modelos —nombrados como cumbres del país— en tarjetas con tilt 3D,
-  brillo que sigue el cursor y quick-add al pasar el mouse.
+  brillo que sigue el cursor y quick-add al pasar el mouse. Clic en la tarjeta abre la
+  **vista rápida** con el modelo 3D de ese colorway.
 - **Bolsa lateral** con cantidades, subtotal y aviso de envío gratis desde $1,200.
 - **Sección de construcción** con la Malinche girando 360° y especificaciones numeradas.
 - **Mapa de cobertura** nacional con destinos y tabla de tiempos/costos por zona.
@@ -37,7 +39,8 @@ assets/         favicon, fonts.css y las tipografías en woff2
 
 ## Notas técnicas
 
-- HTML, CSS y JS puros. Sin build, sin frameworks. three.js vendorizado para el 3D.
+- HTML, CSS y JS puros. Sin build, sin frameworks. three.js vendorizado para el 3D y
+  cargado en segundo plano: la página pinta con los SVG y el 3D entra en cuanto está listo.
 - La gorra 3D es 100% procedural: copa por revolución de un perfil, visera como
   superficie paramétrica en "D" con caída y curva, costuras en tubo, ojales, botón y
   bordado como textura de canvas (Jost) con bump map. Si no hay WebGL, se queda el SVG.

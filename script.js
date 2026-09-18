@@ -73,7 +73,7 @@ const SHIP_COST = 129;
 /* ---------- render de catálogo ---------- */
 const grid = document.getElementById('grid');
 grid.innerHTML = products.map((p, i) => `
-  <article class="card reveal" style="--i:${i}">
+  <article class="card reveal" style="--i:${i}" data-id="${p.id}">
     <div class="card__art" style="${capVars(p)}">
       <span class="card__tag ${p.hot ? 'is-hot' : ''}">${p.tag}</span>
       <span class="card__num">0${i + 1}</span>
@@ -109,11 +109,81 @@ if (fine) grid.querySelectorAll('.card').forEach(card => {
   });
 });
 
-/* gorras decorativas: 3D si hay WebGL, SVG si no */
+/* ---------- 3D: three.js se carga en segundo plano; el SVG cubre mientras tanto ---------- */
+const stages = {};
 document.querySelectorAll('.stage[data-cap]').forEach((el, i) => {
   el.querySelector('.cap--fallback').innerHTML = capSVG('deco' + i);
-  const opts = JSON.parse(el.dataset.cap);
-  if (window.Cap3D) Cap3D.mount(el, opts);
+});
+document.querySelector('#qvStage .cap--fallback').innerHTML = capSVG('qv');
+
+const loadScript = src => new Promise((ok, err) => {
+  const s = document.createElement('script'); s.src = src; s.async = true; s.onload = ok; s.onerror = err;
+  document.head.appendChild(s);
+});
+const ready3D = loadScript('assets/vendor/three.min.js')
+  .then(() => loadScript('assets/cap3d.js'))
+  .then(() => window.Cap3D && Cap3D.supported)
+  .catch(() => false);
+
+ready3D.then(ok => {
+  if (!ok) return;
+  document.querySelectorAll('.stage[data-cap]').forEach(el => {
+    stages[el.id] = Cap3D.mount(el, JSON.parse(el.dataset.cap));
+  });
+});
+
+/* ---------- hero: selector de colorway ---------- */
+const heroStage = document.getElementById('heroCap');
+const swatchBox = document.getElementById('heroSwatches');
+swatchBox.innerHTML = products.map((p, i) => `
+  <button class="swatch-btn ${i === 0 ? 'is-active' : ''}" role="radio" aria-checked="${i === 0}"
+          aria-label="${p.name}" data-swatch="${p.id}" style="--c:${p.crown}"><span></span></button>`).join('');
+let heroPick = products[0].id;
+function pickColorway(id) {
+  const p = products.find(x => x.id === id); if (!p) return;
+  heroPick = id;
+  swatchBox.querySelectorAll('.swatch-btn').forEach(b => {
+    const on = b.dataset.swatch === id; b.classList.toggle('is-active', on); b.setAttribute('aria-checked', on);
+  });
+  document.getElementById('heroPickName').textContent = p.name;
+  document.getElementById('heroPickPrice').textContent = MXN(p.price);
+  heroStage.setAttribute('style', capVars(p));            // respaldo SVG
+  if (stages.heroCap) { stages.heroCap.setColors(p); stages.heroCap.spin(Math.PI * 2); }
+}
+swatchBox.addEventListener('click', e => {
+  const b = e.target.closest('[data-swatch]'); if (b) pickColorway(b.dataset.swatch);
+});
+
+/* ---------- vista rápida (clic en la tarjeta) ---------- */
+const qv = document.getElementById('qv');
+const qvStage = document.getElementById('qvStage');
+let qvHandle = null, qvProduct = null;
+function openQuickView(id) {
+  const p = products.find(x => x.id === id); if (!p) return;
+  qvProduct = p;
+  document.getElementById('qvTag').textContent = p.tag;
+  document.getElementById('qvName').textContent = p.name;
+  document.getElementById('qvSub').textContent = p.sub;
+  document.getElementById('qvPrice').textContent = MXN(p.price);
+  qvStage.setAttribute('style', capVars(p));
+  qv.classList.add('is-open'); qv.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  ready3D.then(ok => {
+    if (!ok || !qv.classList.contains('is-open')) return;
+    if (qvHandle) qvHandle.dispose();
+    qvHandle = Cap3D.mount(qvStage, { crown: p.crown, brim: p.brim, thread: p.thread, yaw: .45, tilt: .14 });
+  });
+}
+function closeQuickView() {
+  qv.classList.remove('is-open'); qv.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  setTimeout(() => { if (qvHandle && !qv.classList.contains('is-open')) { qvHandle.dispose(); qvHandle = null; } }, 450);
+}
+document.getElementById('qvAdd').addEventListener('click', () => { if (qvProduct) { addToCart(qvProduct.id); closeQuickView(); openDrawer(true); } });
+grid.addEventListener('click', e => {
+  if (e.target.closest('[data-add]')) return;
+  const card = e.target.closest('.card'); if (!card) return;
+  openQuickView(card.dataset.id);
 });
 
 /* título: entrada palabra por palabra */
@@ -204,10 +274,11 @@ document.addEventListener('click', e => {
   if (qty){ setQty(qty.dataset.qty, Number(qty.dataset.d)); return; }
 
   if (e.target.closest('[data-close]')) openDrawer(false);
+  if (e.target.closest('[data-qv-close]')) closeQuickView();
 });
 
 document.getElementById('cartBtn').addEventListener('click', () => openDrawer(true));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') openDrawer(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { openDrawer(false); closeQuickView(); } });
 
 function openDrawer(open){
   drawer.classList.toggle('is-open', open);
