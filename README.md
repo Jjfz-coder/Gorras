@@ -42,8 +42,16 @@ assets/         favicon, fonts.css y las tipografías en woff2
 - HTML, CSS y JS puros. Sin build, sin frameworks. three.js vendorizado para el 3D y
   cargado en segundo plano: la página pinta con los SVG y el 3D entra en cuanto está listo.
 - La gorra 3D es 100% procedural: copa por revolución de un perfil, visera como
-  superficie paramétrica en "D" con caída y curva, costuras en tubo, ojales, botón y
-  bordado como textura de canvas (Jost) con bump map. Si no hay WebGL, se queda el SVG.
+  superficie paramétrica en "D" con caída y curva, costuras en tubo, pespunte en la
+  visera, ojales, botón, snapback trasero y bordado como textura de canvas (Jost) con
+  relieve. Si no hay WebGL, se queda el SVG.
+- Acabado **suede**: `MeshPhysicalMaterial` con roughness 1, casi sin especular y
+  `sheen` alto (BRDF "Charlie" para telas), mapa de normales de ruido para el pelo,
+  una capa fresnel de pelusa sobre la copa y un entorno de estudio procedural
+  (equirectangular → PMREM) para que el sheen tenga luz ambiente a la que responder.
+- Animación: entrada con subida y giro, vaivén + flotación en reposo, inclinación con el
+  puntero, arrastre con inercia al soltar, giro con el scroll y vuelta completa con
+  transición de material al cambiar de colorway.
 - Paleta clara: blanco, grises azulados y un azul acero (`--accent: #41607f`)
   como único color de acento. Todos los tokens viven en `:root`.
 - La gorra es un SVG parametrizado: cada modelo cambia copa, visera, hilo,
