@@ -35,8 +35,12 @@ assets/         favicon
 ## Notas técnicas
 
 - HTML, CSS y JS puros. Sin build, sin frameworks.
-- La gorra es un SVG parametrizado: cada modelo cambia copa, visera e hilo
-  con variables CSS (`--crown`, `--brim`, `--thread`).
+- Paleta clara: blanco, grises azulados y un azul acero (`--accent: #41607f`)
+  como único color de acento. Todos los tokens viven en `:root`.
+- La gorra es un SVG parametrizado: cada modelo cambia copa, visera, hilo,
+  costuras y sombreado con variables CSS (`--crown`, `--brim`, `--thread`,
+  `--stroke`, `--seam`, `--shade`). Cada instancia recibe un `id` de gradiente
+  único para que los colores no se pisen entre sí.
 - La silueta de México se generó a partir de datos públicos de fronteras
   (proyección equirectangular) y se simplificó a un solo `path`.
 - Tipografías vía Google Fonts (Bebas Neue + Inter) con fallback del sistema.

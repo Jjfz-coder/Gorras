@@ -3,31 +3,32 @@
    ============================================================ */
 
 /* ---------- ilustración de gorra (frente) ---------- */
-const capSVG = `
+const capSVG = (uid) => `
 <svg viewBox="0 0 400 300" role="img" aria-label="Gorra bordada">
   <defs>
-    <linearGradient id="g-crown" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"  stop-color="var(--crown)" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#000" stop-opacity=".45"/>
+    <linearGradient id="g-${uid}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="var(--crown)"/>
+      <stop offset="48%"  stop-color="var(--crown)"/>
+      <stop offset="100%" stop-color="var(--shade)"/>
     </linearGradient>
   </defs>
 
   <!-- sombra -->
-  <ellipse cx="200" cy="222" rx="128" ry="12" fill="#000" opacity=".35"/>
+  <ellipse cx="200" cy="222" rx="128" ry="11" fill="rgba(21,26,33,.10)"/>
 
   <!-- copa -->
   <path d="M68,192 C68,86 128,40 200,40 C272,40 332,86 332,192 Z"
-        fill="url(#g-crown)" stroke="#000" stroke-opacity=".5"/>
+        fill="url(#g-${uid})" stroke="var(--stroke)"/>
   <!-- costuras -->
-  <g stroke="#fff" stroke-opacity=".08" fill="none" stroke-width="1.5">
+  <g stroke="var(--seam)" fill="none" stroke-width="1.5">
     <path d="M200,41 L200,192"/>
     <path d="M136,55 C118,100 114,150 116,192"/>
     <path d="M264,55 C282,100 286,150 284,192"/>
   </g>
   <!-- botón -->
-  <circle cx="200" cy="43" r="7" fill="var(--crown)" stroke="#000" stroke-opacity=".5"/>
+  <circle cx="200" cy="43" r="7" fill="var(--crown)" stroke="var(--stroke)"/>
   <!-- eyelets -->
-  <g fill="#000" fill-opacity=".38">
+  <g fill="var(--seam)">
     <circle cx="100" cy="150" r="3.2"/><circle cx="300" cy="150" r="3.2"/>
   </g>
 
@@ -41,18 +42,29 @@ const capSVG = `
 
   <!-- visera -->
   <path d="M62,190 C62,200 72,206 86,209 C132,220 268,220 314,209 C328,206 338,200 338,190 Z"
-        fill="var(--brim)" stroke="#000" stroke-opacity=".5"/>
+        fill="var(--brim)" stroke="var(--stroke)"/>
   <path d="M70,193 C78,203 130,210 200,210 C270,210 322,203 330,193"
-        fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="1.5"/>
+        fill="none" stroke="var(--seam)" stroke-width="1.5"/>
 </svg>`;
 
 /* ---------- catálogo ---------- */
+const LIGHT = { stroke:'rgba(21,26,33,.18)', seam:'rgba(21,26,33,.10)', shade:'rgba(21,26,33,.10)' };
+const DARK  = { stroke:'rgba(10,16,24,.35)', seam:'rgba(255,255,255,.16)', shade:'rgba(9,14,21,.42)' };
+
 const products = [
-  { id:'obsidiana', name:'Obsidiana',  sub:'Snapback · lana 80/20',        price:849,  tag:'Más vendida', hot:true,  crown:'#15161a', brim:'#0e0f12', thread:'#c8a24a' },
-  { id:'cerro',     name:'Cerro Silla', sub:'Dad hat · algodón lavado',    price:699,  tag:'Nuevo',       hot:false, crown:'#1e2026', brim:'#171920', thread:'#e7e3d8' },
-  { id:'regia',     name:'Regia Bone',  sub:'Trucker · malla premium',     price:779,  tag:'Edición 300', hot:false, crown:'#2a241c', brim:'#1d1913', thread:'#d8cdb4' },
-  { id:'acero',     name:'Acero 5 Panel',sub:'5 panel · nylon técnico',    price:899,  tag:'Últimas 12',  hot:true,  crown:'#171b22', brim:'#10131a', thread:'#8fa3b8' }
+  { id:'niebla', name:'Niebla',       sub:'Snapback · lana 80/20',     price:849, tag:'Más vendida', hot:true,
+    crown:'#f3f5f8', brim:'#e6eaf0', thread:'#41607f', ...LIGHT },
+  { id:'cerro',  name:'Cerro Silla',  sub:'Dad hat · algodón lavado',  price:699, tag:'Nuevo', hot:false,
+    crown:'#ced5de', brim:'#bfc8d3', thread:'#232f3e', ...LIGHT },
+  { id:'regia',  name:'Regia Bone',   sub:'Trucker · malla premium',   price:779, tag:'Edición 300', hot:false,
+    crown:'#eae5da', brim:'#ded8ca', thread:'#4c586e', ...LIGHT },
+  { id:'acero',  name:'Acero 5 Panel',sub:'5 panel · nylon técnico',   price:899, tag:'Últimas 12', hot:true,
+    crown:'#465d78', brim:'#3a4f68', thread:'#eef1f5', ...DARK }
 ];
+
+const capVars = p =>
+  `--crown:${p.crown};--brim:${p.brim};--thread:${p.thread};` +
+  `--stroke:${p.stroke};--seam:${p.seam};--shade:${p.shade}`;
 
 const MXN = n => '$' + n.toLocaleString('es-MX') + ' MXN';
 const FREE_SHIP = 1200;
@@ -62,9 +74,9 @@ const SHIP_COST = 129;
 const grid = document.getElementById('grid');
 grid.innerHTML = products.map(p => `
   <article class="card reveal">
-    <div class="card__art" style="--crown:${p.crown};--brim:${p.brim};--thread:${p.thread}">
+    <div class="card__art" style="${capVars(p)}">
       <span class="card__tag ${p.hot ? 'is-hot' : ''}">${p.tag}</span>
-      <div class="cap">${capSVG}</div>
+      <div class="cap">${capSVG(p.id)}</div>
     </div>
     <div class="card__body">
       <h3 class="card__name">${p.name}</h3>
@@ -77,7 +89,8 @@ grid.innerHTML = products.map(p => `
   </article>`).join('');
 
 /* gorras decorativas (hero y detalle) */
-document.querySelectorAll('.cap--hero, .cap--detail').forEach(el => el.innerHTML = capSVG);
+document.querySelectorAll('.cap--hero, .cap--detail')
+  .forEach((el, i) => el.innerHTML = capSVG('deco' + i));
 
 /* ---------- bolsa ---------- */
 const cart = new Map();
@@ -112,8 +125,8 @@ function renderCart(){
         const p = products.find(x => x.id === id);
         return `
         <div class="line">
-          <div class="line__art" style="--crown:${p.crown};--brim:${p.brim};--thread:${p.thread}">
-            <div class="cap">${capSVG}</div>
+          <div class="line__art" style="${capVars(p)}">
+            <div class="cap">${capSVG('bag-' + p.id)}</div>
           </div>
           <div class="line__info">
             <p class="line__name">${p.name}</p>
@@ -194,7 +207,7 @@ document.getElementById('map').innerHTML = `
     <circle class="pulse" cx="${c.x}" cy="${c.y}" r="3" style="animation-delay:${i * 0.5}s"/>
     <circle class="pin"   cx="${c.x}" cy="${c.y}" r="3.4" style="animation-delay:${i * 0.15}s"/>
     <text x="${c.x + (c.dx || 9)}" y="${c.y + 3.5}" text-anchor="${c.anchor || 'start'}"
-          fill="#8b8d95" font-size="8" font-family="Inter,sans-serif"
+          fill="#6d7683" font-size="8" font-family="Inter,sans-serif"
           letter-spacing=".08em">${c.name.toUpperCase()}</text>
   `).join('')}
 </svg>`;
