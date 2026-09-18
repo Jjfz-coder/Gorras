@@ -6,8 +6,6 @@
 <meta name="theme-color" content="#ffffff" />
 <title>CUMBRES SUPPLY — Gorras premium con envíos a todo México</title>
 <meta name="description" content="Gorras premium bordadas en México. Make Cumbres Chingón Again. Envíos a los 32 estados." />
-<link rel="preload" href="assets/fonts/cormorant-garamond-600-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="assets/fonts/jost-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="assets/fonts.css" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="styles.css" />
@@ -34,20 +32,23 @@
   </a>
   <nav class="nav__links" aria-label="Principal">
     <a href="#coleccion">Colección</a>
-    <a href="#detalles">Detalles</a>
+    <a href="#detalles">Construcción</a>
     <a href="#envios">Envíos</a>
   </nav>
-  <button class="nav__cart" id="cartBtn" aria-label="Abrir bolsa">
-    Bolsa <span class="nav__count" id="cartCount">0</span>
-  </button>
+  <div class="nav__right">
+    <span class="nav__locale">MX · MXN</span>
+    <button class="nav__cart" id="cartBtn" aria-label="Abrir bolsa">
+      Bolsa <span class="nav__count" id="cartCount">0</span>
+    </button>
+  </div>
 </header>
 
 <main id="top">
 
   <section class="hero">
     <div class="hero__copy">
-      <p class="eyebrow">Drop 01 · Otoño 2026</p>
-      <h1>Make Cumbres<br /><em>Chingón</em> Again</h1>
+      <p class="eyebrow">Drop 01 · Otoño 2026 · 300 piezas</p>
+      <h1 class="hero__title" data-split>Make Cumbres <em>Chingón</em> Again</h1>
       <p class="lede">
         Gorras de edición limitada, bordadas a mano en México.
         Lana premium, visera estructurada y un mensaje que no necesita explicación.
@@ -56,59 +57,64 @@
         <a class="btn btn--primary" href="#coleccion">Ver la colección</a>
         <a class="btn btn--ghost" href="#detalles">Cómo se hacen</a>
       </div>
-      <ul class="hero__meta">
-        <li>300 piezas numeradas</li>
-        <li>Envíos a los 32 estados</li>
-        <li>Cambios sin costo</li>
-      </ul>
     </div>
-    <div class="hero__art" aria-hidden="true">
-      <div class="hero__glow"></div>
-      <div class="cap cap--hero" style="--crown:#f4f6f9;--brim:#e6eaf0;--thread:#41607f;--stroke:rgba(21,26,33,.20);--seam:rgba(21,26,33,.11);--shade:rgba(21,26,33,.13)">
-        <!-- CAP_SVG -->
-      </div>
-    </div>
-  </section>
 
-  <section class="strip" aria-label="Garantías">
-    <div><strong>3–5 días</strong><span>Entrega nacional</span></div>
-    <div><strong>Gratis +$1,200</strong><span>Envío estándar</span></div>
-    <div><strong>30 días</strong><span>Cambios y devoluciones</span></div>
-    <div><strong>MSI</strong><span>3 y 6 meses</span></div>
+    <div class="hero__art">
+      <div class="hero__halo" aria-hidden="true"></div>
+      <div class="stage stage--hero" id="heroCap"
+           data-cap='{"crown":"#f4f6f9","brim":"#e6eaf0","thread":"#41607f","tilt":0.18}'
+           style="--crown:#f4f6f9;--brim:#e6eaf0;--thread:#41607f;--stroke:rgba(21,26,33,.20);--seam:rgba(21,26,33,.11);--shade:rgba(21,26,33,.13)">
+        <div class="cap cap--fallback"></div>
+      </div>
+      <p class="stage__hint" aria-hidden="true">Arrastra para girar</p>
+    </div>
+
+    <ul class="hero__meta">
+      <li><strong>01</strong><span>Numerada a mano</span></li>
+      <li><strong>02</strong><span>Envíos a los 32 estados</span></li>
+      <li><strong>03</strong><span>Cambios sin costo</span></li>
+    </ul>
   </section>
 
   <section class="section" id="coleccion">
     <div class="section__head">
-      <h2>La colección</h2>
-      <p>Cuatro siluetas nombradas como las cumbres del país. Cada pieza lleva su número grabado en la etiqueta interior.</p>
+      <div>
+        <p class="eyebrow">La colección</p>
+        <h2>Cuatro cumbres,<br />un solo mensaje</h2>
+      </div>
+      <p class="section__note">Cada silueta lleva el nombre de una cumbre del país y su número grabado en la etiqueta interior.</p>
     </div>
     <div class="grid" id="grid"></div>
   </section>
 
   <section class="section section--split" id="detalles">
-    <div class="split__art" aria-hidden="true">
-      <div class="cap cap--detail" style="--crown:#465d78;--brim:#3a4f68;--thread:#eef1f5;--stroke:rgba(10,16,24,.35);--seam:rgba(255,255,255,.16);--shade:rgba(9,14,21,.42)">
-        <!-- CAP_SVG -->
+    <div class="split__art">
+      <div class="stage stage--detail" id="detailCap"
+           data-cap='{"crown":"#465d78","brim":"#3a4f68","thread":"#eef1f5","spin":true,"tilt":0.22}'
+           style="--crown:#465d78;--brim:#3a4f68;--thread:#eef1f5;--stroke:rgba(10,16,24,.35);--seam:rgba(255,255,255,.16);--shade:rgba(9,14,21,.42)">
+        <div class="cap cap--fallback"></div>
       </div>
+      <p class="stage__label" aria-hidden="true">Malinche · 5 panel · vista 360°</p>
     </div>
     <div class="split__copy">
       <p class="eyebrow">Construcción</p>
       <h2>Solo para <em>niños bien</em></h2>
-      <ul class="specs">
-        <li><strong>Bordado 3D</strong><span>12,400 puntadas en hilo de poliéster mate, frente reforzado con buckram.</span></li>
-        <li><strong>Lana 80/20</strong><span>Mezcla lana–acrílico que mantiene la forma después del calor de mayo.</span></li>
-        <li><strong>Visera estructurada</strong><span>Seis paneles, eyelets bordados y sudadera de algodón peinado.</span></li>
-        <li><strong>Cierre de latón</strong><span>Snapback o strapback con hebilla grabada y etiqueta numerada.</span></li>
-      </ul>
+      <ol class="specs">
+        <li><span class="specs__n">01</span><div><strong>Bordado 3D</strong><p>12,400 puntadas en hilo de poliéster mate, frente reforzado con buckram.</p></div></li>
+        <li><span class="specs__n">02</span><div><strong>Lana 80/20</strong><p>Mezcla lana–acrílico que mantiene la forma después del calor de mayo.</p></div></li>
+        <li><span class="specs__n">03</span><div><strong>Visera estructurada</strong><p>Seis paneles, ojales bordados y sudadera de algodón peinado.</p></div></li>
+        <li><span class="specs__n">04</span><div><strong>Cierre de latón</strong><p>Snapback o strapback con hebilla grabada y etiqueta numerada.</p></div></li>
+      </ol>
     </div>
   </section>
 
   <section class="section quote">
+    <span class="quote__mark" aria-hidden="true">“</span>
     <blockquote>
-      “Se la regalé a mi papá en diciembre y desde entonces
-      no se la quita ni para dormir.”
+      Se la regalé a mi papá en diciembre y desde entonces
+      no se la quita ni para dormir.
     </blockquote>
-    <cite>— Dani R., cliente desde el Drop 00</cite>
+    <cite>Dani R. · cliente desde el Drop 00</cite>
   </section>
 
   <section class="section section--split reverse" id="envios">
@@ -129,14 +135,15 @@
       </table>
       <p class="fine">Envío estándar gratis en pedidos desde $1,200 MXN. Guía rastreable por WhatsApp.</p>
     </div>
-    <div class="split__art" aria-hidden="true">
+    <div class="split__art split__art--map">
       <div class="map" id="map"></div>
     </div>
   </section>
 
   <section class="section news">
     <div class="news__box">
-      <h2>Entérate del Drop 02</h2>
+      <p class="eyebrow">Drop 02</p>
+      <h2>Entérate antes que nadie</h2>
       <p>Avisamos 24 horas antes. Sin spam, sin cupones falsos.</p>
       <form class="news__form" id="newsForm">
         <input type="email" required placeholder="tu@correo.com" aria-label="Correo electrónico" />
@@ -149,16 +156,19 @@
 </main>
 
 <footer class="foot">
-  <div class="foot__brand">
-    <span class="nav__mark">CS</span>
-    <p>Cumbres Supply · Hecho en México · Envíos a los 32 estados</p>
+  <div class="foot__top">
+    <div class="foot__brand">
+      <span class="nav__mark">CS</span>
+      <p>Hecho en México · Envíos a los 32 estados</p>
+    </div>
+    <div class="foot__links">
+      <a href="#coleccion">Colección</a>
+      <a href="#envios">Envíos</a>
+      <a href="#detalles">Guía de tallas</a>
+      <a href="#top">Contacto</a>
+    </div>
   </div>
-  <div class="foot__links">
-    <a href="#coleccion">Colección</a>
-    <a href="#envios">Envíos</a>
-    <a href="#detalles">Guía de tallas</a>
-    <a href="#top">Contacto</a>
-  </div>
+  <p class="foot__word" aria-hidden="true">Cumbres Supply</p>
   <p class="foot__fine">Prototipo de demostración. Precios en MXN. © 2026 Cumbres Supply.</p>
 </footer>
 
@@ -180,6 +190,8 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js"></script>
+<script src="assets/vendor/three.min.js" defer></script>
+<script src="assets/cap3d.js" charset="utf-8" defer></script>
+<script src="script.js" charset="utf-8" defer></script>
 </body>
 </html>

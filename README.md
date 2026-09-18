@@ -16,10 +16,11 @@ npx http-server . -p 8080
 
 ## Qué incluye
 
-- **Hero** con la gorra ilustrada en SVG (sin fotos, sin dependencias).
-- **Colección** de 4 modelos —nombrados como cumbres del país— con precios en MXN.
+- **Hero** con la gorra en 3D real (three.js): gira sola, sigue el puntero y se puede arrastrar.
+- **Colección** de 4 modelos —nombrados como cumbres del país— en tarjetas con tilt 3D,
+  brillo que sigue el cursor y quick-add al pasar el mouse.
 - **Bolsa lateral** con cantidades, subtotal y aviso de envío gratis desde $1,200.
-- **Sección de construcción** con especificaciones del bordado y materiales.
+- **Sección de construcción** con la Malinche girando 360° y especificaciones numeradas.
 - **Mapa de cobertura** nacional con destinos y tabla de tiempos/costos por zona.
 - **Newsletter** para el siguiente drop.
 
@@ -27,14 +28,19 @@ npx http-server . -p 8080
 
 ```
 index.html      estructura y contenido
-styles.css      tema claro, tipografía y layout responsivo
-script.js       catálogo, bolsa, ilustración SVG de la gorra y mapa
+styles.css      tema claro, tipografía, tilt de tarjetas y layout responsivo
+script.js       catálogo, bolsa, tilt, reveals, ilustración SVG de la gorra y mapa
+assets/cap3d.js gorra procedural en three.js (copa, visera, costuras, bordado)
+assets/vendor/  three.min.js (r149, vendorizado)
 assets/         favicon, fonts.css y las tipografías en woff2
 ```
 
 ## Notas técnicas
 
-- HTML, CSS y JS puros. Sin build, sin frameworks.
+- HTML, CSS y JS puros. Sin build, sin frameworks. three.js vendorizado para el 3D.
+- La gorra 3D es 100% procedural: copa por revolución de un perfil, visera como
+  superficie paramétrica en "D" con caída y curva, costuras en tubo, ojales, botón y
+  bordado como textura de canvas (Jost) con bump map. Si no hay WebGL, se queda el SVG.
 - Paleta clara: blanco, grises azulados y un azul acero (`--accent: #41607f`)
   como único color de acento. Todos los tokens viven en `:root`.
 - La gorra es un SVG parametrizado: cada modelo cambia copa, visera, hilo,

@@ -72,25 +72,69 @@ const SHIP_COST = 129;
 
 /* ---------- render de catálogo ---------- */
 const grid = document.getElementById('grid');
-grid.innerHTML = products.map(p => `
-  <article class="card reveal">
+grid.innerHTML = products.map((p, i) => `
+  <article class="card reveal" style="--i:${i}">
     <div class="card__art" style="${capVars(p)}">
       <span class="card__tag ${p.hot ? 'is-hot' : ''}">${p.tag}</span>
+      <span class="card__num">0${i + 1}</span>
       <div class="cap">${capSVG(p.id)}</div>
+      <div class="card__glare"></div>
+      <button class="card__quick" data-add="${p.id}">
+        <span>Agregar</span><span>${MXN(p.price)}</span>
+      </button>
     </div>
     <div class="card__body">
-      <h3 class="card__name">${p.name}</h3>
-      <p class="card__sub">${p.sub}</p>
       <div class="card__row">
+        <h3 class="card__name">${p.name}</h3>
         <span class="card__price">${MXN(p.price)}</span>
-        <button class="card__add" data-add="${p.id}">Agregar</button>
       </div>
+      <p class="card__sub"><span class="swatch" style="background:${p.crown}"></span>${p.sub}</p>
     </div>
   </article>`).join('');
 
-/* gorras decorativas (hero y detalle) */
-document.querySelectorAll('.cap--hero, .cap--detail')
-  .forEach((el, i) => el.innerHTML = capSVG('deco' + i));
+/* tilt 3D de las tarjetas: el puntero inclina, el brillo lo sigue */
+const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+if (fine) grid.querySelectorAll('.card').forEach(card => {
+  const art = card.querySelector('.card__art');
+  card.addEventListener('pointermove', e => {
+    const r = art.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+    card.style.setProperty('--ry', ((px - .5) * 16).toFixed(2) + 'deg');
+    card.style.setProperty('--rx', ((.5 - py) * 14).toFixed(2) + 'deg');
+    card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+  });
+  card.addEventListener('pointerleave', () => {
+    card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg');
+  });
+});
+
+/* gorras decorativas: 3D si hay WebGL, SVG si no */
+document.querySelectorAll('.stage[data-cap]').forEach((el, i) => {
+  el.querySelector('.cap--fallback').innerHTML = capSVG('deco' + i);
+  const opts = JSON.parse(el.dataset.cap);
+  if (window.Cap3D) Cap3D.mount(el, opts);
+});
+
+/* título: entrada palabra por palabra */
+document.querySelectorAll('[data-split]').forEach(h => {
+  let i = 0;
+  const wrap = node => {
+    if (node.nodeType === 3) {
+      const frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+        const w = document.createElement('span'); w.className = 'w';
+        const inner = document.createElement('span'); inner.style.setProperty('--i', i++); inner.textContent = part;
+        w.appendChild(inner); frag.appendChild(w);
+      });
+      node.replaceWith(frag);
+    } else if (node.nodeType === 1) [...node.childNodes].forEach(wrap);
+  };
+  [...h.childNodes].forEach(wrap);
+});
+document.body.classList.add('is-ready');
 
 /* ---------- bolsa ---------- */
 const cart = new Map();
@@ -117,6 +161,9 @@ function renderCart(){
   const units   = entries.reduce((n, [, q]) => n + q, 0);
   const total   = entries.reduce((n, [id, q]) => n + products.find(p => p.id === id).price * q, 0);
 
+  if (String(units) !== countEl.textContent) {
+    countEl.classList.remove('is-bump'); void countEl.offsetWidth; countEl.classList.add('is-bump');
+  }
   countEl.textContent = units;
   totalEl.textContent = MXN(total);
 
@@ -213,8 +260,12 @@ document.getElementById('map').innerHTML = `
 </svg>`;
 
 /* ---------- reveal al hacer scroll ---------- */
-document.querySelectorAll('.section__head, .split__copy, .split__art, .quote blockquote, .news__box, .card')
+document.querySelectorAll('.section__head, .split__copy, .split__art, .quote > *, .news__box, .foot__word')
   .forEach(el => el.classList.add('reveal'));
+document.querySelectorAll('.section h2').forEach(h => {
+  const mask = document.createElement('div'); mask.className = 'mask reveal-mask';
+  h.replaceWith(mask); mask.appendChild(h);
+});
 
 const io = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
@@ -223,7 +274,7 @@ const io = new IntersectionObserver((entries, obs) => {
     el.classList.add(el.classList.contains('pin') || el.classList.contains('pulse') ? 'on' : 'is-in');
     obs.unobserve(el);
   });
-}, { threshold:.16 });
+}, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal, .reveal-mask').forEach(el => io.observe(el));
 document.querySelectorAll('#map .pin, #map .pulse').forEach(p => io.observe(p));
