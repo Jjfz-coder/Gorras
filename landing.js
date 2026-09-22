@@ -21,8 +21,11 @@ function fit() {
   const avail = innerWidth - padX * 2;
   markText.style.fontSize = '100px';
   const w100 = markText.getBoundingClientRect().width;
-  const size = Math.floor(avail / w100 * 100 * 100) / 100;
+  let size = Math.floor(avail / w100 * 100 * 100) / 100;
   markText.style.fontSize = size + 'px';
+  // segunda pasada: el ancho no escala de forma exactamente lineal, se corrige lo que sobre
+  const w1 = markText.getBoundingClientRect().width;
+  if (w1 > avail) { size = Math.floor(size * avail / w1 * 100) / 100; markText.style.fontSize = size + 'px'; }
   const r = markText.getBoundingClientRect();
   bigW = r.width; bigH = r.height;
   const startY = innerHeight * TOP_START;
@@ -39,6 +42,7 @@ function place() {
   const y = scrollY;
   if (y === lastY) return;
   lastY = y;
+  if (!bigH) return;
   const p = reduceMotion ? (y > 8 ? 1 : 0) : ease(clamp01(y / travel));
   const scale = 1 + (LOGO_H / bigH - 1) * p;
   // el wordmark no se va con la página: se queda en pantalla y se encoge hasta el header
@@ -50,8 +54,12 @@ function place() {
 }
 
 function tick() { place(); requestAnimationFrame(tick); }
-document.fonts.ready.then(() => { fit(); place(); tick(); });
+// Se mide con la fuente real ya cargada; si llega después, se vuelve a medir.
+fit(); place(); tick();
+document.fonts.load('600 100px Jost').then(() => { fit(); place(); }).catch(() => {});
+document.fonts.addEventListener('loadingdone', () => { fit(); place(); });
 addEventListener('resize', () => { if (innerWidth !== lastW) { fit(); place(); } });
+addEventListener('orientationchange', () => { fit(); place(); });
 
 /* ---------- 3D en segundo plano ---------- */
 const loadScript = src => new Promise((ok, err) => {

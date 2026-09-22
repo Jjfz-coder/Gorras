@@ -57,33 +57,27 @@ button,input{font:inherit;color:inherit}
 
 /* ---------- historia: dos tiles y un texto ---------- */
 .story{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--bg)}
-.story__tile{position:relative;margin:0;background:var(--soft);aspect-ratio:4/5;display:grid;place-items:center;padding:8%}
+.story__tile{position:relative;margin:0;background:var(--soft);aspect-ratio:1/1;display:grid;place-items:center;padding:8%}
 .story__tile--dark{background:#dfe4ea}
 .story__tile img{width:100%;height:100%;object-fit:contain}
 .story__caption,.range__item p{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .story__text{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:clamp(24px,4vw,56px)}
-.story__text h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.6vw,56px);line-height:1;letter-spacing:-.02em;text-wrap:balance}
+.story__text h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,48px);line-height:1;letter-spacing:-.02em;text-wrap:balance}
 .story__text p{color:var(--muted);max-width:34ch;font-weight:300;font-size:16px}
 .story__link{display:inline-flex;align-items:center;min-height:44px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--line);transition:text-decoration-color 200ms ease}
 @media (hover:hover) and (pointer:fine){.story__link:hover{text-decoration-color:var(--ink)}}
 
-/* fotografía: cubre el tile completo; el fondo del tile empata con el fondo de la foto */
-.story__tile--photo{padding:0;background:#f2f3f5;overflow:hidden}
-.story__tile--photo img{width:100%;height:100%;object-fit:cover}
-.campaign{position:relative;margin:2px 0 0;background:#f2f3f5;aspect-ratio:16/8;min-height:360px;overflow:hidden}
-.campaign img{width:100%;height:100%;object-fit:cover;object-position:50% 38%}
-.campaign__caption{position:absolute;left:var(--pad);right:var(--pad);bottom:20px;display:flex;justify-content:space-between;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+/* fotografía: las fotos son cuadradas y se muestran completas; los tiles son cuadrados y el fondo
+   repite el degradado del estudio para que la campaña no muestre bandas */
+.story__tile--photo{padding:0;background:#f4f4f2}
+.story__tile--photo img{width:100%;height:100%;object-fit:contain}
+.campaign{position:relative;margin:2px 0 0;aspect-ratio:16/9;background:linear-gradient(#f6f5f4,#dcdcdc);overflow:hidden}
+.campaign img{width:100%;height:100%;object-fit:contain}
+.campaign__caption{position:absolute;left:var(--pad);right:var(--pad);bottom:20px;display:flex;justify-content:space-between;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px}
-.pair__tile{position:relative;margin:0;background:#f2f3f5;aspect-ratio:4/5;overflow:hidden}
-.pair__tile img{width:100%;height:100%;object-fit:cover;transition:transform 600ms var(--ease-out)}
-/* detalle: la foto cuadrada se amplía 2.1x y se ancla a una esquina; sólo se ve el recorte elegido */
-.pair__tile--zoom img{position:absolute;width:210%;height:auto;max-width:none;object-fit:fill}
-.pair__tile--zoom-a img{left:0;top:-39.5%}
-.pair__tile--zoom-b img{right:0;top:-54%}
-.campaign__caption{color:#fff;text-shadow:0 1px 10px rgba(21,26,33,.45)}
-@media (hover:hover) and (pointer:fine){
-  .pair__tile:hover img{transform:scale(1.03)}
-}
+.pair__tile{position:relative;margin:0;background:#f4f4f2;aspect-ratio:1/1;overflow:hidden}
+.pair__tile img{width:100%;height:100%;object-fit:contain;transition:transform 600ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.pair__tile:hover img{transform:scale(1.03)}}
 
 /* ---------- colección en cuatro ---------- */
 .range{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:2px}
@@ -124,7 +118,7 @@ button,input{font:inherit;color:inherit}
   .story__text{order:-1;padding:clamp(24px,6vw,40px) var(--pad)}
   .range{grid-template-columns:1fr 1fr}
   .detail{grid-template-columns:1fr}
-  .campaign{aspect-ratio:4/5;min-height:0}
+  .campaign{aspect-ratio:1/1}
   .pair{grid-template-columns:1fr}
   .foot__cols{grid-template-columns:1fr}
   .bar__group:first-child,.bar__group--right::before{display:none}
