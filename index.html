@@ -4,219 +4,184 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#ffffff" />
-<title>CUMBRES SUPPLY — Gorras premium con envíos a todo México</title>
-<meta name="description" content="Gorras premium bordadas en México. Make Cumbres Chingón Again. Envíos a los 32 estados." />
+<title>Cumbres Supply. Gorras de suede bordadas en México</title>
+<meta name="description" content="Gorras de suede bordadas a mano en México. Make Cumbres Chingón Again. Edición de 300 piezas, envíos a los 32 estados." />
+<meta property="og:title" content="Cumbres Supply" />
+<meta property="og:description" content="Gorras de suede bordadas a mano en México. Edición de 300 piezas." />
+<meta property="og:image" content="assets/renders/orizaba-side.webp" />
 <link rel="stylesheet" href="assets/fonts.css" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__track">
-    <span>Envíos a todo México</span><span>·</span>
-    <span>Envío gratis desde $1,200</span><span>·</span>
-    <span>Bordado hecho en México</span><span>·</span>
-    <span>Edición limitada 300 piezas</span><span>·</span>
-    <span>Envíos a todo México</span><span>·</span>
-    <span>Envío gratis desde $1,200</span><span>·</span>
-    <span>Bordado hecho en México</span><span>·</span>
-    <span>Edición limitada 300 piezas</span><span>·</span>
-  </div>
-</div>
+<a class="skip" href="#coleccion">Ir a la colección</a>
+
+<p class="promo">Envío gratis desde $1,200 MXN. Llegamos a los 32 estados.</p>
 
 <header class="nav" id="nav">
-  <a class="nav__brand" href="#top">
-    <span class="nav__mark">CS</span>
-    <span class="nav__name">Cumbres Supply</span>
-  </a>
+  <a class="brand" href="#top">Cumbres Supply</a>
   <nav class="nav__links" aria-label="Principal">
     <a href="#coleccion">Colección</a>
-    <a href="#detalles">Construcción</a>
+    <a href="#construccion">Construcción</a>
     <a href="#envios">Envíos</a>
   </nav>
-  <div class="nav__right">
-    <span class="nav__locale">MX · MXN</span>
-    <button class="nav__cart" id="cartBtn" aria-label="Abrir bolsa">
-      Bolsa <span class="nav__count" id="cartCount">0</span>
-    </button>
-  </div>
+  <button class="bag" id="cartBtn" aria-label="Abrir bolsa">
+    Bolsa <span class="bag__count" id="cartCount">0</span>
+  </button>
 </header>
 
 <main id="top">
 
   <section class="hero">
     <div class="hero__copy">
-      <p class="eyebrow">Drop 01 · Otoño 2026 · 300 piezas</p>
-      <h1 class="hero__title" data-split>Make Cumbres <em>Chingón</em> Again</h1>
-      <p class="lede">
-        Gorras de edición limitada, bordadas a mano en México.
-        Lana premium, visera estructurada y un mensaje que no necesita explicación.
-      </p>
+      <h1 class="hero__title" data-split>Make Cumbres Chingón Again</h1>
+      <p class="hero__sub">Gorras de suede bordadas a mano en México. Edición de 300 piezas numeradas.</p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="#coleccion">Ver la colección</a>
-        <a class="btn btn--ghost" href="#detalles">Cómo se hacen</a>
+        <a class="btn" href="#coleccion">Ver la colección</a>
+        <a class="link" href="#construccion">Cómo se hace</a>
       </div>
     </div>
 
-    <div class="hero__art">
-      <div class="hero__halo" aria-hidden="true"></div>
+    <figure class="hero__product">
       <div class="stage stage--hero" id="heroCap"
-           data-cap='{"crown":"#f4f6f9","brim":"#e6eaf0","thread":"#41607f","tilt":0.18}'
-           style="--crown:#f4f6f9;--brim:#e6eaf0;--thread:#41607f;--stroke:rgba(21,26,33,.20);--seam:rgba(21,26,33,.11);--shade:rgba(21,26,33,.13)">
-        <div class="cap cap--fallback"></div>
+           data-cap='{"crown":"#f3f5f8","brim":"#e6eaf0","thread":"#41607f","tilt":0.18,"scale":1.14}'>
+        <img class="stage__fallback" id="heroFallback" src="assets/renders/orizaba-front.webp" width="800" height="889"
+             alt="Gorra Orizaba en suede blanco con el bordado Make Cumbres Chingón Again" fetchpriority="high" />
       </div>
-      <div class="hero__pick">
-        <p class="stage__hint" aria-hidden="true">Arrastra para girar</p>
+      <figcaption class="hero__pick">
         <div class="swatches" id="heroSwatches" role="radiogroup" aria-label="Colorway"></div>
-        <p class="hero__pickLabel"><span id="heroPickName">Orizaba</span><span class="hero__pickDot">·</span><span id="heroPickPrice">$849 MXN</span></p>
-      </div>
-    </div>
-
-    <ul class="hero__meta">
-      <li><strong>01</strong><span>Numerada a mano</span></li>
-      <li><strong>02</strong><span>Envíos a los 32 estados</span></li>
-      <li><strong>03</strong><span>Cambios sin costo</span></li>
-    </ul>
+        <p class="hero__pickLabel"><span id="heroPickName">Orizaba</span>, <span id="heroPickPrice">$849 MXN</span></p>
+        <p class="hint" aria-hidden="true">Arrastra la gorra para girarla</p>
+      </figcaption>
+    </figure>
   </section>
 
-  <section class="section" id="coleccion">
-    <div class="section__head">
-      <div>
-        <p class="eyebrow">La colección</p>
-        <h2>Cuatro cumbres,<br />un solo mensaje</h2>
-      </div>
-      <p class="section__note">Cada silueta lleva el nombre de una cumbre del país y su número grabado en la etiqueta interior.</p>
+  <section class="tile tile--soft" id="coleccion">
+    <div class="wrap">
+      <h2>La colección</h2>
+      <p class="sub">Cuatro cumbres del país, un solo mensaje. Talla única ajustable, de 56 a 60 cm.</p>
+      <div class="grid" id="grid"></div>
     </div>
-    <div class="grid" id="grid"></div>
   </section>
 
-  <section class="section section--split" id="detalles">
-    <div class="split__art">
+  <section class="tile" id="construccion">
+    <div class="wrap split">
       <div class="stage stage--detail" id="detailCap"
-           data-cap='{"crown":"#465d78","brim":"#3a4f68","thread":"#eef1f5","spin":true,"tilt":0.22}'
-           style="--crown:#465d78;--brim:#3a4f68;--thread:#eef1f5;--stroke:rgba(10,16,24,.35);--seam:rgba(255,255,255,.16);--shade:rgba(9,14,21,.42)">
-        <div class="cap cap--fallback"></div>
+           data-cap='{"crown":"#465d78","brim":"#3a4f68","thread":"#eef1f5","spin":true,"tilt":0.22}'>
+        <img class="stage__fallback" src="assets/renders/malinche-side.webp" width="800" height="889" loading="lazy"
+             alt="Gorra Malinche en suede azul acero, vista de tres cuartos" />
       </div>
-      <p class="stage__label" aria-hidden="true">Malinche · 5 panel · vista 360°</p>
-    </div>
-    <div class="split__copy">
-      <p class="eyebrow">Construcción</p>
-      <h2>Solo para <em>niños bien</em></h2>
-      <ol class="specs">
-        <li><span class="specs__n">01</span><div><strong>Bordado 3D</strong><p>12,400 puntadas en hilo de poliéster mate, frente reforzado con buckram.</p></div></li>
-        <li><span class="specs__n">02</span><div><strong>Lana 80/20</strong><p>Mezcla lana–acrílico que mantiene la forma después del calor de mayo.</p></div></li>
-        <li><span class="specs__n">03</span><div><strong>Visera estructurada</strong><p>Seis paneles, ojales bordados y sudadera de algodón peinado.</p></div></li>
-        <li><span class="specs__n">04</span><div><strong>Cierre de latón</strong><p>Snapback o strapback con hebilla grabada y etiqueta numerada.</p></div></li>
-      </ol>
+      <div class="split__copy">
+        <h2>Solo para niños bien</h2>
+        <p class="sub">Cada pieza se corta, se borda y se numera a mano en el taller.</p>
+        <dl class="specs">
+          <div><dt>Suede de pelo corto</dt><dd>Denso y mate. Mantiene la forma y el color con el uso diario.</dd></div>
+          <div><dt>Bordado 3D</dt><dd>Hilo mate de alta densidad sobre un frente reforzado.</dd></div>
+          <div><dt>Visera estructurada</dt><dd>Seis paneles, ojales bordados y sudadera de algodón peinado.</dd></div>
+          <div><dt>Snapback de latón</dt><dd>Hebilla grabada y etiqueta interior con el número de tu pieza.</dd></div>
+        </dl>
+      </div>
     </div>
   </section>
 
-  <section class="section quote">
-    <span class="quote__mark" aria-hidden="true">“</span>
-    <blockquote>
-      Se la regalé a mi papá en diciembre y desde entonces
-      no se la quita ni para dormir.
-    </blockquote>
-    <cite>Dani R. · cliente desde el Drop 00</cite>
+  <section class="tile tile--soft quote">
+    <div class="wrap">
+      <blockquote>Se la regalé a mi papá en diciembre y desde entonces no se la quita ni para dormir.</blockquote>
+      <p class="cite">Dani R., cliente desde el Drop 00</p>
+    </div>
   </section>
 
-  <section class="section section--split reverse" id="envios">
-    <div class="split__copy">
-      <p class="eyebrow">Envíos</p>
+  <section class="tile" id="envios">
+    <div class="wrap">
       <h2>A todo México</h2>
-      <p class="lede">
-        Salimos del taller todos los días a las 4 pm y llegamos a los 32 estados.
-        Empaque rígido para que la visera llegue perfecta, vivas donde vivas.
-      </p>
-      <table class="ship">
-        <tbody>
-          <tr><td>Zonas metropolitanas</td><td>24–48 hrs</td><td>$99</td></tr>
-          <tr><td>Bajío y occidente</td><td>2–3 días</td><td>$129</td></tr>
-          <tr><td>Norte y frontera</td><td>3–4 días</td><td>$149</td></tr>
-          <tr><td>Sur y península</td><td>3–5 días</td><td>$169</td></tr>
-        </tbody>
-      </table>
+      <p class="sub">Salimos del taller todos los días a las 4 pm. Empaque rígido para que la visera llegue perfecta.</p>
+      <div class="map" id="map"></div>
+      <ul class="zones">
+        <li><strong>Zonas metropolitanas</strong><span>24 a 48 h</span><em>$99</em></li>
+        <li><strong>Bajío y occidente</strong><span>2 a 3 días</span><em>$129</em></li>
+        <li><strong>Norte y frontera</strong><span>3 a 4 días</span><em>$149</em></li>
+        <li><strong>Sur y península</strong><span>3 a 5 días</span><em>$169</em></li>
+      </ul>
       <p class="fine">Envío estándar gratis en pedidos desde $1,200 MXN. Guía rastreable por WhatsApp.</p>
     </div>
-    <div class="split__art split__art--map">
-      <div class="map" id="map"></div>
-    </div>
   </section>
 
-  <section class="section news">
-    <div class="news__box">
-      <p class="eyebrow">Drop 02</p>
-      <h2>Entérate antes que nadie</h2>
-      <p>Avisamos 24 horas antes. Sin spam, sin cupones falsos.</p>
-      <form class="news__form" id="newsForm">
-        <input type="email" required placeholder="tu@correo.com" aria-label="Correo electrónico" />
-        <button class="btn btn--primary" type="submit">Avísame</button>
+  <section class="tile tile--soft news">
+    <div class="wrap news__grid">
+      <div>
+        <h2>Avisos del Drop 02</h2>
+        <p class="sub">Te escribimos 24 horas antes de que salga. Sin spam, sin cupones falsos.</p>
+      </div>
+      <form class="news__form" id="newsForm" novalidate>
+        <label class="label" for="email">Correo</label>
+        <div class="news__row">
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="tu@correo.com" />
+          <button class="btn" type="submit">Avisarme</button>
+        </div>
+        <p class="fine news__msg" id="newsMsg" role="status"></p>
       </form>
-      <p class="fine" id="newsMsg" role="status"></p>
     </div>
   </section>
 
 </main>
 
 <footer class="foot">
-  <div class="foot__top">
-    <div class="foot__brand">
-      <span class="nav__mark">CS</span>
-      <p>Hecho en México · Envíos a los 32 estados</p>
-    </div>
-    <div class="foot__links">
+  <div class="wrap foot__row">
+    <p class="brand brand--foot">Cumbres Supply</p>
+    <nav class="foot__links" aria-label="Pie de página">
       <a href="#coleccion">Colección</a>
       <a href="#envios">Envíos</a>
-      <a href="#detalles">Guía de tallas</a>
+      <a href="#construccion">Guía de tallas</a>
       <a href="#top">Contacto</a>
-    </div>
+      <a href="#top">Privacidad</a>
+      <a href="#top">Términos</a>
+    </nav>
   </div>
-  <p class="foot__word" aria-hidden="true">Cumbres Supply</p>
-  <p class="foot__fine">Prototipo de demostración. Precios en MXN. © 2026 Cumbres Supply.</p>
+  <div class="wrap"><p class="fine foot__fine">Prototipo de demostración. Precios en MXN. © 2026 Cumbres Supply.</p></div>
 </footer>
 
 <div class="drawer" id="drawer" aria-hidden="true">
-  <div class="drawer__scrim" data-close></div>
+  <div class="scrim" data-close></div>
   <aside class="drawer__panel" role="dialog" aria-label="Bolsa de compra" aria-modal="true">
     <header class="drawer__head">
       <h3>Tu bolsa</h3>
-      <button class="drawer__x" data-close aria-label="Cerrar">&times;</button>
+      <button class="x" data-close aria-label="Cerrar">&times;</button>
     </header>
     <div class="drawer__body" id="cartItems"></div>
     <footer class="drawer__foot">
       <div class="drawer__row"><span>Subtotal</span><strong id="cartTotal">$0 MXN</strong></div>
-      <p class="fine" id="shipNote">Envío estándar $129 — faltan $1,200 para envío gratis.</p>
-      <button class="btn btn--primary btn--full">Pagar pedido</button>
+      <p class="fine" id="shipNote">Envío estándar $129 MXN. Te faltan $1,200 MXN para envío gratis.</p>
+      <button class="btn btn--full">Pagar pedido</button>
     </footer>
   </aside>
 </div>
 
 <div class="qv" id="qv" aria-hidden="true">
-  <div class="qv__scrim" data-qv-close></div>
+  <div class="scrim" data-qv-close></div>
   <div class="qv__panel" role="dialog" aria-modal="true" aria-label="Vista rápida">
-    <button class="qv__x" data-qv-close aria-label="Cerrar">&times;</button>
+    <button class="x qv__x" data-qv-close aria-label="Cerrar">&times;</button>
     <div class="qv__art">
-      <div class="stage stage--qv" id="qvStage"><div class="cap cap--fallback"></div></div>
-      <p class="stage__hint" aria-hidden="true">Arrastra para girar</p>
+      <div class="stage stage--qv" id="qvStage"><img class="stage__fallback" id="qvFallback" alt="" /></div>
+      <p class="hint" aria-hidden="true">Arrastra la gorra para girarla</p>
     </div>
     <div class="qv__info">
-      <p class="eyebrow" id="qvTag"></p>
+      <p class="qv__tag" id="qvTag"></p>
       <h3 class="qv__name" id="qvName"></h3>
       <p class="qv__sub" id="qvSub"></p>
       <p class="qv__price" id="qvPrice"></p>
       <ul class="qv__specs">
-        <li>Bordado 3D · 12,400 puntadas</li>
-        <li>Talla única ajustable · 56–60 cm</li>
+        <li>Suede de pelo corto con bordado 3D</li>
+        <li>Talla única ajustable, de 56 a 60 cm</li>
         <li>Etiqueta interior numerada</li>
       </ul>
-      <button class="btn btn--primary btn--full" id="qvAdd"><span>Agregar a la bolsa</span></button>
-      <p class="fine">Envío gratis desde $1,200 · Cambios sin costo 30 días</p>
+      <button class="btn btn--full" id="qvAdd">Agregar a la bolsa</button>
+      <p class="fine">Envío gratis desde $1,200 MXN. Cambios sin costo durante 30 días.</p>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast" role="status"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="script.js" charset="utf-8" defer></script>
 </body>

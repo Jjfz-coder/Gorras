@@ -18,9 +18,10 @@ npx http-server . -p 8080
 
 - **Hero** con la gorra en 3D real (three.js): gira sola, sigue el puntero, se puede arrastrar
   y cambia de colorway en vivo con los swatches (transición de material + vuelta completa).
-- **Colección** de 4 modelos —nombrados como cumbres del país— en tarjetas con tilt 3D,
-  brillo que sigue el cursor y quick-add al pasar el mouse. Clic en la tarjeta abre la
-  **vista rápida** con el modelo 3D de ese colorway.
+  Mientras carga three.js se ve un render WebP del mismo modelo.
+- **Colección** de 4 modelos, nombrados como cumbres del país, con renders reales del
+  modelo 3D (dos ángulos, se intercambian al pasar el mouse), tilt sutil y "Agregar a la
+  bolsa" al hover. Clic en la imagen abre la **vista rápida** con el modelo 3D de ese colorway.
 - **Bolsa lateral** con cantidades, subtotal y aviso de envío gratis desde $1,200.
 - **Sección de construcción** con la Malinche girando 360° y especificaciones numeradas.
 - **Mapa de cobertura** nacional con destinos y tabla de tiempos/costos por zona.
@@ -29,12 +30,13 @@ npx http-server . -p 8080
 ## Estructura
 
 ```
-index.html      estructura y contenido
-styles.css      tema claro, tipografía, tilt de tarjetas y layout responsivo
-script.js       catálogo, bolsa, tilt, reveals, ilustración SVG de la gorra y mapa
-assets/cap3d.js gorra procedural en three.js (copa, visera, costuras, bordado)
-assets/vendor/  three.min.js (r149, vendorizado)
-assets/         favicon, fonts.css y las tipografías en woff2
+index.html       estructura y contenido
+styles.css       tema claro, tipografía, tokens de movimiento y layout responsivo
+script.js        catálogo, bolsa, configurador, vista rápida y mapa
+assets/cap3d.js  gorra procedural en three.js (copa, visera, costuras, bordado, suede)
+assets/renders/  renders WebP del modelo 3D por colorway (frente y tres cuartos)
+assets/vendor/   three.min.js (r149, vendorizado)
+assets/          favicon, fonts.css y las tipografías en woff2
 ```
 
 ## Notas técnicas
@@ -62,5 +64,11 @@ assets/         favicon, fonts.css y las tipografías en woff2
   (proyección equirectangular) y se simplificó a un solo `path`.
 - Tipografías auto-hospedadas en `assets/fonts/` (Cormorant Garamond para
   títulos, Jost para interfaz): sin peticiones a terceros y sin FOUT.
+- Diseño revisado con `frontend-design`, `taste-skill`, `awesome-design-md` (Apple y Nike
+  como referencias de comercio) y los skills de animación de Emil Kowalski: superficies
+  cuadradas sin sombra (la única sombra es la del producto), píldoras sólo en lo
+  interactivo, sentence case en toda la interfaz, sin guiones largos ni etiquetas
+  numeradas, un solo momento de entrada (el hero) y curvas de easing fuertes con
+  duraciones de UI por debajo de 300 ms.
 - Respeta `prefers-reduced-motion` y funciona de 360 px hasta escritorio.
 - La bolsa vive en memoria: al recargar la página se vacía.

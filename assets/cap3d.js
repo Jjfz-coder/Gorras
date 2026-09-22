@@ -337,7 +337,7 @@
      MONTAJE, LUZ Y ANIMACIÓN
      ============================================================ */
   Cap3D.mount = function (el, opts) {
-    opts = Object.assign({ crown: '#f4f6f9', brim: '#e6eaf0', thread: '#41607f', spin: false, tilt: .16, yaw: .38 }, opts);
+    opts = Object.assign({ crown: '#f4f6f9', brim: '#e6eaf0', thread: '#41607f', spin: false, tilt: .16, yaw: .38, still: false, scale: 1 }, opts);
 
     const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
@@ -374,7 +374,7 @@
       renderer.setSize(w, h, false);
       canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
       camera.aspect = w / h; camera.updateProjectionMatrix();
-      state.scale = .64 + .14 * Math.min(1, Math.min(w, h) / 560);
+      state.scale = (.64 + .14 * Math.min(1, Math.min(w, h) / 560)) * opts.scale;
     };
     const onResize = new ResizeObserver(resize); onResize.observe(el);
     resize();
@@ -404,8 +404,6 @@
 
     const io = new IntersectionObserver(([en]) => { state.visible = en.isIntersecting; }, { threshold: 0 });
     io.observe(el);
-    const onScroll = () => { state.scroll = scrollY; };
-    addEventListener('scroll', onScroll, { passive: true });
 
     const lerp = (a, b, k) => a + (b - a) * k;
 
@@ -440,25 +438,27 @@
     const tick = () => {
       raf = requestAnimationFrame(tick);
       if (!state.visible) return;
+      state.scroll = scrollY;
       const t = (performance.now() - state.t0) / 1000;
 
       // entrada: sube, gira y se asienta
       const u = Math.min(1, t / 1.6);
-      const intro = reduceMotion ? 1 : 1 - Math.pow(2, -10 * u) * (1 - u);
+      const intro = (reduceMotion || opts.still) ? 1 : 1 - Math.pow(2, -10 * u) * (1 - u);
 
       // inercia del arrastre
       if (!state.dragging && Math.abs(state.vel) > .0004) { state.drag += state.vel; state.vel *= .94; }
 
-      const auto = reduceMotion ? 0 : (opts.spin ? t * .26 : Math.sin(t * .30) * .40);
+      const calm = reduceMotion || opts.still;
+      const auto = calm ? 0 : (opts.spin ? t * .26 : Math.sin(t * .30) * .40);
       const scrollTwist = opts.spin ? 0 : state.scroll * .0012;
-      const targetY = opts.yaw + auto + state.drag + state.mx * .30 + scrollTwist;
-      const targetX = opts.tilt + state.my * .15 + (reduceMotion ? 0 : Math.sin(t * .53) * .025);
-      state.ry = lerp(state.ry, targetY, state.dragging ? .35 : .06);
-      state.rx = lerp(state.rx, targetX, .06);
+      const targetY = opts.yaw + auto + state.drag + (calm ? 0 : state.mx * .30) + scrollTwist;
+      const targetX = opts.tilt + (calm ? 0 : state.my * .15 + Math.sin(t * .53) * .025);
+      state.ry = opts.still ? targetY : lerp(state.ry, targetY, state.dragging ? .35 : .06);
+      state.rx = opts.still ? targetX : lerp(state.rx, targetX, .06);
       stepTween();
 
-      pivot.rotation.set(state.rx, state.ry - (1 - intro) * 1.3, (reduceMotion ? 0 : Math.sin(t * .41) * .02));
-      const floatY = reduceMotion ? 0 : Math.sin(t * .9) * .035;
+      pivot.rotation.set(state.rx, state.ry - (1 - intro) * 1.3, (calm ? 0 : Math.sin(t * .41) * .02));
+      const floatY = calm ? 0 : Math.sin(t * .9) * .035;
       pivot.position.y = .04 + floatY - (1 - intro) * .9;
       rig.scale.setScalar(state.scale * (.9 + .1 * intro));
       shadow.material.opacity = intro * (1 - floatY * 2.2);
@@ -473,7 +473,7 @@
       spin(dx) { state.drag += dx; },
       dispose() {
         cancelAnimationFrame(raf); onResize.disconnect(); io.disconnect();
-        removeEventListener('pointermove', onMove); removeEventListener('scroll', onScroll);
+        removeEventListener('pointermove', onMove);
         scene.traverse(o => {
           if (o.geometry) o.geometry.dispose();
           if (o.material) { if (o.material.map) o.material.map.dispose(); o.material.dispose(); }
