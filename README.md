@@ -33,8 +33,9 @@ npx http-server . -p 8080
 ancho de la pantalla y, al hacer scroll, se queda contigo mientras se encoge hasta
 convertirse en el logo del header (sólo `transform`, calculado por frame a partir de
 `scrollY`). Debajo, portada 3D, tiles editoriales, la colección en cuatro y una banda de campaña.
-Las fotos de personas con gorra son **provisionales** (Pexels, licencia libre), enlazadas
-directamente desde `images.pexels.com`; sustitúyelas por la fotografía real de la marca.
+Las fotografías del landing viven en `assets/photos/` y son **provisionales** (fotos de
+referencia de gorras de suede, no del producto final). Para cambiarlas basta sustituir
+los archivos por la fotografía real de la marca, conservando el nombre.
 
 ## Estructura
 

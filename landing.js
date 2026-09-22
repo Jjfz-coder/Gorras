@@ -66,11 +66,6 @@ loadScript('assets/vendor/three.min.js')
   })
   .catch(() => {});
 
-/* ---------- fotos provisionales: si el host no responde, se retira la imagen y queda el tile ---------- */
-document.querySelectorAll('img[data-photo]').forEach(img => {
-  img.addEventListener('error', () => { img.closest('figure').classList.add('is-empty'); img.remove(); }, { once: true });
-});
-
 /* ---------- avisos ---------- */
 const form = document.getElementById('newsForm'), msg = document.getElementById('newsMsg');
 form.addEventListener('submit', e => {
