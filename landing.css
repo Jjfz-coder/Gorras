@@ -59,6 +59,17 @@ button,input{font:inherit;color:inherit}
 .stage.is-3d .stage__fallback{opacity:0;pointer-events:none}
 .cover__caption{position:absolute;left:var(--pad);right:var(--pad);bottom:18px;display:flex;justify-content:space-between;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 
+/* ---------- frase a todo lo ancho, que se llena de izquierda a derecha ---------- */
+.statement{padding:clamp(40px,7vw,110px) var(--pad) clamp(28px,5vw,80px);background:var(--bg)}
+.statement__text{
+  display:inline-block;font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1;white-space:nowrap;
+  font-size:calc((100vw - 2 * var(--pad)) / 11.64);   /* ancho de la frase en Cormorant a 100px: 1164px */
+  --fill:0%;
+  color:transparent;
+  background-image:linear-gradient(90deg,var(--ink) var(--fill),#d9dee5 var(--fill));
+  -webkit-background-clip:text;background-clip:text;
+}
+
 /* ---------- historia: dos tiles y un texto ---------- */
 .story{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--bg)}
 .story__tile{position:relative;margin:0;background:var(--soft);aspect-ratio:1/1;display:grid;place-items:center;padding:8%}
@@ -66,7 +77,6 @@ button,input{font:inherit;color:inherit}
 .story__tile img{width:100%;height:100%;object-fit:contain}
 .story__caption,.range__item p{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .story__text{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:clamp(24px,4vw,56px)}
-.story__text h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,48px);line-height:1;letter-spacing:-.02em;text-wrap:balance}
 .story__text p{color:var(--muted);max-width:34ch;font-weight:300;font-size:16px}
 .story__link{display:inline-flex;align-items:center;min-height:44px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--line);transition:text-decoration-color 200ms ease}
 @media (hover:hover) and (pointer:fine){.story__link:hover{text-decoration-color:var(--ink)}}
@@ -142,6 +152,9 @@ button,input{font:inherit;color:inherit}
 }
 
 /* ---------- responsive ---------- */
+@media (max-width:600px){
+  .statement__text{white-space:normal;font-size:clamp(40px,13.5vw,60px);text-wrap:balance}
+}
 @media (max-width:900px){
   .story{grid-template-columns:1fr}
   .story__text{order:-1;padding:clamp(24px,6vw,40px) var(--pad)}
@@ -158,6 +171,7 @@ button,input{font:inherit;color:inherit}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  .statement__text{--fill:100%}
   .range__item img,.pair__tile img{transition:none}
   .map3d__label{transition:none}
 }

@@ -53,14 +53,38 @@ function place() {
   bar.classList.toggle('is-solid', p > .98);
 }
 
-function tick() { place(); requestAnimationFrame(tick); }
+/* ---------- la frase se llena de tinta de izquierda a derecha con el scroll ---------- */
+const statement = document.getElementById('statement');
+let lastFill = -1;
+function fillStatement() {
+  if (!statement || reduceMotion) return;
+  const r = statement.getBoundingClientRect();
+  // empieza cuando la frase asoma por abajo y termina cuando llega al centro de la pantalla
+  const p = clamp01((innerHeight - r.top) / (innerHeight * .5 + r.height));
+  const f = Math.round(p * 1000) / 10;
+  if (f === lastFill) return;
+  lastFill = f;
+  statement.style.setProperty('--fill', f + '%');
+}
+// la frase también se ajusta al ancho con la fuente real cargada
+function fitStatement() {
+  if (!statement) return;
+  if (innerWidth <= 600) { statement.style.fontSize = ''; return; }   // en móvil se parte en líneas desde CSS
+  const avail = innerWidth - padX * 2;
+  statement.style.fontSize = '100px';
+  const w = statement.getBoundingClientRect().width || 1164;
+  statement.style.fontSize = (Math.floor(avail / w * 100 * 100) / 100) + 'px';
+}
+document.fonts.load('400 100px "Cormorant Garamond"').then(fitStatement).catch(fitStatement);
+
+function tick() { place(); fillStatement(); requestAnimationFrame(tick); }
 // El CSS ya deja el wordmark del ancho correcto; JS sólo afina la medida cuando la fuente real está lista
 // (si se midiera con la fuente de respaldo, el texto podría salirse de la pantalla).
 function measure() { bigH = markText.getBoundingClientRect().height; travel = Math.max(1, innerHeight * .9); lastY = -1; lastW = innerWidth; }
 measure(); tick();
 document.fonts.load('600 100px Jost').then(() => { fit(); place(); }).catch(() => { fit(); place(); });
 document.fonts.addEventListener('loadingdone', () => { fit(); place(); });
-addEventListener('resize', () => { if (innerWidth !== lastW) { fit(); place(); } });
+addEventListener('resize', () => { if (innerWidth !== lastW) { fit(); fitStatement(); place(); } });
 addEventListener('orientationchange', () => { fit(); place(); });
 
 /* ---------- 3D en segundo plano ---------- */
