@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
+<title>Cumbres Supply</title>
+<meta name="description" content="Cumbres Supply. Gorras de suede bordadas a mano en México. Drop 01, edición de 300 piezas." />
+<link rel="stylesheet" href="assets/fonts.css" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+
+<!-- El wordmark vive fuera del flujo: baja contigo y se encoge hasta ser el logo del header -->
+<a class="mark" id="mark" href="#top" aria-label="Cumbres Supply, inicio">
+  <span class="mark__text" id="markText">Cumbres Supply</span>
+</a>
+
+<header class="bar">
+  <nav class="bar__group" aria-label="Principal">
+    <a href="index.html#coleccion">Colección</a>
+    <a href="index.html#construccion">Construcción</a>
+  </nav>
+  <nav class="bar__group bar__group--right" aria-label="Cuenta">
+    <a href="#drop">Drop 01</a>
+    <a href="index.html">Bolsa (0)</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- espacio que ocupa el wordmark gigante antes de encogerse -->
+  <div class="mark__space" id="markSpace" aria-hidden="true"></div>
+
+  <section class="cover" id="cover">
+    <div class="stage" id="coverCap"
+         data-cap='{"crown":"#f3f5f8","brim":"#e6eaf0","thread":"#41607f","tilt":0.16,"yaw":0.42,"scale":1.04}'>
+      <img class="stage__fallback" src="assets/renders/orizaba-side.webp" width="800" height="889" fetchpriority="high"
+           alt="Gorra Orizaba en suede blanco, vista de tres cuartos" />
+    </div>
+    <p class="cover__caption"><span>Drop 01</span><span>Orizaba, $849 MXN</span></p>
+  </section>
+
+  <section class="story" id="drop">
+    <div class="story__tile story__tile--dark">
+      <img src="assets/renders/malinche-front.webp" width="800" height="889" loading="lazy" alt="Gorra Malinche en suede azul acero, de frente" />
+      <p class="story__caption"><span>Malinche</span><span>$899 MXN</span></p>
+    </div>
+    <div class="story__text">
+      <h1>Make Cumbres Chingón Again</h1>
+      <p>Gorras de suede bordadas a mano en México. Cuatro cumbres, trescientas piezas numeradas, un solo mensaje.</p>
+      <a class="story__link" href="index.html#coleccion">Ver la colección</a>
+    </div>
+    <div class="story__tile">
+      <img src="assets/renders/tacana-side.webp" width="800" height="889" loading="lazy" alt="Gorra Tacaná en suede hueso, vista de tres cuartos" />
+      <p class="story__caption"><span>Tacaná</span><span>$779 MXN</span></p>
+    </div>
+  </section>
+
+  <section class="range" aria-label="Colección">
+    <a class="range__item" href="index.html#coleccion">
+      <img src="assets/renders/orizaba-front.webp" width="800" height="889" loading="lazy" alt="Orizaba" />
+      <p><span>Orizaba</span><span>$849 MXN</span></p>
+    </a>
+    <a class="range__item" href="index.html#coleccion">
+      <img src="assets/renders/nevado-front.webp" width="800" height="889" loading="lazy" alt="Nevado" />
+      <p><span>Nevado</span><span>$699 MXN</span></p>
+    </a>
+    <a class="range__item" href="index.html#coleccion">
+      <img src="assets/renders/tacana-front.webp" width="800" height="889" loading="lazy" alt="Tacaná" />
+      <p><span>Tacaná</span><span>$779 MXN</span></p>
+    </a>
+    <a class="range__item" href="index.html#coleccion">
+      <img src="assets/renders/malinche-front.webp" width="800" height="889" loading="lazy" alt="Malinche" />
+      <p><span>Malinche</span><span>$899 MXN</span></p>
+    </a>
+  </section>
+
+  <section class="detail">
+    <div class="stage stage--detail" id="detailCap"
+         data-cap='{"crown":"#465d78","brim":"#3a4f68","thread":"#eef1f5","spin":true,"tilt":0.2,"scale":1.05}'>
+      <img class="stage__fallback" src="assets/renders/malinche-side.webp" width="800" height="889" loading="lazy" alt="Gorra Malinche girando" />
+    </div>
+    <div class="detail__text">
+      <p>Suede de pelo corto, bordado 3D, visera estructurada y snapback de latón con el número de tu pieza grabado en la etiqueta interior.</p>
+      <a class="story__link" href="index.html#construccion">Cómo se hace</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__cols">
+    <div>
+      <p class="foot__h">Cumbres Supply</p>
+      <p>Hecho en México. Envíos a los 32 estados.</p>
+    </div>
+    <div>
+      <p class="foot__h">Tienda</p>
+      <a href="index.html#coleccion">Colección</a>
+      <a href="index.html#construccion">Construcción</a>
+      <a href="index.html#envios">Envíos</a>
+    </div>
+    <div>
+      <p class="foot__h">Avisos</p>
+      <form class="foot__form" id="newsForm" novalidate>
+        <label for="email">Correo</label>
+        <div class="foot__row">
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="tu@correo.com" />
+          <button type="submit">Avisarme</button>
+        </div>
+        <p class="foot__msg" id="newsMsg" role="status"></p>
+      </form>
+    </div>
+  </div>
+  <p class="foot__fine">Prototipo de demostración. Precios en MXN. © 2026 Cumbres Supply.</p>
+</footer>
+
+<script src="landing.js" charset="utf-8" defer></script>
+</body>
+</html>

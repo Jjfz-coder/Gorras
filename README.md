@@ -27,10 +27,18 @@ npx http-server . -p 8080
 - **Mapa de cobertura** nacional con destinos y tabla de tiempos/costos por zona.
 - **Newsletter** para el siguiente drop.
 
+## Landing tipo Acne Studios
+
+`landing.html` es una portada alternativa: el wordmark **Cumbres Supply** ocupa todo el
+ancho de la pantalla y, al hacer scroll, se queda contigo mientras se encoge hasta
+convertirse en el logo del header (sólo `transform`, calculado por frame a partir de
+`scrollY`). Debajo, portada 3D, tiles editoriales con los renders y la colección en cuatro.
+
 ## Estructura
 
 ```
-index.html       estructura y contenido
+index.html       tienda: estructura y contenido
+landing.html     portada tipo Acne (landing.css, landing.js)
 styles.css       tema claro, tipografía, tokens de movimiento y layout responsivo
 script.js        catálogo, bolsa, configurador, vista rápida y mapa
 assets/cap3d.js  gorra procedural en three.js (copa, visera, costuras, bordado, suede)
