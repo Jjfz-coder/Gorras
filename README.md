@@ -32,7 +32,10 @@ npx http-server . -p 8080
 `landing.html` es una portada alternativa: el wordmark **Cumbres Supply** ocupa todo el
 ancho de la pantalla y, al hacer scroll, se queda contigo mientras se encoge hasta
 convertirse en el logo del header (sólo `transform`, calculado por frame a partir de
-`scrollY`). Debajo, portada 3D, tiles editoriales, la colección en cuatro y una banda de campaña.
+`scrollY`). Debajo, portada 3D, tiles editoriales, la colección en cuatro, una banda de campaña, la sección
+"Solo para niños bien" y el mapa de envíos en 3D (`assets/shipmap3d.js`): México en relieve con
+arcos animados que salen de Ciudad de México hacia las principales ciudades. Lee el contorno y las
+ciudades del SVG de respaldo que está en el HTML, así que sin WebGL queda el mapa plano.
 Las fotografías del landing viven en `assets/photos/` y son **provisionales** (fotos de
 referencia de gorras de suede, no del producto final). Para cambiarlas basta sustituir
 los archivos por la fotografía real de la marca, conservando el nombre.

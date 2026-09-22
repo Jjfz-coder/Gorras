@@ -54,9 +54,11 @@ function place() {
 }
 
 function tick() { place(); requestAnimationFrame(tick); }
-// Se mide con la fuente real ya cargada; si llega después, se vuelve a medir.
-fit(); place(); tick();
-document.fonts.load('600 100px Jost').then(() => { fit(); place(); }).catch(() => {});
+// El CSS ya deja el wordmark del ancho correcto; JS sólo afina la medida cuando la fuente real está lista
+// (si se midiera con la fuente de respaldo, el texto podría salirse de la pantalla).
+function measure() { bigH = markText.getBoundingClientRect().height; travel = Math.max(1, innerHeight * .9); lastY = -1; lastW = innerWidth; }
+measure(); tick();
+document.fonts.load('600 100px Jost').then(() => { fit(); place(); }).catch(() => { fit(); place(); });
 document.fonts.addEventListener('loadingdone', () => { fit(); place(); });
 addEventListener('resize', () => { if (innerWidth !== lastW) { fit(); place(); } });
 addEventListener('orientationchange', () => { fit(); place(); });
@@ -69,8 +71,19 @@ const loadScript = src => new Promise((ok, err) => {
 loadScript('assets/vendor/three.min.js')
   .then(() => loadScript('assets/cap3d.js'))
   .then(() => {
-    if (!(window.Cap3D && Cap3D.supported)) return;
-    document.querySelectorAll('.stage[data-cap]').forEach(el => Cap3D.mount(el, JSON.parse(el.dataset.cap)));
+    if (window.Cap3D && Cap3D.supported)
+      document.querySelectorAll('.stage[data-cap]').forEach(el => Cap3D.mount(el, JSON.parse(el.dataset.cap)));
+    return loadScript('assets/shipmap3d.js');
+  })
+  .then(() => {
+    const el = document.getElementById('shipMap');
+    if (!(el && window.ShipMap3D && ShipMap3D.supported)) return;
+    // el mapa se monta cuando se acerca a la pantalla
+    const io = new IntersectionObserver(entries => {
+      if (!entries.some(e => e.isIntersecting)) return;
+      io.disconnect(); ShipMap3D.mount(el);
+    }, { rootMargin: '300px 0px' });
+    io.observe(el);
   })
   .catch(() => {});
 

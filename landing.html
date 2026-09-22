@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#ffffff" />
 <title>Cumbres Supply</title>
 <meta name="description" content="Cumbres Supply. Gorras de suede bordadas a mano en México. Drop 01, edición de 300 piezas." />
+<link rel="preload" href="assets/fonts/jost-600-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="assets/fonts.css" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="landing.css" />
@@ -20,7 +21,8 @@
 <header class="bar">
   <nav class="bar__group" aria-label="Principal">
     <a href="index.html#coleccion">Colección</a>
-    <a href="index.html#construccion">Construcción</a>
+    <a href="#construccion">Construcción</a>
+    <a href="#envios">Envíos</a>
   </nav>
   <nav class="bar__group bar__group--right" aria-label="Cuenta">
     <a href="#drop">Drop 01</a>
@@ -82,14 +84,74 @@
     <figcaption class="campaign__caption"><span>Make Cumbres Chingón Again</span><span>Otoño 2026</span></figcaption>
   </figure>
 
-  <section class="detail">
+  <section class="detail" id="construccion">
     <div class="stage stage--detail" id="detailCap"
          data-cap='{"crown":"#465d78","brim":"#3a4f68","thread":"#eef1f5","spin":true,"tilt":0.2,"scale":1.05}'>
       <img class="stage__fallback" src="assets/renders/malinche-side.webp" width="800" height="889" loading="lazy" alt="Gorra Malinche girando" />
     </div>
     <div class="detail__text">
-      <p>Suede de pelo corto, bordado 3D, visera estructurada y snapback de latón con el número de tu pieza grabado en la etiqueta interior.</p>
+      <h2>Solo para niños bien</h2>
+      <p>Cada pieza se corta, se borda y se numera a mano en el taller. Trescientas por drop, ni una más.</p>
+      <dl class="specs">
+        <div><dt>Suede de pelo corto</dt><dd>Denso y mate. Mantiene la forma y el color con el uso diario.</dd></div>
+        <div><dt>Bordado 3D</dt><dd>Hilo mate de alta densidad sobre un frente reforzado.</dd></div>
+        <div><dt>Visera estructurada</dt><dd>Seis paneles, ojales bordados y sudadera de algodón peinado.</dd></div>
+        <div><dt>Snapback de latón</dt><dd>Hebilla grabada y etiqueta interior con el número de tu pieza.</dd></div>
+      </dl>
       <a class="story__link" href="index.html#construccion">Cómo se hace</a>
+    </div>
+  </section>
+
+  <section class="ship" id="envios" aria-labelledby="shipTitle">
+    <div class="ship__text">
+      <h2 id="shipTitle">A todo México</h2>
+      <p>Salimos del taller de Ciudad de México todos los días a las 4 pm. Empaque rígido para que la visera llegue perfecta a los 32 estados.</p>
+      <ul class="zones">
+        <li><strong>Zonas metropolitanas</strong><span>24 a 48 h</span><em>$99</em></li>
+        <li><strong>Bajío y occidente</strong><span>2 a 3 días</span><em>$129</em></li>
+        <li><strong>Norte y frontera</strong><span>3 a 4 días</span><em>$149</em></li>
+        <li><strong>Sur y península</strong><span>3 a 5 días</span><em>$169</em></li>
+      </ul>
+      <p class="ship__fine">Envío estándar gratis en pedidos desde $1,200 MXN. Guía rastreable por WhatsApp.</p>
+    </div>
+    <div class="stage stage--map" id="shipMap">
+      <svg class="map__fallback" viewBox="0 0 400 230" role="img" aria-label="Mapa de cobertura de envíos en México, con rutas desde Ciudad de México">
+        <path class="mx" d="M251.2,89.1 247.0,99.3 245.2,107.6 244.4,123.1 243.4,128.7 245.2,135.0 248.5,140.6 250.6,149.6 257.7,158.2 260.1,164.8 264.3,170.5 275.5,173.5 279.9,178.4 289.2,175.1 297.3,174.0 305.2,171.9 311.9,169.9 318.6,165.2 321.1,158.5 322.0,148.8 323.8,145.4 331.0,142.4 342.2,139.7 351.6,140.1 358.0,139.1 360.6,141.5 360.2,147.1 354.5,154.0 352.0,161.0 353.9,163.0 352.3,168.0 349.7,177.0 347.0,174.1 344.8,174.2 342.8,174.4 339.0,181.4 337.1,180.0 335.8,180.5 335.9,182.2 326.1,182.1 316.2,182.1 316.2,188.6 311.4,188.7 315.3,192.5 319.2,195.2 320.4,197.7 322.1,198.4 321.9,202.3 308.3,202.4 303.2,211.8 304.7,213.9 303.4,216.6 303.2,220.0 291.2,207.6 285.7,203.8 277.1,200.8 271.2,201.6 262.7,206.0 257.3,207.1 249.8,204.1 241.9,201.9 232.0,196.6 224.1,195.0 212.1,189.6 203.2,184.1 200.5,181.0 194.6,180.3 183.8,176.6 179.4,171.4 168.0,164.8 162.7,157.5 160.2,151.9 163.7,150.8 162.6,147.5 165.0,144.5 165.1,140.5 161.5,135.3 160.6,130.7 157.0,124.9 147.7,113.4 137.0,104.4 131.9,97.2 122.8,92.5 120.8,89.6 122.4,82.5 117.0,79.8 110.8,74.2 108.2,66.1 102.5,65.2 96.3,59.1 91.3,53.5 90.9,49.9 85.2,41.2 81.4,32.3 81.6,27.9 73.9,23.3 70.4,23.8 64.4,20.6 62.7,25.3 64.4,30.9 65.4,39.5 69.1,44.3 76.9,52.3 78.7,55.0 80.3,55.8 81.7,59.8 83.6,59.6 85.7,67.1 88.9,70.0 91.2,74.1 97.8,80.0 101.3,90.7 104.5,95.8 107.4,101.2 108.0,107.3 113.1,107.7 117.4,112.9 121.2,118.1 120.9,120.1 116.5,124.4 114.6,124.3 111.8,117.3 104.9,110.7 97.3,105.1 91.8,102.2 92.2,93.7 90.6,87.5 85.5,83.9 78.2,78.8 76.8,80.2 74.2,77.2 67.6,74.4 61.4,67.7 62.2,66.9 66.5,67.5 70.5,63.2 70.9,58.0 62.7,49.7 56.5,46.5 52.6,39.3 48.7,31.8 43.8,22.5 39.4,12.1 51.5,11.3 64.9,10.0 63.9,12.3 79.9,17.9 104.1,26.0 125.2,25.9 133.6,25.9 133.6,21.2 151.9,21.2 155.8,25.3 161.2,28.9 167.5,34.0 171.0,40.0 173.7,46.4 179.1,49.9 187.9,53.3 194.6,44.2 203.3,44.0 210.7,48.6 216.0,56.5 219.7,63.3 225.9,69.8 228.3,77.9 231.2,83.4 239.5,86.9 247.0,89.5 251.2,89.1Z"/>
+        <path class="arc" d="M230.3,163.5 Q135.6,20.0 40.8,12.2"/>
+        <path class="arc" d="M230.3,163.5 Q224.0,106.8 217.7,91.2"/>
+        <path class="arc" d="M230.3,163.5 Q207.9,143.2 185.6,149.2"/>
+        <path class="arc" d="M230.3,163.5 Q280.6,126.0 330.9,145.7"/>
+        <path class="arc" d="M230.3,163.5 Q167.7,60.9 105.0,52.1"/>
+        <path class="arc" d="M230.3,163.5 Q193.6,74.2 156.9,57.2"/>
+        <path class="arc" d="M230.3,163.5 Q186.6,102.4 142.9,101.4"/>
+        <path class="arc" d="M230.3,163.5 Q207.6,104.7 184.8,92.9"/>
+        <path class="arc" d="M230.3,163.5 Q216.8,144.4 203.3,144.0"/>
+        <path class="arc" d="M230.3,163.5 Q235.2,162.7 240.1,168.0"/>
+        <path class="arc" d="M230.3,163.5 Q246.2,156.1 262.0,166.5"/>
+        <path class="arc" d="M230.3,163.5 Q243.1,166.7 255.8,190.8"/>
+        <path class="arc" d="M230.3,163.5 Q262.1,159.2 293.9,194.5"/>
+        <path class="arc" d="M230.3,163.5 Q293.4,118.1 356.5,144.2"/>
+        <circle class="pin" data-city="CDMX" data-hub cx="230.3" cy="163.5" r="3.6"/>
+        <circle class="pin" data-city="Tijuana" cx="40.8" cy="12.2" r="2.6"/>
+        <circle class="pin" data-city="Monterrey" cx="217.7" cy="91.2" r="2.6"/>
+        <circle class="pin" data-city="Guadalajara" cx="185.6" cy="149.2" r="2.6"/>
+        <circle class="pin" data-city="Mérida" cx="330.9" cy="145.7" r="2.6"/>
+        <circle class="pin" data-city="" cx="105.0" cy="52.1" r="1.8"/>
+        <circle class="pin" data-city="" cx="156.9" cy="57.2" r="1.8"/>
+        <circle class="pin" data-city="" cx="142.9" cy="101.4" r="1.8"/>
+        <circle class="pin" data-city="" cx="184.8" cy="92.9" r="1.8"/>
+        <circle class="pin" data-city="" cx="203.3" cy="144.0" r="1.8"/>
+        <circle class="pin" data-city="" cx="240.1" cy="168.0" r="1.8"/>
+        <circle class="pin" data-city="" cx="262.0" cy="166.5" r="1.8"/>
+        <circle class="pin" data-city="" cx="255.8" cy="190.8" r="1.8"/>
+        <circle class="pin" data-city="" cx="293.9" cy="194.5" r="1.8"/>
+        <circle class="pin" data-city="" cx="356.5" cy="144.2" r="1.8"/>
+        <text x="239.3" y="167.0" text-anchor="start" fill="#6d7683" font-size="8.5" font-family="Jost,system-ui,sans-serif">CDMX</text>
+        <text x="49.8" y="15.7" text-anchor="start" fill="#6d7683" font-size="8.5" font-family="Jost,system-ui,sans-serif">Tijuana</text>
+        <text x="226.7" y="94.7" text-anchor="start" fill="#6d7683" font-size="8.5" font-family="Jost,system-ui,sans-serif">Monterrey</text>
+        <text x="194.6" y="152.7" text-anchor="start" fill="#6d7683" font-size="8.5" font-family="Jost,system-ui,sans-serif">Guadalajara</text>
+        <text x="321.9" y="149.2" text-anchor="end" fill="#6d7683" font-size="8.5" font-family="Jost,system-ui,sans-serif">Mérida</text>
+      </svg>
     </div>
   </section>
 
@@ -116,7 +178,7 @@
       <p class="foot__h">Tienda</p>
       <a href="index.html#coleccion">Colección</a>
       <a href="index.html#construccion">Construcción</a>
-      <a href="index.html#envios">Envíos</a>
+      <a href="#envios">Envíos</a>
     </div>
     <div>
       <p class="foot__h">Avisos</p>

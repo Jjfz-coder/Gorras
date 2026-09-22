@@ -11,6 +11,9 @@
   --pad:clamp(16px,2.4vw,32px);
   --bar:56px;
   --ease-out:cubic-bezier(.23,1,.32,1);
+  /* tamaño inicial del wordmark: ancho disponible / ancho de "CUMBRES SUPPLY" en Jost 600 a 100px (804px) */
+  --mark-size:calc((100vw - 2 * var(--pad)) / 8.04);
+  --mark-top:6vh;
 }
 
 *{box-sizing:border-box}
@@ -27,14 +30,15 @@ button,input{font:inherit;color:inherit}
   position:fixed;left:0;top:0;z-index:50;
   display:block;line-height:1;white-space:nowrap;
   transform-origin:0 0;will-change:transform;
+  transform:translate3d(0,var(--mark-top),0);
   padding:0 var(--pad);
 }
 .mark__text{
   display:inline-block;font-weight:600;text-transform:uppercase;
   letter-spacing:-.035em;line-height:.86;
-  font-size:var(--mark-size,12vw);
+  font-size:var(--mark-size);
 }
-.mark__space{height:var(--mark-space,22vw)}   /* lo fija JS al alto real del wordmark */
+.mark__space{height:calc(var(--mark-top) * 2 + var(--mark-size) * .86)}   /* JS lo afina al alto real */
 .bar{
   position:fixed;left:0;right:0;top:0;z-index:40;height:var(--bar);
   display:flex;justify-content:flex-end;align-items:center;gap:22px;padding:0 var(--pad);
@@ -90,7 +94,32 @@ button,input{font:inherit;color:inherit}
 .stage--detail{aspect-ratio:1/1;background:var(--soft)}
 .stage--detail .stage__fallback{height:auto;width:74%}
 .detail__text{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:clamp(24px,4vw,64px)}
-.detail__text p{font-family:var(--serif);font-size:clamp(24px,2.4vw,36px);line-height:1.15;letter-spacing:-.01em;max-width:24ch}
+.detail__text h2,.ship__text h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,48px);line-height:1;letter-spacing:-.02em;text-wrap:balance}
+.detail__text>p,.ship__text>p{color:var(--muted);font-weight:300;font-size:16px;max-width:38ch}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin:6px 0 0}
+.specs div{border-top:1px solid var(--line);padding-top:12px}
+.specs dt{font-weight:500;font-size:14px}
+.specs dd{margin:4px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
+
+/* ---------- envíos: mapa 3D con arcos desde CDMX ---------- */
+.ship{display:grid;grid-template-columns:1fr 1.5fr;gap:2px;margin-top:2px}
+.ship__text{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:clamp(24px,4vw,64px)}
+.zones{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}
+.zones li{display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--line);padding-top:12px;font-size:14px}
+.zones strong{font-weight:500}
+.zones span{color:var(--muted)}
+.zones em{font-style:normal}
+.ship__fine{font-size:12px;color:var(--muted)}
+.stage--map{aspect-ratio:4/3;background:var(--soft);overflow:hidden}
+.stage--map .map3d{position:absolute;inset:0;width:100%!important;height:100%!important;touch-action:pan-y}
+.map__fallback{width:78%;height:auto;overflow:visible;transition:opacity 400ms ease}
+.map__fallback .mx{fill:#fff;stroke:#c6cfda;stroke-width:1.2}
+.map__fallback .pin{fill:var(--accent)}
+.map__fallback .arc{fill:none;stroke:var(--accent);stroke-width:.9;opacity:.5}
+.stage--map.is-3d .map__fallback{opacity:0;pointer-events:none}
+.map3d__label{position:absolute;left:0;top:0;transform:translate(-50%,-100%);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);pointer-events:none;white-space:nowrap;opacity:0;transition:opacity 400ms ease}
+.map3d__label--hub{color:var(--ink)}
+.is-3d .map3d__label{opacity:1}
 
 /* ---------- footer ---------- */
 .foot{padding:clamp(48px,6vw,88px) var(--pad) 24px;border-top:1px solid var(--line);margin-top:2px}
@@ -118,6 +147,9 @@ button,input{font:inherit;color:inherit}
   .story__text{order:-1;padding:clamp(24px,6vw,40px) var(--pad)}
   .range{grid-template-columns:1fr 1fr}
   .detail{grid-template-columns:1fr}
+  .ship{grid-template-columns:1fr}
+  .ship__text{order:-1}
+  .stage--map{aspect-ratio:1/1}
   .campaign{aspect-ratio:1/1}
   .pair{grid-template-columns:1fr}
   .foot__cols{grid-template-columns:1fr}
@@ -127,4 +159,5 @@ button,input{font:inherit;color:inherit}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .range__item img,.pair__tile img{transition:none}
+  .map3d__label{transition:none}
 }
