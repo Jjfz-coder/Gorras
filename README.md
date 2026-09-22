@@ -32,7 +32,9 @@ npx http-server . -p 8080
 `landing.html` es una portada alternativa: el wordmark **Cumbres Supply** ocupa todo el
 ancho de la pantalla y, al hacer scroll, se queda contigo mientras se encoge hasta
 convertirse en el logo del header (sólo `transform`, calculado por frame a partir de
-`scrollY`). Debajo, portada 3D, tiles editoriales con los renders y la colección en cuatro.
+`scrollY`). Debajo, portada 3D, tiles editoriales, la colección en cuatro y una banda de campaña.
+Las fotos de personas con gorra son **provisionales** (Pexels, licencia libre), enlazadas
+directamente desde `images.pexels.com`; sustitúyelas por la fotografía real de la marca.
 
 ## Estructura
 
