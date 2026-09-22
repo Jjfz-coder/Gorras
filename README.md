@@ -36,9 +36,9 @@ convertirse en el logo del header (sólo `transform`, calculado por frame a part
 "Solo para niños bien" y el mapa de envíos en 3D (`assets/shipmap3d.js`): México en relieve con
 arcos animados que salen de Ciudad de México hacia las principales ciudades. Lee el contorno y las
 ciudades del SVG de respaldo que está en el HTML, así que sin WebGL queda el mapa plano.
-Las fotografías del landing viven en `assets/photos/` y son **provisionales** (fotos de
-referencia de gorras de suede, no del producto final). Para cambiarlas basta sustituir
-los archivos por la fotografía real de la marca, conservando el nombre.
+Las fotografías del landing viven en `assets/photos/`: las cuatro vistas del producto
+(`frente`, `lado-izquierdo`, `lado-derecho`, `posterior`, recortadas de la hoja de muestra)
+y dos retratos de campaña. Para cambiarlas basta sustituir los archivos conservando el nombre.
 
 ## Estructura
 

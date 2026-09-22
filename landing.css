@@ -83,14 +83,15 @@ button,input{font:inherit;color:inherit}
 
 /* fotografía: las fotos son cuadradas y se muestran completas; los tiles son cuadrados y el fondo
    repite el degradado del estudio para que la campaña no muestre bandas */
-.story__tile--photo{padding:0;background:#f4f4f2}
+/* la foto es 2:1 dentro de un tile cuadrado: el degradado del fondo sigue el de la foto entre el 25% y el 75% */
+.story__tile--photo{padding:0;background:linear-gradient(#f3f3f3 25%,#e8e8e8 75%)}
 .story__tile--photo img{width:100%;height:100%;object-fit:contain}
-.campaign{position:relative;margin:2px 0 0;aspect-ratio:16/9;background:linear-gradient(#f6f5f4,#dcdcdc);overflow:hidden}
+.campaign{position:relative;margin:2px 0 0;aspect-ratio:16/9;background:linear-gradient(#f3f3f3,#e8e8e8);overflow:hidden}
 .campaign img{width:100%;height:100%;object-fit:contain}
 .campaign__caption{position:absolute;left:var(--pad);right:var(--pad);bottom:20px;display:flex;justify-content:space-between;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px}
-.pair__tile{position:relative;margin:0;background:#f4f4f2;aspect-ratio:1/1;overflow:hidden}
-.pair__tile img{width:100%;height:100%;object-fit:contain;transition:transform 600ms var(--ease-out)}
+.pair__tile{position:relative;margin:0;background:linear-gradient(#f3f3f3,#e8e8e8 calc(100% - 44px),#e8e8e8);padding-bottom:44px;overflow:hidden}
+.pair__tile img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;transition:transform 600ms var(--ease-out)}
 @media (hover:hover) and (pointer:fine){.pair__tile:hover img{transform:scale(1.03)}}
 
 /* ---------- retratos: las fotos van completas, a su proporción vertical, sin ampliarlas de más ---------- */
