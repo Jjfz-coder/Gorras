@@ -5,13 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#ffffff" />
 <title>Cumbres Supply</title>
-<meta name="description" content="Cumbres Supply. Gorras de suede bordadas a mano en México. Drop 01, edición de 300 piezas." />
+<meta name="description" content="Una sola gorra. Make Cumbres Chingón Again, bordada en México. Edición de 300 piezas numeradas, envíos a los 32 estados." />
+<meta property="og:title" content="Cumbres Supply. Make Cumbres Chingón Again" />
+<meta property="og:description" content="Una sola gorra. Edición de 300 piezas numeradas, hecha en México." />
+<meta property="og:image" content="assets/photos/frente.webp" />
 <link rel="preload" href="assets/fonts/jost-600-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="assets/fonts.css" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="landing.css" />
 </head>
 <body>
+
+<a class="skip" href="#pieza">Ir a la pieza</a>
 
 <!-- El wordmark vive fuera del flujo: baja contigo y se encoge hasta ser el logo del header -->
 <a class="mark" id="mark" href="#top" aria-label="Cumbres Supply, inicio">
@@ -20,14 +25,14 @@
 
 <header class="bar">
   <nav class="bar__group" aria-label="Principal">
-    <a href="index.html#coleccion">Colección</a>
+    <a href="#pieza">La pieza</a>
     <a href="#construccion">Construcción</a>
     <a href="#envios">Envíos</a>
   </nav>
-  <nav class="bar__group bar__group--right" aria-label="Cuenta">
+  <div class="bar__group bar__group--right">
     <a href="#drop">Drop 01</a>
-    <a href="index.html">Bolsa (0)</a>
-  </nav>
+    <button class="bar__bag" id="bagBtn" aria-label="Abrir bolsa">Bolsa (<span id="bagCount">0</span>)</button>
+  </div>
 </header>
 
 <main id="top">
@@ -37,11 +42,11 @@
 
   <section class="cover" id="cover">
     <div class="stage" id="coverCap"
-         data-cap='{"crown":"#f3f5f8","brim":"#e6eaf0","thread":"#41607f","tilt":0.16,"yaw":0.42,"scale":1.04}'>
-      <img class="stage__fallback" src="assets/renders/orizaba-side.webp" width="800" height="889" fetchpriority="high"
-           alt="Gorra Orizaba en suede blanco, vista de tres cuartos" />
+         data-cap='{"crown":"#ece8de","brim":"#e4dfd3","thread":"#1f2a44","tilt":0.16,"yaw":0.42,"scale":1.04}'>
+      <img class="stage__fallback" src="assets/renders/pieza-side.webp" width="800" height="889" fetchpriority="high"
+           alt="La gorra en hueso con bordado azul marino, vista de tres cuartos" />
     </div>
-    <p class="cover__caption"><span>Drop 01</span><span>Orizaba, $849 MXN</span></p>
+    <p class="cover__caption"><span>Drop 01, una sola pieza</span><span>Edición de 300, $849 MXN</span></p>
   </section>
 
   <!-- la frase ocupa todo el ancho y se va llenando de tinta de izquierda a derecha conforme bajas -->
@@ -49,62 +54,48 @@
     <h1 class="statement__text" id="statement">Make Cumbres Chingón Again</h1>
   </section>
 
-  <section class="story">
-    <figure class="story__tile story__tile--photo">
-      <img src="assets/photos/posterior.webp" width="669" height="348" loading="lazy" alt="Vista posterior de la gorra Orizaba con el snapback azul" />
-      <figcaption class="story__caption"><span>Vista posterior</span><span>Snapback, 56 a 60 cm</span></figcaption>
+  <!-- la pieza: foto grande y ficha de compra -->
+  <section class="piece" id="pieza" aria-labelledby="pieceName">
+    <figure class="piece__hero">
+      <img src="assets/photos/frente.webp" width="700" height="340" alt="Frente de la gorra: Make Cumbres Chingón Again bordado en azul marino sobre hueso" />
     </figure>
-    <div class="story__text">
-      <p>Gorras de suede bordadas a mano en México. Cuatro cumbres, trescientas piezas numeradas, un solo mensaje.</p>
-      <a class="story__link" href="index.html#coleccion">Ver la colección</a>
+    <div class="piece__buy">
+      <p class="eyebrow">Drop 01</p>
+      <h2 class="piece__name" id="pieceName">La gorra</h2>
+      <p class="piece__lede">Una sola pieza, sin variantes. Hueso con bordado azul marino en el frente, la bandera de México a la izquierda, One Community a la derecha y snapback azul con tu número grabado en la etiqueta interior.</p>
+      <dl class="facts">
+        <div><dt>Edición</dt><dd>300 piezas numeradas</dd></div>
+        <div><dt>Talla</dt><dd>Única, de 56 a 60 cm</dd></div>
+        <div><dt>Disponibles</dt><dd><span id="leftCount">112</span> de 300</dd></div>
+        <div><dt>Precio</dt><dd>$849 MXN</dd></div>
+      </dl>
+      <div class="piece__cta">
+        <button class="btn" id="addBtn" data-add>Agregar a la bolsa</button>
+        <p class="piece__ship">Envío a los 32 estados. Cambios sin costo durante 30 días.</p>
+      </div>
     </div>
-    <figure class="story__tile">
-      <img src="assets/renders/tacana-side.webp" width="800" height="889" loading="lazy" alt="Gorra Tacaná en suede arena, vista de tres cuartos" />
-      <figcaption class="story__caption"><span>Tacaná</span><span>$779 MXN</span></figcaption>
-    </figure>
   </section>
 
-  <section class="range" aria-label="Colección">
-    <a class="range__item" href="index.html#coleccion">
-      <img src="assets/renders/orizaba-front.webp" width="800" height="889" loading="lazy" alt="Orizaba" />
-      <p><span>Orizaba</span><span>$849 MXN</span></p>
-    </a>
-    <a class="range__item" href="index.html#coleccion">
-      <img src="assets/renders/nevado-front.webp" width="800" height="889" loading="lazy" alt="Nevado" />
-      <p><span>Nevado</span><span>$699 MXN</span></p>
-    </a>
-    <a class="range__item" href="index.html#coleccion">
-      <img src="assets/renders/tacana-front.webp" width="800" height="889" loading="lazy" alt="Tacaná" />
-      <p><span>Tacaná</span><span>$779 MXN</span></p>
-    </a>
-    <a class="range__item" href="index.html#coleccion">
-      <img src="assets/renders/malinche-front.webp" width="800" height="889" loading="lazy" alt="Malinche" />
-      <p><span>Malinche</span><span>$899 MXN</span></p>
-    </a>
-  </section>
-
-  <figure class="campaign">
-    <img src="assets/photos/frente.webp" width="700" height="340" loading="lazy" alt="Frente de la gorra Orizaba con el bordado Make Cumbres Chingón Again" />
-    <figcaption class="campaign__caption"><span>Make Cumbres Chingón Again</span><span>Orizaba, Drop 01</span></figcaption>
-  </figure>
-
-  <section class="people" aria-label="Campaña">
-    <div class="people__row">
-      <figure class="people__tile">
-        <img src="assets/photos/retrato-costa.jpg" width="415" height="739" loading="lazy" alt="Hombre con gorra verde frente al mar" />
-        <figcaption class="story__caption story__caption--light"><span>Drop 01</span><span>Costa del Pacífico</span></figcaption>
-      </figure>
-      <figure class="people__tile">
-        <img src="assets/photos/retrato-taller.jpg" width="415" height="739" loading="lazy" alt="Hombre con gorra verde mirando hacia abajo, con una pila de gorras detrás" />
-        <figcaption class="story__caption story__caption--light"><span>Drop 01</span><span>El taller</span></figcaption>
-      </figure>
-    </div>
+  <!-- las tres vistas -->
+  <section class="views" aria-label="Vistas de la pieza">
+    <figure class="views__item">
+      <img src="assets/photos/lado-izquierdo.webp" width="700" height="348" loading="lazy" alt="Lado izquierdo de la gorra, con la bandera de México bordada" />
+      <figcaption><span>Lado izquierdo</span><span>Bandera de México, bordada a mano</span></figcaption>
+    </figure>
+    <figure class="views__item">
+      <img src="assets/photos/posterior.webp" width="669" height="348" loading="lazy" alt="Vista posterior de la gorra con el snapback azul marino" />
+      <figcaption><span>Posterior</span><span>Snapback azul marino y etiqueta numerada</span></figcaption>
+    </figure>
+    <figure class="views__item">
+      <img src="assets/photos/lado-derecho.webp" width="669" height="340" loading="lazy" alt="Lado derecho de la gorra, con el bordado One Community" />
+      <figcaption><span>Lado derecho</span><span>One Community</span></figcaption>
+    </figure>
   </section>
 
   <section class="detail" id="construccion">
     <div class="stage stage--detail" id="detailCap"
-         data-cap='{"crown":"#465d78","brim":"#3a4f68","thread":"#eef1f5","spin":true,"tilt":0.2,"scale":1.05}'>
-      <img class="stage__fallback" src="assets/renders/malinche-side.webp" width="800" height="889" loading="lazy" alt="Gorra Malinche girando" />
+         data-cap='{"crown":"#ece8de","brim":"#e4dfd3","thread":"#1f2a44","spin":true,"tilt":0.2,"scale":1.05}'>
+      <img class="stage__fallback" src="assets/renders/pieza-side.webp" width="800" height="889" loading="lazy" alt="La gorra girando" />
     </div>
     <div class="detail__text">
       <h2>Solo para niños bien</h2>
@@ -113,9 +104,27 @@
         <div><dt>Suede de pelo corto</dt><dd>Denso y mate. Mantiene la forma y el color con el uso diario.</dd></div>
         <div><dt>Bordado 3D</dt><dd>Hilo mate de alta densidad sobre un frente reforzado.</dd></div>
         <div><dt>Visera estructurada</dt><dd>Seis paneles, ojales bordados y sudadera de algodón peinado.</dd></div>
-        <div><dt>Snapback de latón</dt><dd>Hebilla grabada y etiqueta interior con el número de tu pieza.</dd></div>
+        <div><dt>Snapback</dt><dd>Hebilla azul marino y etiqueta interior con el número de tu pieza.</dd></div>
       </dl>
-      <a class="story__link" href="index.html#construccion">Cómo se hace</a>
+    </div>
+  </section>
+
+  <!-- el número -->
+  <section class="serial" aria-label="Numeración">
+    <p class="serial__num"><span class="serial__no">Nº</span> <span id="serialNext">189</span><span class="serial__of"> / 300</span></p>
+    <p class="serial__text">La siguiente pieza en salir del taller. Cada número se graba una sola vez y no se repite en ningún drop.</p>
+  </section>
+
+  <section class="people" aria-label="Campaña">
+    <div class="people__row">
+      <figure class="people__tile">
+        <img src="assets/photos/retrato-costa.jpg" width="415" height="739" loading="lazy" alt="Hombre con gorra frente al mar" />
+        <figcaption class="people__caption"><span>Drop 01</span><span>Costa del Pacífico</span></figcaption>
+      </figure>
+      <figure class="people__tile">
+        <img src="assets/photos/retrato-taller.jpg" width="415" height="739" loading="lazy" alt="Hombre con gorra mirando hacia abajo, con una pila de gorras detrás" />
+        <figcaption class="people__caption"><span>Drop 01</span><span>El taller</span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -172,17 +181,6 @@
     </div>
   </section>
 
-  <section class="pair" aria-label="Campaña">
-    <figure class="pair__tile">
-      <img src="assets/photos/lado-izquierdo.webp" width="700" height="348" loading="lazy" alt="Lado izquierdo de la gorra, con la bandera de México bordada" />
-      <figcaption class="story__caption"><span>Lado izquierdo</span><span>Bandera de México</span></figcaption>
-    </figure>
-    <figure class="pair__tile">
-      <img src="assets/photos/lado-derecho.webp" width="669" height="340" loading="lazy" alt="Lado derecho de la gorra, con el bordado One Community" />
-      <figcaption class="story__caption"><span>Lado derecho</span><span>One Community</span></figcaption>
-    </figure>
-  </section>
-
 </main>
 
 <footer class="foot">
@@ -193,17 +191,19 @@
     </div>
     <div>
       <p class="foot__h">Tienda</p>
-      <a href="index.html#coleccion">Colección</a>
-      <a href="index.html#construccion">Construcción</a>
+      <a href="#pieza">La pieza</a>
+      <a href="#construccion">Construcción</a>
       <a href="#envios">Envíos</a>
+      <a href="#top">Privacidad</a>
+      <a href="#top">Términos</a>
     </div>
     <div>
-      <p class="foot__h">Avisos</p>
+      <p class="foot__h">Avisos del Drop 02</p>
       <form class="foot__form" id="newsForm" novalidate>
         <label for="email">Correo</label>
         <div class="foot__row">
           <input id="email" name="email" type="email" required autocomplete="email" placeholder="tu@correo.com" />
-          <button type="submit">Avisarme</button>
+          <button class="btn btn--sm" type="submit">Avisarme</button>
         </div>
         <p class="foot__msg" id="newsMsg" role="status"></p>
       </form>
@@ -211,6 +211,29 @@
   </div>
   <p class="foot__fine">Prototipo de demostración. Precios en MXN. Fotografía de muestra. © 2026 Cumbres Supply.</p>
 </footer>
+
+<!-- barra de compra que aparece cuando la ficha ya quedó arriba -->
+<div class="buybar" id="buybar" aria-hidden="true">
+  <img src="assets/photos/frente.webp" width="700" height="340" alt="" />
+  <p class="buybar__name">Make Cumbres Chingón Again <span>$849 MXN</span></p>
+  <button class="btn btn--sm" data-add tabindex="-1">Agregar</button>
+</div>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="scrim" data-close></div>
+  <aside class="drawer__panel" role="dialog" aria-label="Bolsa de compra" aria-modal="true">
+    <header class="drawer__head">
+      <h3>Tu bolsa</h3>
+      <button class="x" id="drawerClose" data-close aria-label="Cerrar">&times;</button>
+    </header>
+    <div class="drawer__body" id="bagItems"></div>
+    <footer class="drawer__foot">
+      <div class="drawer__row"><span>Subtotal</span><strong id="bagTotal">$0 MXN</strong></div>
+      <p class="drawer__note" id="shipNote"></p>
+      <button class="btn btn--full">Pagar pedido</button>
+    </footer>
+  </aside>
+</div>
 
 <script src="landing.js" charset="utf-8" defer></script>
 </body>

@@ -111,6 +111,73 @@ loadScript('assets/vendor/three.min.js')
   })
   .catch(() => {});
 
+/* ---------- una sola pieza: bolsa ---------- */
+const PIECE = { name: 'Make Cumbres Chingón Again', sub: 'Hueso, bordado azul marino', price: 849, edition: 300, left: 112 };
+const MXN = n => '$' + n.toLocaleString('es-MX') + ' MXN';
+const FREE_SHIP = 1200, SHIP_COST = 129;
+const EASE_OUT = 'cubic-bezier(.23,1,.32,1)';
+let qty = 0;
+const drawer = document.getElementById('drawer');
+const bagBtn = document.getElementById('bagBtn'), bagCount = document.getElementById('bagCount');
+const bagItems = document.getElementById('bagItems'), bagTotal = document.getElementById('bagTotal'), shipNote = document.getElementById('shipNote');
+document.getElementById('leftCount').textContent = PIECE.left;
+document.getElementById('serialNext').textContent = String(PIECE.edition - PIECE.left + 1).padStart(3, '0');
+
+function renderBag() {
+  if (String(qty) !== bagCount.textContent && !reduceMotion)
+    bagCount.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.22)' }, { transform: 'scale(1)' }], { duration: 320, easing: EASE_OUT });
+  bagCount.textContent = qty;
+  const total = qty * PIECE.price;
+  bagTotal.textContent = MXN(total);
+  bagItems.innerHTML = qty
+    ? `<div class="line">
+        <div class="line__art"><img src="assets/photos/frente.webp" alt="" width="96" height="64" /></div>
+        <div class="line__info">
+          <p class="line__name">${PIECE.name}</p>
+          <p class="line__sub">${PIECE.sub}. Talla única.</p>
+          <div class="line__qty">
+            <button data-d="-1" aria-label="Quitar una">−</button>
+            <span>${qty}</span>
+            <button data-d="1" aria-label="Agregar una">+</button>
+          </div>
+        </div>
+        <span class="line__price">${MXN(total)}</span>
+      </div>`
+    : '<p class="drawer__empty">Tu bolsa está vacía.</p>';
+  shipNote.textContent = !qty ? '' : total >= FREE_SHIP
+    ? 'Envío estándar gratis a todo México.'
+    : `Envío estándar ${MXN(SHIP_COST)}. Te faltan ${MXN(FREE_SHIP - total)} para envío gratis.`;
+}
+let lastTrigger = null;
+function openDrawer(open, trigger) {
+  if (open === drawer.classList.contains('is-open')) return;
+  drawer.classList.toggle('is-open', open);
+  drawer.setAttribute('aria-hidden', String(!open));
+  document.body.style.overflow = open ? 'hidden' : '';
+  if (open) { lastTrigger = trigger || document.activeElement; document.getElementById('drawerClose').focus(); }
+  else if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+}
+document.addEventListener('click', e => {
+  const add = e.target.closest('[data-add]');
+  if (add) { qty = Math.min(qty + 1, PIECE.left); renderBag(); openDrawer(true, add); return; }
+  const d = e.target.closest('[data-d]');
+  if (d) { qty = Math.max(0, Math.min(PIECE.left, qty + Number(d.dataset.d))); renderBag(); return; }
+  if (e.target.closest('[data-close]')) openDrawer(false);
+});
+bagBtn.addEventListener('click', () => openDrawer(true, bagBtn));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openDrawer(false); });
+renderBag();
+
+/* ---------- barra de compra: aparece cuando el botón de la ficha ya quedó arriba ---------- */
+const buybar = document.getElementById('buybar');
+const addBtn = document.getElementById('addBtn');
+new IntersectionObserver(([en]) => {
+  const on = !en.isIntersecting && en.boundingClientRect.top < 0;
+  buybar.classList.toggle('is-on', on);
+  buybar.setAttribute('aria-hidden', String(!on));
+  buybar.querySelector('button').tabIndex = on ? 0 : -1;
+}).observe(addBtn);
+
 /* ---------- avisos ---------- */
 const form = document.getElementById('newsForm'), msg = document.getElementById('newsMsg');
 form.addEventListener('submit', e => {

@@ -29,7 +29,9 @@ npx http-server . -p 8080
 
 ## Landing tipo Acne Studios
 
-`landing.html` es una portada alternativa: el wordmark **Cumbres Supply** ocupa todo el
+`landing.html` es la página principal, construida alrededor de una sola gorra (ficha de compra,
+tres vistas, numeración, bolsa y barra de compra). `index.html` conserva el prototipo anterior de
+catálogo con cuatro colorways. En el landing, el wordmark **Cumbres Supply** ocupa todo el
 ancho de la pantalla y, al hacer scroll, se queda contigo mientras se encoge hasta
 convertirse en el logo del header (sólo `transform`, calculado por frame a partir de
 `scrollY`). Debajo, portada 3D, tiles editoriales, la colección en cuatro, una banda de campaña, la sección

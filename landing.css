@@ -1,16 +1,21 @@
 /* ============================================================
-   Cumbres Supply. Landing tipo Acne Studios:
-   el wordmark ocupa el ancho de la pantalla, baja contigo al hacer
+   Cumbres Supply. Una sola gorra.
+   El wordmark ocupa el ancho de la pantalla, baja contigo al hacer
    scroll y se encoge hasta convertirse en el logo del header.
+   Superficies cuadradas; las píldoras sólo en lo interactivo.
    ============================================================ */
 
 :root{
   --bg:#ffffff; --soft:#f4f5f7; --ink:#151a21; --muted:#6d7683; --accent:#41607f; --line:#e0e4ea;
+  --photo-top:#f3f3f3; --photo-bottom:#e8e8e8;          /* fondo del estudio en las fotos */
   --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
   --serif:'Cormorant Garamond',Georgia,serif;
   --pad:clamp(16px,2.4vw,32px);
   --bar:56px;
   --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-in-out:cubic-bezier(.77,0,.175,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  --z-bar:40; --z-buybar:45; --z-mark:50; --z-drawer:60;
   /* tamaño inicial del wordmark: ancho disponible / ancho de "CUMBRES SUPPLY" en Jost 600 a 100px (804px) */
   --mark-size:calc((100vw - 2 * var(--pad)) / 8.04);
   --mark-top:6vh;
@@ -21,13 +26,36 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,canvas{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-p,h1{margin:0}
+p,h1,h2,h3,dl,dd,figure{margin:0}
 button,input{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:var(--pad);top:-48px;z-index:100;background:var(--ink);color:#fff;padding:10px 16px}
+.skip:focus{top:8px}
+
+/* ---------- tipografía compartida ---------- */
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.4vw,54px);line-height:1;letter-spacing:-.02em;text-wrap:balance}
+.lede{color:var(--muted);font-weight:300;font-size:16px;max-width:42ch}
+
+/* ---------- botones: la única superficie redonda ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;
+  border:none;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:500;letter-spacing:.01em;cursor:pointer;
+  transition:background-color 200ms ease,transform 160ms var(--ease-out);
+}
+.btn:active{transform:scale(.97)}
+.btn--sm{min-height:44px;padding:0 20px;font-size:14px}
+.btn--full{width:100%}
+.x{width:40px;height:40px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--muted);font-size:26px;line-height:1;cursor:pointer;transition:color 200ms ease,transform 160ms var(--ease-out)}
+.x:active{transform:scale(.94)}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--accent)}
+  .x:hover{color:var(--ink)}
+}
 
 /* ---------- wordmark que baja contigo ---------- */
 .mark{
-  position:fixed;left:0;top:0;z-index:50;
+  position:fixed;left:0;top:0;z-index:var(--z-mark);
   display:block;line-height:1;white-space:nowrap;
   transform-origin:0 0;will-change:transform;
   transform:translate3d(0,var(--mark-top),0);
@@ -40,16 +68,18 @@ button,input{font:inherit;color:inherit}
 }
 .mark__space{height:calc(var(--mark-top) * 2 + var(--mark-size) * .86)}   /* JS lo afina al alto real */
 .bar{
-  position:fixed;left:0;right:0;top:0;z-index:40;height:var(--bar);
+  position:fixed;left:0;right:0;top:0;z-index:var(--z-bar);height:var(--bar);
   display:flex;justify-content:flex-end;align-items:center;gap:22px;padding:0 var(--pad);
   font-size:12px;text-transform:uppercase;letter-spacing:.06em;
   background:rgba(255,255,255,0);transition:background-color 300ms ease;
 }
 .bar.is-solid{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.bar__group{display:flex;gap:22px}
+.bar__group{display:flex;gap:22px;align-items:center}
 .bar__group--right::before{content:'';width:1px;height:12px;background:var(--line);margin:0 4px}
-.bar__group a{opacity:.72;transition:opacity 200ms ease}
-@media (hover:hover) and (pointer:fine){.bar__group a:hover{opacity:1}}
+.bar__group a,.bar__bag{opacity:.72;transition:opacity 200ms ease}
+.bar__bag{background:none;border:none;padding:0;cursor:pointer;text-transform:inherit;letter-spacing:inherit;font-size:inherit;min-height:44px}
+.bar__bag span{display:inline-block}
+@media (hover:hover) and (pointer:fine){.bar__group a:hover,.bar__bag:hover{opacity:1}}
 
 /* ---------- portada ---------- */
 .cover{position:relative;height:calc(100svh - var(--bar));min-height:520px;background:var(--soft);display:grid;place-items:center}
@@ -57,7 +87,7 @@ button,input{font:inherit;color:inherit}
 .stage .cap3d{position:absolute;inset:0;width:100%!important;height:100%!important;touch-action:pan-y}
 .stage__fallback{height:86%;width:auto;object-fit:contain;transition:opacity 400ms ease}
 .stage.is-3d .stage__fallback{opacity:0;pointer-events:none}
-.cover__caption{position:absolute;left:var(--pad);right:var(--pad);bottom:18px;display:flex;justify-content:space-between;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cover__caption{position:absolute;left:var(--pad);right:var(--pad);bottom:18px;display:flex;justify-content:space-between;gap:16px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 
 /* ---------- frase a todo lo ancho, que se llena de izquierda a derecha ---------- */
 .statement{padding:clamp(40px,7vw,110px) var(--pad) clamp(28px,5vw,80px);background:var(--bg)}
@@ -70,54 +100,51 @@ button,input{font:inherit;color:inherit}
   -webkit-background-clip:text;background-clip:text;
 }
 
-/* ---------- historia: dos tiles y un texto ---------- */
-.story{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--bg)}
-.story__tile{position:relative;margin:0;background:var(--soft);aspect-ratio:1/1;display:grid;place-items:center;padding:8%}
-.story__tile--dark{background:#dfe4ea}
-.story__tile img{width:100%;height:100%;object-fit:contain}
-.story__caption,.range__item p{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.story__text{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:clamp(24px,4vw,56px)}
-.story__text p{color:var(--muted);max-width:34ch;font-weight:300;font-size:16px}
-.story__link{display:inline-flex;align-items:center;min-height:44px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--line);transition:text-decoration-color 200ms ease}
-@media (hover:hover) and (pointer:fine){.story__link:hover{text-decoration-color:var(--ink)}}
+/* ---------- la pieza ---------- */
+.piece{display:grid;grid-template-columns:1.5fr 1fr;gap:2px;margin-top:2px}
+.piece__hero{position:relative;background:linear-gradient(var(--photo-top),var(--photo-bottom));display:grid;place-items:center;overflow:hidden;min-height:420px}
+.piece__hero img{width:100%;height:100%;object-fit:contain}
+.piece__buy{display:flex;flex-direction:column;gap:22px;padding:clamp(28px,4vw,64px);background:var(--bg);justify-content:center}
+.piece__name{font-size:clamp(44px,4.4vw,72px)}
+.piece__lede{color:var(--muted);font-weight:300;font-size:16px;max-width:42ch}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;margin-top:6px}
+.facts div{border-top:1px solid var(--line);padding-top:12px}
+.facts dt{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.facts dd{margin-top:4px;font-size:15px;font-variant-numeric:tabular-nums}
+.piece__cta{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.piece__cta .btn{align-self:flex-start;min-width:260px}
+.piece__ship{font-size:13px;color:var(--muted)}
 
-/* fotografía: las fotos son cuadradas y se muestran completas; los tiles son cuadrados y el fondo
-   repite el degradado del estudio para que la campaña no muestre bandas */
-/* la foto es 2:1 dentro de un tile cuadrado: el degradado del fondo sigue el de la foto entre el 25% y el 75% */
-.story__tile--photo{padding:0;background:linear-gradient(#f3f3f3 25%,#e8e8e8 75%)}
-.story__tile--photo img{width:100%;height:100%;object-fit:contain}
-.campaign{position:relative;margin:2px 0 0;aspect-ratio:16/9;background:linear-gradient(#f3f3f3,#e8e8e8);overflow:hidden}
-.campaign img{width:100%;height:100%;object-fit:contain}
-.campaign__caption{position:absolute;left:var(--pad);right:var(--pad);bottom:20px;display:flex;justify-content:space-between;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px}
-.pair__tile{position:relative;margin:0;background:linear-gradient(#f3f3f3,#e8e8e8 calc(100% - 44px),#e8e8e8);padding-bottom:44px;overflow:hidden}
-.pair__tile img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;transition:transform 600ms var(--ease-out)}
-@media (hover:hover) and (pointer:fine){.pair__tile:hover img{transform:scale(1.03)}}
+/* ---------- vistas: imagen y pie debajo, a la manera de un catálogo ---------- */
+.views{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2px}
+.views__item{background:var(--soft)}
+.views__item img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;background:linear-gradient(var(--photo-top),var(--photo-bottom))}
+.views__item figcaption{display:flex;flex-direction:column;gap:2px;padding:14px 16px 18px;font-size:14px}
+.views__item figcaption span:first-child{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 
-/* ---------- retratos: las fotos van completas, a su proporción vertical, sin ampliarlas de más ---------- */
-.people{margin-top:2px;background:var(--soft);padding:clamp(24px,4vw,64px) var(--pad)}
-.people__row{display:grid;grid-template-columns:repeat(2,minmax(0,460px));justify-content:center;gap:2px}
-.people__tile{position:relative;margin:0;aspect-ratio:415/739;overflow:hidden;background:#dfe4ea}
-.people__tile img{width:100%;height:100%;object-fit:cover}
-.story__caption--light{color:#fff;text-shadow:0 1px 8px rgba(21,26,33,.45)}
-
-/* ---------- colección en cuatro ---------- */
-.range{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:2px}
-.range__item{position:relative;background:var(--soft);aspect-ratio:4/5;display:grid;place-items:center;padding:10%;overflow:hidden}
-.range__item img{width:100%;height:100%;object-fit:contain;transition:transform 400ms var(--ease-out)}
-@media (hover:hover) and (pointer:fine){.range__item:hover img{transform:scale(1.04)}}
-
-/* ---------- detalle ---------- */
+/* ---------- construcción ---------- */
 .detail{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px}
 .stage--detail{aspect-ratio:1/1;background:var(--soft)}
 .stage--detail .stage__fallback{height:auto;width:74%}
 .detail__text{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:clamp(24px,4vw,64px)}
-.detail__text h2,.ship__text h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,48px);line-height:1;letter-spacing:-.02em;text-wrap:balance}
 .detail__text>p,.ship__text>p{color:var(--muted);font-weight:300;font-size:16px;max-width:38ch}
-.specs{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin:6px 0 0}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin-top:6px}
 .specs div{border-top:1px solid var(--line);padding-top:12px}
 .specs dt{font-weight:500;font-size:14px}
-.specs dd{margin:4px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
+.specs dd{margin-top:4px;color:var(--muted);font-size:14px;line-height:1.5}
+
+/* ---------- el número ---------- */
+.serial{margin-top:2px;padding:clamp(56px,9vw,140px) var(--pad);background:var(--soft);display:grid;justify-items:center;gap:18px;text-align:center}
+.serial__num{font-family:var(--serif);font-weight:400;font-size:clamp(72px,13vw,200px);line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums}
+.serial__no,.serial__of{font-size:.36em;color:var(--muted);letter-spacing:0;vertical-align:.55em}
+.serial__text{color:var(--muted);font-weight:300;font-size:16px;max-width:40ch;text-wrap:balance}
+
+/* ---------- retratos ---------- */
+.people{margin-top:2px;background:var(--bg);padding:clamp(24px,4vw,64px) var(--pad)}
+.people__row{display:grid;grid-template-columns:repeat(2,minmax(0,460px));justify-content:center;gap:2px}
+.people__tile{position:relative;aspect-ratio:415/739;overflow:hidden;background:#dfe4ea}
+.people__tile img{width:100%;height:100%;object-fit:cover}
+.people__caption{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#fff;text-shadow:0 1px 8px rgba(21,26,33,.45)}
 
 /* ---------- envíos: mapa 3D con arcos desde CDMX ---------- */
 .ship{display:grid;grid-template-columns:1fr 1.5fr;gap:2px;margin-top:2px}
@@ -126,7 +153,7 @@ button,input{font:inherit;color:inherit}
 .zones li{display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--line);padding-top:12px;font-size:14px}
 .zones strong{font-weight:500}
 .zones span{color:var(--muted)}
-.zones em{font-style:normal}
+.zones em{font-style:normal;font-variant-numeric:tabular-nums}
 .ship__fine{font-size:12px;color:var(--muted)}
 .stage--map{aspect-ratio:4/3;background:var(--soft);overflow:hidden}
 .stage--map .map3d{position:absolute;inset:0;width:100%!important;height:100%!important;touch-action:pan-y}
@@ -149,39 +176,80 @@ button,input{font:inherit;color:inherit}
 .foot__row{display:flex;gap:8px}
 .foot__row input{flex:1;min-width:0;min-height:44px;padding:0 16px;border:1px solid var(--line);background:var(--bg);outline:none;transition:border-color 200ms ease}
 .foot__row input:focus{border-color:var(--ink)}
-.foot__row button{min-height:44px;padding:0 18px;border:none;background:var(--ink);color:#fff;cursor:pointer;transition:background-color 200ms ease,transform 160ms var(--ease-out)}
-.foot__row button:active{transform:scale(.97)}
 .foot__msg{font-size:13px;color:var(--muted);margin-top:10px;min-height:1.3em}
 .foot__msg.is-error{color:#9b2c2c}
 .foot__fine{margin-top:40px;font-size:12px;color:var(--muted)}
-@media (hover:hover) and (pointer:fine){
-  .foot__cols a:hover{color:var(--ink)}
-  .foot__row button:hover{background:var(--accent)}
+@media (hover:hover) and (pointer:fine){.foot__cols a:hover{color:var(--ink)}}
+
+/* ---------- barra de compra: entra desde abajo cuando la ficha ya pasó ---------- */
+.buybar{
+  position:fixed;left:0;right:0;bottom:0;z-index:var(--z-buybar);
+  display:flex;align-items:center;gap:14px;padding:10px var(--pad);
+  background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  transform:translateY(100%);transition:transform 200ms var(--ease-out);
 }
+.buybar.is-on{transform:none;transition:transform 300ms var(--ease-out)}
+.buybar img{width:72px;height:36px;object-fit:cover;background:var(--soft)}
+.buybar__name{flex:1;font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.buybar__name span{font-weight:400;color:var(--muted);margin-left:10px;font-variant-numeric:tabular-nums}
+
+/* ---------- bolsa ---------- */
+.scrim{position:absolute;inset:0;background:rgba(21,26,33,.36);opacity:0;transition:opacity 250ms var(--ease-out)}
+.is-open .scrim{opacity:1}
+.drawer{position:fixed;inset:0;z-index:var(--z-drawer);pointer-events:none}
+.drawer.is-open{pointer-events:auto}
+.drawer__panel{
+  position:absolute;top:0;right:0;height:100%;width:min(440px,100%);
+  background:var(--bg);display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform 300ms var(--ease-out);
+}
+.drawer.is-open .drawer__panel{transform:none;transition:transform 500ms var(--ease-drawer)}
+.drawer__head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line)}
+.drawer__head h3{font-family:var(--serif);font-weight:400;font-size:28px;letter-spacing:-.01em}
+.drawer__body{flex:1;overflow-y:auto;padding:8px 24px}
+.drawer__empty{color:var(--muted);padding:48px 0;text-align:center;font-weight:300}
+.line{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.line__art{width:96px;height:64px;flex:0 0 96px;background:linear-gradient(var(--photo-top),var(--photo-bottom));overflow:hidden}
+.line__art img{width:100%;height:100%;object-fit:cover}
+.line__info{flex:1;min-width:0}
+.line__name{font-weight:500}
+.line__sub{font-size:14px;color:var(--muted)}
+.line__qty{display:flex;align-items:center;gap:10px;margin-top:6px}
+.line__qty button{width:32px;height:32px;border-radius:999px;background:var(--bg);border:1px solid var(--line);cursor:pointer;line-height:1;transition:border-color 200ms ease,transform 160ms var(--ease-out)}
+.line__qty button:active{transform:scale(.94)}
+.line__qty span{font-size:15px;min-width:14px;text-align:center;font-variant-numeric:tabular-nums}
+.line__price{white-space:nowrap;font-variant-numeric:tabular-nums}
+.drawer__foot{padding:20px 24px 26px;border-top:1px solid var(--line);display:grid;gap:12px}
+.drawer__row{display:flex;justify-content:space-between;align-items:baseline}
+.drawer__row strong{font-family:var(--serif);font-weight:600;font-size:26px;font-variant-numeric:tabular-nums}
+.drawer__note{font-size:13px;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){.line__qty button:hover{border-color:var(--ink)}}
 
 /* ---------- responsive ---------- */
 @media (max-width:600px){
   .statement__text{white-space:normal;font-size:clamp(40px,13.5vw,60px);text-wrap:balance}
+  .facts,.specs,.zones{grid-template-columns:1fr}
+  .piece__cta .btn{align-self:stretch;min-width:0}
 }
 @media (max-width:900px){
-  .story{grid-template-columns:1fr}
-  .story__text{order:-1;padding:clamp(24px,6vw,40px) var(--pad)}
-  .range{grid-template-columns:1fr 1fr}
+  .piece{grid-template-columns:1fr}
+  .piece__hero{min-height:0}
+  .piece__hero img{aspect-ratio:2/1;height:auto}
+  .views{grid-template-columns:1fr}
   .detail{grid-template-columns:1fr}
   .ship{grid-template-columns:1fr}
   .ship__text{order:-1}
   .stage--map{aspect-ratio:1/1}
-  .campaign{aspect-ratio:1/1}
-  .pair{grid-template-columns:1fr}
   .people{padding:0}
   .people__row{grid-template-columns:1fr}
   .foot__cols{grid-template-columns:1fr}
   .bar__group:first-child,.bar__group--right::before{display:none}
+  .buybar__name span{display:none}
 }
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .statement__text{--fill:100%}
-  .range__item img,.pair__tile img{transition:none}
+  .buybar,.buybar.is-on,.drawer__panel,.drawer.is-open .drawer__panel,.scrim{transition-duration:120ms}
   .map3d__label{transition:none}
 }
