@@ -93,6 +93,13 @@ button,input{font:inherit;color:inherit}
 .pair__tile img{width:100%;height:100%;object-fit:contain;transition:transform 600ms var(--ease-out)}
 @media (hover:hover) and (pointer:fine){.pair__tile:hover img{transform:scale(1.03)}}
 
+/* ---------- retratos: las fotos van completas, a su proporción vertical, sin ampliarlas de más ---------- */
+.people{margin-top:2px;background:var(--soft);padding:clamp(24px,4vw,64px) var(--pad)}
+.people__row{display:grid;grid-template-columns:repeat(2,minmax(0,460px));justify-content:center;gap:2px}
+.people__tile{position:relative;margin:0;aspect-ratio:415/739;overflow:hidden;background:#dfe4ea}
+.people__tile img{width:100%;height:100%;object-fit:cover}
+.story__caption--light{color:#fff;text-shadow:0 1px 8px rgba(21,26,33,.45)}
+
 /* ---------- colección en cuatro ---------- */
 .range{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:2px}
 .range__item{position:relative;background:var(--soft);aspect-ratio:4/5;display:grid;place-items:center;padding:10%;overflow:hidden}
@@ -165,6 +172,8 @@ button,input{font:inherit;color:inherit}
   .stage--map{aspect-ratio:1/1}
   .campaign{aspect-ratio:1/1}
   .pair{grid-template-columns:1fr}
+  .people{padding:0}
+  .people__row{grid-template-columns:1fr}
   .foot__cols{grid-template-columns:1fr}
   .bar__group:first-child,.bar__group--right::before{display:none}
 }
