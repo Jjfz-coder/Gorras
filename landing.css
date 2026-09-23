@@ -103,7 +103,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.4vw,54px);lin
 /* ---------- la pieza ---------- */
 .piece{display:grid;grid-template-columns:1.5fr 1fr;gap:2px;margin-top:2px}
 .piece__hero{position:relative;background:linear-gradient(var(--photo-top),var(--photo-bottom));display:grid;place-items:center;overflow:hidden;min-height:420px}
-.piece__hero img{width:100%;height:100%;object-fit:contain}
+.piece__hero img{width:100%;max-width:760px;height:100%;object-fit:contain}   /* la foto es de 700px: no se amplía de más */
 .piece__buy{display:flex;flex-direction:column;gap:22px;padding:clamp(28px,4vw,64px);background:var(--bg);justify-content:center}
 .piece__name{font-size:clamp(44px,4.4vw,72px)}
 .piece__lede{color:var(--muted);font-weight:300;font-size:16px;max-width:42ch}
@@ -141,7 +141,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.4vw,54px);lin
 
 /* ---------- retratos ---------- */
 .people{margin-top:2px;background:var(--bg);padding:clamp(24px,4vw,64px) var(--pad)}
-.people__row{display:grid;grid-template-columns:repeat(2,minmax(0,460px));justify-content:center;gap:2px}
+.people__row{display:grid;grid-template-columns:repeat(2,minmax(0,415px));justify-content:center;gap:2px}
 .people__tile{position:relative;aspect-ratio:415/739;overflow:hidden;background:#dfe4ea}
 .people__tile img{width:100%;height:100%;object-fit:cover}
 .people__caption{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#fff;text-shadow:0 1px 8px rgba(21,26,33,.45)}
