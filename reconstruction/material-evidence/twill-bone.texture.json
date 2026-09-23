@@ -1,32 +1,32 @@
 {
-  "finishClass": "plastic",
+  "finishClass": "brushed-steel",
   "recipe": {
-    "metalness": 0.05,
-    "roughness": 0.6,
-    "clearcoat": 0.2,
-    "clearcoatRoughness": 0.3,
+    "metalness": 1.0,
+    "roughness": 0.35,
+    "clearcoat": 0.0,
+    "clearcoatRoughness": 0.0,
     "transmission": 0.0,
     "ior": 1.5,
-    "envMapIntensity": 0.7,
-    "anisotropy": 0.0,
-    "procedural": "flat-clearcoat"
+    "envMapIntensity": 1.0,
+    "anisotropy": 1.0,
+    "procedural": "brushed"
   },
   "palette": [
-    "#E5E4DF",
-    "#E2E1DB",
-    "#DFDDD8",
-    "#DEDBD6",
-    "#DBD8D3"
+    "#E7E5E0",
+    "#E6E4DF",
+    "#E4E2DD",
+    "#E1DFDA",
+    "#D9D7D0"
   ],
   "paletteHueRisk": [],
-  "gradientAxis": "vertical",
+  "gradientAxis": "horizontal",
   "stats": {
-    "meanLum": 221.7,
-    "meanSaturation": 0.034,
-    "gradientStrength": 0.045,
-    "mottle": 0.011,
-    "streakRatio": 1.31,
+    "meanLum": 225.5,
+    "meanSaturation": 0.033,
+    "gradientStrength": 0.057,
+    "mottle": 0.007,
+    "streakRatio": 2.35,
     "hueSpread": 0.0,
-    "specularFraction": 0.001
+    "specularFraction": 0.003
   }
 }

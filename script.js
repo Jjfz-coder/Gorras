@@ -57,8 +57,8 @@ const loadScript = src => new Promise((ok, err) => {
   const s = document.createElement('script'); s.src = src; s.async = true; s.onload = ok; s.onerror = err;
   document.head.appendChild(s);
 });
-const ready3D = loadScript('assets/vendor/three.min.js')
-  .then(() => loadScript('assets/cap3d.js'))
+// assets/cap3d.js trae three.js r170 y la gorra reconstruida (img2threejs) en un solo archivo
+const ready3D = loadScript('assets/cap3d.js')
   .then(() => !!(window.Cap3D && Cap3D.supported))
   .catch(() => false);
 

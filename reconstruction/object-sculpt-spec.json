@@ -4485,9 +4485,9 @@
    },
    "colorVariation": {
     "palette": [
-     "#E0DED8",
-     "#DBD9D3",
-     "#E7E6E1"
+     "#E4E2DD",
+     "#E6E5E0",
+     "#E0DED8"
     ],
     "pattern": "woven",
     "amplitude": 0.06,
@@ -4610,40 +4610,40 @@
     "sourceCrop": "/home/user/Gorras/reconstruction/crops/twill-crown.png",
     "extractedBy": "forge/stage1_intake/extract_pbr_evidence.py",
     "palette": [
+     "#E4E2DD",
+     "#E6E5E0",
      "#E0DED8",
-     "#DBD9D3",
-     "#E7E6E1",
-     "#E4E2DC",
-     "#BDB9AD"
+     "#E9E8E3",
+     "#DBD8D1"
     ],
     "maps": {
      "albedo": {
       "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_albedo.png",
-      "url": "twill-bone_albedo.png",
+      "url": "assets/cap/twill-bone_albedo.webp",
       "channel": "albedo",
       "source": "reference-pixel-extraction"
      },
      "roughness": {
       "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_roughness.png",
-      "url": "twill-bone_roughness.png",
+      "url": "assets/cap/twill-bone_roughness.webp",
       "channel": "roughness",
       "source": "reference-pixel-extraction"
      },
      "height": {
       "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_height.png",
-      "url": "twill-bone_height.png",
+      "url": "assets/cap/twill-bone_height.webp",
       "channel": "height",
       "source": "reference-pixel-extraction"
      },
      "normal": {
       "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_normal.png",
-      "url": "twill-bone_normal.png",
+      "url": "assets/cap/twill-bone_normal.webp",
       "channel": "normal",
       "source": "reference-pixel-extraction"
      },
      "ao": {
       "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_ao.png",
-      "url": "twill-bone_ao.png",
+      "url": "assets/cap/twill-bone_ao.webp",
       "channel": "ao",
       "source": "reference-pixel-extraction"
      }
@@ -4651,24 +4651,24 @@
     "limitation": "single-image inference, not inverse rendering"
    },
    "textureAnalysis": {
-    "finishClass": "plastic",
+    "finishClass": "brushed-steel",
     "recipe": {
-     "metalness": 0.05,
-     "roughness": 0.6,
-     "clearcoat": 0.2,
-     "clearcoatRoughness": 0.3,
+     "metalness": 1.0,
+     "roughness": 0.35,
+     "clearcoat": 0.0,
+     "clearcoatRoughness": 0.0,
      "transmission": 0.0,
      "ior": 1.5,
-     "envMapIntensity": 0.7,
-     "anisotropy": 0.0,
-     "procedural": "flat-clearcoat"
+     "envMapIntensity": 1.0,
+     "anisotropy": 1.0,
+     "procedural": "brushed"
     },
     "palette": [
-     "#E5E4DF",
-     "#E2E1DB",
-     "#DFDDD8",
-     "#DEDBD6",
-     "#DBD8D3"
+     "#E7E5E0",
+     "#E6E4DF",
+     "#E4E2DD",
+     "#E1DFDA",
+     "#D9D7D0"
     ],
     "appliedScalars": "observed values kept; see note",
     "note": "analyzer: plastic/rough 0.6 on a 120x80 crop; observed matte cotton twill with no specular hotspot, roughness kept at 0.9 (fabric)."
@@ -4699,36 +4699,6 @@
     "amplitude": 0.06,
     "heightCorrelation": 0.25
    },
-   "textureResolution": 2048,
-   "textureProjection": {
-    "mode": "uv",
-    "repeat": [
-     6.0,
-     6.0
-    ],
-    "anisotropy": 8,
-    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
-   },
-   "surfaceFrequencyBands": [
-    {
-     "id": "macro",
-     "frequency": 2.0,
-     "amplitude": 0.06,
-     "role": "broad tonal breakup across panels"
-    },
-    {
-     "id": "meso",
-     "frequency": 14.0,
-     "amplitude": 0.12,
-     "role": "weave direction bands and seam shading"
-    },
-    {
-     "id": "micro",
-     "frequency": 64.0,
-     "amplitude": 0.1,
-     "role": "thread grain visible under grazing light"
-    }
-   ],
    "roughness": {
     "base": 0.6,
     "variation": 0.08,
@@ -4738,23 +4708,6 @@
    "metalness": {
     "base": 0.0,
     "variation": 0.0
-   },
-   "normal": {
-    "pattern": "satin stitch ridges",
-    "strength": 0.45,
-    "scale": 90.0,
-    "space": "tangent"
-   },
-   "bump": {
-    "pattern": "satin stitch ridges",
-    "amplitude": 0.02,
-    "scale": 90.0
-   },
-   "displacement": {
-    "pattern": "none",
-    "amplitude": 0.0,
-    "scale": 1.0,
-    "silhouetteAffects": false
    },
    "ambientOcclusion": {
     "cavityStrength": 0.35,
@@ -4789,7 +4742,30 @@
     "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
    ],
    "notes": "Navy embroidery thread (front text, ONE COMMUNITY)",
-   "referencePbr": {
+   "textureAnalysis": {
+    "finishClass": "brushed-steel",
+    "recipe": {
+     "metalness": 1.0,
+     "roughness": 0.35,
+     "clearcoat": 0.0,
+     "clearcoatRoughness": 0.0,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 1.0,
+     "anisotropy": 1.0,
+     "procedural": "brushed"
+    },
+    "palette": [
+     "#93949C",
+     "#B4B4B8",
+     "#B2B1B7",
+     "#B7B6B9",
+     "#9D9CA2"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: brushed-steel because the crop mixes navy letters with bone background; observed satin-stitch thread, dielectric, roughness 0.6."
+   },
+   "pbrEvidence": {
     "usable": true,
     "confidence": 0.831,
     "estimatedFidelity": 0.831,
@@ -4836,28 +4812,11 @@
     },
     "limitation": "single-image inference, not inverse rendering"
    },
-   "textureAnalysis": {
-    "finishClass": "brushed-steel",
-    "recipe": {
-     "metalness": 1.0,
-     "roughness": 0.35,
-     "clearcoat": 0.0,
-     "clearcoatRoughness": 0.0,
-     "transmission": 0.0,
-     "ior": 1.5,
-     "envMapIntensity": 1.0,
-     "anisotropy": 1.0,
-     "procedural": "brushed"
-    },
-    "palette": [
-     "#93949C",
-     "#B4B4B8",
-     "#B2B1B7",
-     "#B7B6B9",
-     "#9D9CA2"
-    ],
-    "appliedScalars": "observed values kept; see note",
-    "note": "analyzer: brushed-steel because the crop mixes navy letters with bone background; observed satin-stitch thread, dielectric, roughness 0.6."
+   "textureless": {
+    "declared": true,
+    "evidence": [
+     "the thread only exists as lettering; its crop mixes letters with the bone background, so the letters are generated decals in solid navy"
+    ]
    }
   },
   {
@@ -4885,36 +4844,6 @@
     "amplitude": 0.06,
     "heightCorrelation": 0.25
    },
-   "textureResolution": 2048,
-   "textureProjection": {
-    "mode": "uv",
-    "repeat": [
-     6.0,
-     6.0
-    ],
-    "anisotropy": 8,
-    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
-   },
-   "surfaceFrequencyBands": [
-    {
-     "id": "macro",
-     "frequency": 2.0,
-     "amplitude": 0.06,
-     "role": "broad tonal breakup across panels"
-    },
-    {
-     "id": "meso",
-     "frequency": 14.0,
-     "amplitude": 0.12,
-     "role": "weave direction bands and seam shading"
-    },
-    {
-     "id": "micro",
-     "frequency": 64.0,
-     "amplitude": 0.1,
-     "role": "thread grain visible under grazing light"
-    }
-   ],
    "roughness": {
     "base": 0.45,
     "variation": 0.05,
@@ -4924,23 +4853,6 @@
    "metalness": {
     "base": 0.0,
     "variation": 0.0
-   },
-   "normal": {
-    "pattern": "none",
-    "strength": 0.05,
-    "scale": 8.0,
-    "space": "tangent"
-   },
-   "bump": {
-    "pattern": "none",
-    "amplitude": 0.02,
-    "scale": 8.0
-   },
-   "displacement": {
-    "pattern": "none",
-    "amplitude": 0.0,
-    "scale": 1.0,
-    "silhouetteAffects": false
    },
    "ambientOcclusion": {
     "cavityStrength": 0.35,
@@ -4976,7 +4888,30 @@
     "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
    ],
    "notes": "Navy moulded plastic (snapback strap, buckle)",
-   "referencePbr": {
+   "textureAnalysis": {
+    "finishClass": "painted-metal",
+    "recipe": {
+     "metalness": 0.0,
+     "roughness": 0.5,
+     "clearcoat": 1.0,
+     "clearcoatRoughness": 0.05,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 1.0,
+     "anisotropy": 0.0,
+     "procedural": "flat-clearcoat"
+    },
+    "palette": [
+     "#0B0C0B",
+     "#242836",
+     "#252A3E",
+     "#23283A",
+     "#23283B"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: painted-metal rough 0.5; observed moulded plastic, dielectric, roughness 0.45."
+   },
+   "pbrEvidence": {
     "usable": true,
     "confidence": 0.8,
     "estimatedFidelity": 0.8,
@@ -5023,28 +4958,11 @@
     },
     "limitation": "single-image inference, not inverse rendering"
    },
-   "textureAnalysis": {
-    "finishClass": "painted-metal",
-    "recipe": {
-     "metalness": 0.0,
-     "roughness": 0.5,
-     "clearcoat": 1.0,
-     "clearcoatRoughness": 0.05,
-     "transmission": 0.0,
-     "ior": 1.5,
-     "envMapIntensity": 1.0,
-     "anisotropy": 0.0,
-     "procedural": "flat-clearcoat"
-    },
-    "palette": [
-     "#0B0C0B",
-     "#242836",
-     "#252A3E",
-     "#23283A",
-     "#23283B"
-    ],
-    "appliedScalars": "observed values kept; see note",
-    "note": "analyzer: painted-metal rough 0.5; observed moulded plastic, dielectric, roughness 0.45."
+   "textureless": {
+    "declared": true,
+    "evidence": [
+     "strap crop (reconstruction/crops/strap-navy.png) shows smooth moulded plastic; its only texture is the seven holes, which are real geometry, so tiling the crop would repeat holes"
+    ]
    }
   },
   {
@@ -5072,36 +4990,6 @@
     "amplitude": 0.06,
     "heightCorrelation": 0.25
    },
-   "textureResolution": 2048,
-   "textureProjection": {
-    "mode": "uv",
-    "repeat": [
-     6.0,
-     6.0
-    ],
-    "anisotropy": 8,
-    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
-   },
-   "surfaceFrequencyBands": [
-    {
-     "id": "macro",
-     "frequency": 2.0,
-     "amplitude": 0.06,
-     "role": "broad tonal breakup across panels"
-    },
-    {
-     "id": "meso",
-     "frequency": 14.0,
-     "amplitude": 0.12,
-     "role": "weave direction bands and seam shading"
-    },
-    {
-     "id": "micro",
-     "frequency": 64.0,
-     "amplitude": 0.1,
-     "role": "thread grain visible under grazing light"
-    }
-   ],
    "roughness": {
     "base": 0.9,
     "variation": 0.05,
@@ -5111,23 +4999,6 @@
    "metalness": {
     "base": 0.0,
     "variation": 0.0
-   },
-   "normal": {
-    "pattern": "fine mesh weave",
-    "strength": 0.25,
-    "scale": 70.0,
-    "space": "tangent"
-   },
-   "bump": {
-    "pattern": "fine mesh weave",
-    "amplitude": 0.02,
-    "scale": 70.0
-   },
-   "displacement": {
-    "pattern": "none",
-    "amplitude": 0.0,
-    "scale": 1.0,
-    "silhouetteAffects": false
    },
    "ambientOcclusion": {
     "cavityStrength": 0.35,
@@ -5162,7 +5033,30 @@
     "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
    ],
    "notes": "Black interior taping and mesh",
-   "referencePbr": {
+   "textureAnalysis": {
+    "finishClass": "worn-composite",
+    "recipe": {
+     "metalness": 0.0,
+     "roughness": 0.9,
+     "clearcoat": 0.0,
+     "clearcoatRoughness": 0.0,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 0.5,
+     "anisotropy": 0.0,
+     "procedural": "mottle"
+    },
+    "palette": [
+     "#1A1B17",
+     "#0D0E0D",
+     "#0C0C0C",
+     "#0D0E0E",
+     "#0B0C0B"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: worn-composite rough 0.9; consistent with black taping/mesh."
+   },
+   "pbrEvidence": {
     "usable": true,
     "confidence": 0.765,
     "estimatedFidelity": 0.765,
@@ -5207,28 +5101,11 @@
     },
     "limitation": "single-image inference, not inverse rendering"
    },
-   "textureAnalysis": {
-    "finishClass": "worn-composite",
-    "recipe": {
-     "metalness": 0.0,
-     "roughness": 0.9,
-     "clearcoat": 0.0,
-     "clearcoatRoughness": 0.0,
-     "transmission": 0.0,
-     "ior": 1.5,
-     "envMapIntensity": 0.5,
-     "anisotropy": 0.0,
-     "procedural": "mottle"
-    },
-    "palette": [
-     "#1A1B17",
-     "#0D0E0D",
-     "#0C0C0C",
-     "#0D0E0E",
-     "#0B0C0B"
-    ],
-    "appliedScalars": "observed values kept; see note",
-    "note": "analyzer: worn-composite rough 0.9; consistent with black taping/mesh."
+   "textureless": {
+    "declared": true,
+    "evidence": [
+     "interior crop reads as near-uniform black (palette spread under 8 levels); the tape print is a decal"
+    ]
    }
   },
   {
@@ -5256,36 +5133,6 @@
     "amplitude": 0.06,
     "heightCorrelation": 0.25
    },
-   "textureResolution": 2048,
-   "textureProjection": {
-    "mode": "uv",
-    "repeat": [
-     6.0,
-     6.0
-    ],
-    "anisotropy": 8,
-    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
-   },
-   "surfaceFrequencyBands": [
-    {
-     "id": "macro",
-     "frequency": 2.0,
-     "amplitude": 0.06,
-     "role": "broad tonal breakup across panels"
-    },
-    {
-     "id": "meso",
-     "frequency": 14.0,
-     "amplitude": 0.12,
-     "role": "weave direction bands and seam shading"
-    },
-    {
-     "id": "micro",
-     "frequency": 64.0,
-     "amplitude": 0.1,
-     "role": "thread grain visible under grazing light"
-    }
-   ],
    "roughness": {
     "base": 0.55,
     "variation": 0.08,
@@ -5295,23 +5142,6 @@
    "metalness": {
     "base": 0.0,
     "variation": 0.0
-   },
-   "normal": {
-    "pattern": "fine woven thread",
-    "strength": 0.35,
-    "scale": 80.0,
-    "space": "tangent"
-   },
-   "bump": {
-    "pattern": "fine woven thread",
-    "amplitude": 0.02,
-    "scale": 80.0
-   },
-   "displacement": {
-    "pattern": "none",
-    "amplitude": 0.0,
-    "scale": 1.0,
-    "silhouetteAffects": false
    },
    "ambientOcclusion": {
     "cavityStrength": 0.35,
@@ -5346,7 +5176,30 @@
     "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
    ],
    "notes": "Woven tricolour flag patch",
-   "referencePbr": {
+   "textureAnalysis": {
+    "finishClass": "candy-coat",
+    "recipe": {
+     "metalness": 0.35,
+     "roughness": 0.18,
+     "clearcoat": 0.6,
+     "clearcoatRoughness": 0.15,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 0.7,
+     "anisotropy": 0.0,
+     "procedural": "gradient-smoke"
+    },
+    "palette": [
+     "#6D8D7B",
+     "#31694D",
+     "#9A8A7D",
+     "#9D2725",
+     "#C6A49E"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: candy-coat metal 0.35 rough 0.18 from saturated bands; observed woven polyester patch, dielectric, roughness 0.55."
+   },
+   "pbrEvidence": {
     "usable": true,
     "confidence": 0.86,
     "estimatedFidelity": 0.86,
@@ -5393,28 +5246,11 @@
     },
     "limitation": "single-image inference, not inverse rendering"
    },
-   "textureAnalysis": {
-    "finishClass": "candy-coat",
-    "recipe": {
-     "metalness": 0.35,
-     "roughness": 0.18,
-     "clearcoat": 0.6,
-     "clearcoatRoughness": 0.15,
-     "transmission": 0.0,
-     "ior": 1.5,
-     "envMapIntensity": 0.7,
-     "anisotropy": 0.0,
-     "procedural": "gradient-smoke"
-    },
-    "palette": [
-     "#6D8D7B",
-     "#31694D",
-     "#9A8A7D",
-     "#9D2725",
-     "#C6A49E"
-    ],
-    "appliedScalars": "observed values kept; see note",
-    "note": "analyzer: candy-coat metal 0.35 rough 0.18 from saturated bands; observed woven polyester patch, dielectric, roughness 0.55."
+   "textureless": {
+    "declared": true,
+    "evidence": [
+     "the flag is a decal of flat colour bands; the woven grain is below the review resolution"
+    ]
    }
   },
   {
@@ -5442,36 +5278,6 @@
     "amplitude": 0.06,
     "heightCorrelation": 0.25
    },
-   "textureResolution": 2048,
-   "textureProjection": {
-    "mode": "uv",
-    "repeat": [
-     6.0,
-     6.0
-    ],
-    "anisotropy": 8,
-    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
-   },
-   "surfaceFrequencyBands": [
-    {
-     "id": "macro",
-     "frequency": 2.0,
-     "amplitude": 0.06,
-     "role": "broad tonal breakup across panels"
-    },
-    {
-     "id": "meso",
-     "frequency": 14.0,
-     "amplitude": 0.12,
-     "role": "weave direction bands and seam shading"
-    },
-    {
-     "id": "micro",
-     "frequency": 64.0,
-     "amplitude": 0.1,
-     "role": "thread grain visible under grazing light"
-    }
-   ],
    "roughness": {
     "base": 0.6,
     "variation": 0.08,
@@ -5481,23 +5287,6 @@
    "metalness": {
     "base": 0.0,
     "variation": 0.0
-   },
-   "normal": {
-    "pattern": "satin stitch ridges",
-    "strength": 0.45,
-    "scale": 90.0,
-    "space": "tangent"
-   },
-   "bump": {
-    "pattern": "satin stitch ridges",
-    "amplitude": 0.02,
-    "scale": 90.0
-   },
-   "displacement": {
-    "pattern": "none",
-    "amplitude": 0.0,
-    "scale": 1.0,
-    "silhouetteAffects": false
    },
    "ambientOcclusion": {
     "cavityStrength": 0.35,
@@ -5522,7 +5311,30 @@
     "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
    ],
    "notes": "Green script monogram thread",
-   "referencePbr": {
+   "textureAnalysis": {
+    "finishClass": "brushed-steel",
+    "recipe": {
+     "metalness": 1.0,
+     "roughness": 0.35,
+     "clearcoat": 0.0,
+     "clearcoatRoughness": 0.0,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 1.0,
+     "anisotropy": 1.0,
+     "procedural": "brushed"
+    },
+    "palette": [
+     "#EDEFED",
+     "#D6DCD7",
+     "#D4D7D4",
+     "#C8CFC7",
+     "#D8D7D2"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: brushed-steel because the crop is mostly bone background; observed green satin thread, dielectric, roughness 0.6."
+   },
+   "pbrEvidence": {
     "usable": true,
     "confidence": 0.855,
     "estimatedFidelity": 0.855,
@@ -5569,28 +5381,11 @@
     },
     "limitation": "single-image inference, not inverse rendering"
    },
-   "textureAnalysis": {
-    "finishClass": "brushed-steel",
-    "recipe": {
-     "metalness": 1.0,
-     "roughness": 0.35,
-     "clearcoat": 0.0,
-     "clearcoatRoughness": 0.0,
-     "transmission": 0.0,
-     "ior": 1.5,
-     "envMapIntensity": 1.0,
-     "anisotropy": 1.0,
-     "procedural": "brushed"
-    },
-    "palette": [
-     "#EDEFED",
-     "#D6DCD7",
-     "#D4D7D4",
-     "#C8CFC7",
-     "#D8D7D2"
-    ],
-    "appliedScalars": "observed values kept; see note",
-    "note": "analyzer: brushed-steel because the crop is mostly bone background; observed green satin thread, dielectric, roughness 0.6."
+   "textureless": {
+    "declared": true,
+    "evidence": [
+     "the monogram crop is mostly bone background; the monogram is a decal in solid green"
+    ]
    }
   }
  ],

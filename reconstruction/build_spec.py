@@ -85,6 +85,12 @@ patch['localOverrides'] = [{'id': 'flag-bands', 'region': 'three equal vertical 
 mono = material('monogram-green', 'Green script monogram thread', '#2E9E63', ['#23804F', '#3FB577'], 0.6, 0.08, normal_pattern='satin stitch ridges', normal_strength=0.45, normal_scale=90.0, pattern='striated')
 spec['materials'] = [twill, thread, plastic, liner, patch, mono]
 # evidencia PBR extraída de los recortes (forge/stage1_intake/extract_pbr_evidence.py) y análisis de acabado
+TEXTURELESS_WHY = {
+  'plastic-navy': 'strap crop (reconstruction/crops/strap-navy.png) shows smooth moulded plastic; its only texture is the seven holes, which are real geometry, so tiling the crop would repeat holes',
+  'liner-black': 'interior crop reads as near-uniform black (palette spread under 8 levels); the tape print is a decal',
+  'thread-navy': 'the thread only exists as lettering; its crop mixes letters with the bone background, so the letters are generated decals in solid navy',
+  'patch-flag': 'the flag is a decal of flat colour bands; the woven grain is below the review resolution',
+  'monogram-green': 'the monogram crop is mostly bone background; the monogram is a decal in solid green'}
 ANALYZER_NOTE = {
   'twill-bone': 'analyzer: plastic/rough 0.6 on a 120x80 crop; observed matte cotton twill with no specular hotspot, roughness kept at 0.9 (fabric).',
   'thread-navy': 'analyzer: brushed-steel because the crop mixes navy letters with bone background; observed satin-stitch thread, dielectric, roughness 0.6.',
@@ -101,6 +107,16 @@ for m in spec['materials']:
                          'limitation': 'single-image inference, not inverse rendering'}
     m['textureAnalysis'] = {'finishClass': t['finishClass'], 'recipe': t['recipe'], 'palette': t['palette'], 'appliedScalars': 'observed values kept; see note', 'note': ANALYZER_NOTE[m['id']]}
     m['colorVariation']['palette'] = e['palette'][:3] if m['id'] in ('twill-bone', 'liner-black', 'plastic-navy') else m['colorVariation']['palette']
+    if m['id'] == 'twill-bone':
+        # los mapas del sitio son copias WebP de 512 px de la evidencia (assets/cap/); 'path' conserva el original
+        for ch, mp in m['referencePbr']['maps'].items():
+            mp['url'] = f"assets/cap/{m['id']}_{ch}.webp"
+    else:
+        # superficie lisa o recorte no limpio: sin textura, con la evidencia conservada aparte
+        m['pbrEvidence'] = m.pop('referencePbr')
+        for f in ('normal', 'bump', 'displacement', 'surfaceFrequencyBands', 'textureProjection', 'textureResolution'):
+            m.pop(f, None)
+        m['textureless'] = {'declared': True, 'evidence': [TEXTURELESS_WHY[m['id']]]}
 
 # ---------------- componentes ----------------
 def comp(cid, name, level, role, primitive, topo, rationale, material, dims, pos, rot, parent, tier, descriptor=None, attachment=None, features=None, evidence=None, recipe=None, importance=0.6, confidence=0.85):
@@ -195,7 +211,7 @@ C.append(comp('root', 'Crown (five-panel dome)', 'macro', 'body', 'lathe', 'cont
   evidence=['view-front', 'view-left', 'view-right', 'view-back'], recipe=twill_recipe, importance=1.0, confidence=0.9))
 C.append(comp('visor', 'Visor (curved plate)', 'macro', 'plate', 'extrude', 'conforming-shell',
   'A thin plate 0.02 thick, arched (hand refinement src/refine.ts, recorded in deformationStack): the plan is bounded by the crown circle (r 0.45) and a forward circle (r 0.58 centred 0.36 ahead) so the tip sits 0.42 beyond the band, the widest point is 1.16 crown widths and the plate meets the crown at its sides (about +-88 degrees), so the arched wings sweep down beside the crown as the front view shows; extruded to its thickness; the lateral arch (sides drooping 0.10) is a bend applied in form-refinement, recorded in deformationStack.',
-  'twill-bone', [1.0, 0.02, 0.5], [0, -0.282, 0], [-PI/2, 0, 0], 'root', 'blockout', {'profile2D': visor_extrude, 'topologyIntent': 'annular-sector plate with rounded tip, arched downward at the sides', 'deformationStack': [{'type': 'bend', 'axis': 'lateral', 'formula': 'dy = -0.42*x^2 (ends at x=+-0.54 drop 0.12)', 'appliedIn': 'src/refine.ts applyRefinements'}, {'type': 'bend', 'axis': 'forward', 'formula': 'dy = -0.15*(fwd-0.45)^2 beyond the band (tip drops 0.04)', 'appliedIn': 'src/refine.ts applyRefinements'}]},
+  'twill-bone', [1.0, 0.02, 0.5], [0, -0.282, 0], [-PI/2, 0, 0], 'root', 'blockout', {'profile2D': visor_extrude, 'topologyIntent': 'annular-sector plate with rounded tip, arched downward at the sides', 'deformationStack': [{'type': 'bend', 'axis': 'lateral', 'formula': 'dy = -0.42*x^2*smoothstep(0, 0.12, distance beyond the band) (the plate stays sewn to the band; ends drop 0.12)', 'appliedIn': 'src/refine.ts applyRefinements'}, {'type': 'bend', 'axis': 'forward', 'formula': 'dy = -0.15*(fwd-0.45)^2 beyond the band (tip drops 0.04)', 'appliedIn': 'src/refine.ts applyRefinements'}]},
   attachment={'parentId': 'root', 'parentSocket': 'band-front', 'contactType': 'butt', 'contactNormal': [0, 0, 1], 'overlap': 0.02, 'gapTolerance': 0.005, 'evidenceRefs': ['view-right', 'view-left']},
   features=[feat('stitch-rows', 'fabric stitch', 'six concentric stitch arcs on the top face, 0.06 apart, following the outer edge', 'line width 0.003', 'painted linework in darker bone + 0.01 bump'),
             feat('visor-edge-binding', 'raised ridge', 'outer edge of the plate', 'radius 0.008', 'rounded edge treatment (chamfer segments 3)')],

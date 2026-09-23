@@ -37,14 +37,15 @@
 
     const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
-    renderer.outputEncoding = T.sRGBEncoding;
+    renderer.outputColorSpace = T.SRGBColorSpace;
     renderer.domElement.className = 'map3d';
     el.appendChild(renderer.domElement);
 
     const scene = new T.Scene();
     const camera = new T.PerspectiveCamera(26, 1, .1, 40);
-    scene.add(new T.HemisphereLight(0xffffff, 0xcfd6df, 1.05));
-    const key = new T.DirectionalLight(0xffffff, .5); key.position.set(-2.5, 4, 2.5); scene.add(key);
+    // three r170: luces físicas, las intensidades del modo antiguo se multiplican por PI
+    scene.add(new T.HemisphereLight(0xffffff, 0xcfd6df, 1.05 * Math.PI));
+    const key = new T.DirectionalLight(0xffffff, .5 * Math.PI); key.position.set(-2.5, 4, 2.5); scene.add(key);
 
     const rig = new T.Group(); scene.add(rig);
 

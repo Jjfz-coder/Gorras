@@ -8,11 +8,11 @@
   "sourceImage": "/home/user/Gorras/reconstruction/crops/twill-crown.png",
   "outDir": "/home/user/Gorras/reconstruction/material-evidence/twill-bone",
   "palette": [
+    "#E4E2DD",
+    "#E6E5E0",
     "#E0DED8",
-    "#DBD9D3",
-    "#E7E6E1",
-    "#E4E2DC",
-    "#BDB9AD"
+    "#E9E8E3",
+    "#DBD8D1"
   ],
   "maps": {
     "albedo": {
@@ -48,34 +48,34 @@
   },
   "diagnostics": {
     "sourceWidth": 120,
-    "sourceHeight": 80,
+    "sourceHeight": 40,
     "mapSize": 1024,
     "cropBBoxPixels": {
       "x": 0,
       "y": 0,
       "width": 120,
-      "height": 80
+      "height": 40
     },
     "mask": {
-      "backgroundColor": "#E2E3DD",
-      "backgroundNoise": 16.432,
+      "backgroundColor": "#E3E0DA",
+      "backgroundNoise": 15.166,
       "transparentPixelFraction": 0.0,
       "foregroundCoverage": 1.0
     },
     "mapStats": {
       "valueRange": 0.08,
-      "heightP90Gradient": 0.05312,
-      "roughnessBase": 0.734,
-      "roughnessVariation": 0.097,
-      "normalStrength": 0.219,
+      "heightP90Gradient": 0.03109,
+      "roughnessBase": 0.71,
+      "roughnessVariation": 0.058,
+      "normalStrength": 0.193,
       "blurRadius": 21
     },
     "palette": [
+      "#E4E2DD",
+      "#E6E5E0",
       "#E0DED8",
-      "#DBD9D3",
-      "#E7E6E1",
-      "#E4E2DC",
-      "#BDB9AD"
+      "#E9E8E3",
+      "#DBD8D1"
     ]
   },
   "warnings": [

@@ -88,3 +88,18 @@ assets/          favicon, fonts.css y las tipografías en woff2
   duraciones de UI por debajo de 300 ms.
 - Respeta `prefers-reduced-motion` y funciona de 360 px hasta escritorio.
 - La bolsa vive en memoria: al recargar la página se vacía.
+
+## Gorra 3D reconstruida (img2threejs)
+
+La gorra 3D del sitio sale del pipeline img2threejs (`reconstruction/`): análisis de la hoja de
+cuatro vistas, spec estricto (`reconstruction/object-sculpt-spec.json`) y la fábrica Three.js
+generada (`reconstruction/src/createGorraModel.ts`, pasada blockout) con sus refinamientos
+documentados (`reconstruction/src/refine.ts`: arco de visera cosida a la banda, correa envuelta).
+`reconstruction/site/cap-site.ts` la envuelve con la misma interfaz `Cap3D.mount` que usaba el
+modelo anterior y añade los elementos del spec que el pipeline todavía no emite (bordados,
+bandera, botón, ojales, abertura y forro). Se compila a un solo archivo que incluye three.js r170:
+
+    esbuild reconstruction/site/cap-site.ts --bundle --format=iife --minify --outfile=assets/cap3d.js
+
+Los mapas de sarga (`assets/cap/*.webp`) son copias sin costuras, de 512 px, de la evidencia PBR.
+Los renders de `assets/renders/` se regeneran con `node reconstruction/site/render-products.js`.

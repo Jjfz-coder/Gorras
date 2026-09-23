@@ -92,8 +92,8 @@ const loadScript = src => new Promise((ok, err) => {
   const s = document.createElement('script'); s.src = src; s.async = true; s.onload = ok; s.onerror = err;
   document.head.appendChild(s);
 });
-loadScript('assets/vendor/three.min.js')
-  .then(() => loadScript('assets/cap3d.js'))
+// assets/cap3d.js trae three.js r170 y la gorra reconstruida (img2threejs); el mapa usa ese mismo three
+loadScript('assets/cap3d.js')
   .then(() => {
     if (window.Cap3D && Cap3D.supported)
       document.querySelectorAll('.stage[data-cap]').forEach(el => Cap3D.mount(el, JSON.parse(el.dataset.cap)));
