@@ -25,7 +25,7 @@ const BONE_LINEAR = 0.74;          // luminancia lineal media del mapa de albedo
 const SURFACE_OFFSET = 0.004;      // separación de los parches respecto a la tela
 
 const supported = (() => {
-  try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }
+  try { const c = document.createElement('canvas'); return !!c.getContext('webgl2'); }   // three r170 ya no soporta WebGL 1
   catch { return false; }
 })();
 

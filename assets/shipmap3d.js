@@ -7,7 +7,7 @@
   const ShipMap3D = (window.ShipMap3D = {});
   ShipMap3D.supported = (() => {
     if (!window.THREE) return false;
-    try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }
+    try { const c = document.createElement('canvas'); return !!c.getContext('webgl2'); }   // three r170 ya no soporta WebGL 1
     catch (e) { return false; }
   })();
   if (!ShipMap3D.supported) return;

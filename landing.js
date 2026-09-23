@@ -92,20 +92,55 @@ const loadScript = src => new Promise((ok, err) => {
   const s = document.createElement('script'); s.src = src; s.async = true; s.onload = ok; s.onerror = err;
   document.head.appendChild(s);
 });
-// assets/cap3d.js trae three.js r170 y la gorra reconstruida (img2threejs); el mapa usa ese mismo three
-loadScript('assets/cap3d.js')
-  .then(() => {
-    if (window.Cap3D && Cap3D.supported)
-      document.querySelectorAll('.stage[data-cap]').forEach(el => Cap3D.mount(el, JSON.parse(el.dataset.cap)));
-    return loadScript('assets/shipmap3d.js');
-  })
+/* el mapa plano (SVG) también anima sus arcos: se dibujan desde CDMX y un punto recorre cada ruta.
+   Es lo que se ve mientras carga el 3D y en navegadores sin WebGL 2. */
+(function animateMapFallback() {
+  const svg = document.querySelector('#shipMap .map__fallback');
+  if (!svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  svg.querySelectorAll('.arc').forEach((arc, i) => {
+    arc.setAttribute('pathLength', '1');
+    arc.id = arc.id || `route-${i}`;
+    arc.style.animationDelay = `${0.2 + i * 0.09}s`;
+    if (reduceMotion) return;
+    const dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('r', '1.8'); dot.setAttribute('class', 'arc__pulse');
+    dot.setAttribute('visibility', 'hidden');          // oculto hasta que arranca su recorrido
+    const begin = `${(2 + i * 0.09 + Math.random()).toFixed(2)}s`;
+    const show = document.createElementNS(NS, 'set');
+    show.setAttribute('attributeName', 'visibility'); show.setAttribute('to', 'visible'); show.setAttribute('begin', begin);
+    dot.appendChild(show);
+    const move = document.createElementNS(NS, 'animateMotion');
+    const len = arc.getTotalLength();
+    move.setAttribute('dur', `${(2.2 + len / 90).toFixed(2)}s`);
+    move.setAttribute('begin', begin);
+    move.setAttribute('repeatCount', 'indefinite');
+    const mpath = document.createElementNS(NS, 'mpath');
+    mpath.setAttribute('href', `#${arc.id}`);
+    move.appendChild(mpath); dot.appendChild(move);
+    svg.appendChild(dot);
+  });
+  svg.classList.add('is-animated');
+})();
+
+// assets/cap3d.js trae three.js r170 y la gorra reconstruida (img2threejs); el mapa usa ese mismo three.
+// Cada montaje va aislado: si uno falla, los demás y el mapa siguen.
+const bundle = loadScript('assets/cap3d.js');
+bundle.then(() => {
+  if (!(window.Cap3D && Cap3D.supported)) return;
+  document.querySelectorAll('.stage[data-cap]').forEach(el => {
+    try { Cap3D.mount(el, JSON.parse(el.dataset.cap)); } catch (e) { console.warn('Cap3D', e); }
+  });
+}).catch(() => {});
+bundle.then(() => loadScript('assets/shipmap3d.js'))
   .then(() => {
     const el = document.getElementById('shipMap');
     if (!(el && window.ShipMap3D && ShipMap3D.supported)) return;
     // el mapa se monta cuando se acerca a la pantalla
     const io = new IntersectionObserver(entries => {
       if (!entries.some(e => e.isIntersecting)) return;
-      io.disconnect(); ShipMap3D.mount(el);
+      io.disconnect();
+      try { ShipMap3D.mount(el); } catch (e) { console.warn('ShipMap3D', e); }
     }, { rootMargin: '300px 0px' });
     io.observe(el);
   })

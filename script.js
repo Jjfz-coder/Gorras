@@ -65,7 +65,7 @@ const ready3D = loadScript('assets/cap3d.js')
 ready3D.then(ok => {
   if (!ok) return;
   document.querySelectorAll('.stage[data-cap]').forEach(el => {
-    stages[el.id] = Cap3D.mount(el, JSON.parse(el.dataset.cap));
+    try { stages[el.id] = Cap3D.mount(el, JSON.parse(el.dataset.cap)); } catch (e) { console.warn('Cap3D', e); }
   });
 });
 
@@ -157,7 +157,7 @@ function openQuickView(id) {
   ready3D.then(ok => {
     if (!ok || !qv.classList.contains('is-open') || qvProduct !== p) return;
     if (qvHandle) qvHandle.dispose();
-    qvHandle = Cap3D.mount(qvStage, { crown: p.crown, brim: p.brim, thread: p.thread, yaw: .55, tilt: .14 });
+    try { qvHandle = Cap3D.mount(qvStage, { crown: p.crown, brim: p.brim, thread: p.thread, yaw: .55, tilt: .14 }); } catch (e) { qvHandle = null; }
   });
 }
 function closeQuickView() {
