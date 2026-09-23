@@ -1,0 +1,90 @@
+{
+  "passed": false,
+  "checks": {
+    "silhouetteIoU": 0.6158,
+    "aspectRatioDelta": 0.0408,
+    "scaleDelta": 0.1749,
+    "bilateralSymmetryError": 0.0062,
+    "colorDelta": {
+      "checked": 16,
+      "maxDeltaE": 48.95,
+      "perComponent": [
+        {
+          "componentId": null,
+          "deltaE": 25.14
+        },
+        {
+          "componentId": null,
+          "deltaE": 25.14
+        },
+        {
+          "componentId": null,
+          "deltaE": 36.68
+        },
+        {
+          "componentId": null,
+          "deltaE": 35.65
+        },
+        {
+          "componentId": null,
+          "deltaE": 35.65
+        },
+        {
+          "componentId": null,
+          "deltaE": 25.14
+        },
+        {
+          "componentId": null,
+          "deltaE": 35.65
+        },
+        {
+          "componentId": null,
+          "deltaE": 36.68
+        },
+        {
+          "componentId": null,
+          "deltaE": 48.28
+        },
+        {
+          "componentId": null,
+          "deltaE": 35.76
+        },
+        {
+          "componentId": null,
+          "deltaE": 35.76
+        },
+        {
+          "componentId": null,
+          "deltaE": 48.95
+        },
+        {
+          "componentId": null,
+          "deltaE": 25.14
+        },
+        {
+          "componentId": null,
+          "deltaE": 25.14
+        },
+        {
+          "componentId": null,
+          "deltaE": 25.14
+        },
+        {
+          "componentId": null,
+          "deltaE": 25.14
+        }
+      ],
+      "gated": false
+    }
+  },
+  "failures": [
+    "silhouette IoU 0.616 is below threshold 0.85",
+    "scale delta 0.175 exceeds threshold 0.08",
+    "blockout requires --map-stripped-render evidence"
+  ],
+  "maskWarnings": [
+    "reference: 3.6% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured"
+  ],
+  "renderHash": "dd57bd628ade3d41",
+  "passId": "blockout"
+}

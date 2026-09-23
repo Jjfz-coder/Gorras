@@ -1,2 +1,5 @@
 .DS_Store
 node_modules/
+reconstruction/viewer/bundle.js
+reconstruction/renders/fit-*.png
+reconstruction/renders/debug-*.png

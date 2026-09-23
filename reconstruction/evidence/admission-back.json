@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "back",
+    "sourcePath": "/home/user/Gorras/reconstruction/views/back.png",
+    "width": 669,
+    "height": 348,
+    "foregroundCoverage": 0.3359,
+    "largestComponentFraction": 0.9827,
+    "pHash": 18373564697213010090,
+    "duplicateOfHash": null
+  }
+}

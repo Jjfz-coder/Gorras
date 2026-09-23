@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.855,
+  "estimatedFidelity": 0.855,
+  "targetThreshold": 0.7,
+  "materialId": "monogram-green",
+  "sourceImage": "/home/user/Gorras/reconstruction/crops/monogram-green.png",
+  "outDir": "/home/user/Gorras/reconstruction/material-evidence/monogram-green",
+  "palette": [
+    "#809D8F",
+    "#6D9482",
+    "#96A99F",
+    "#B0C0B7",
+    "#568672"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_albedo.png",
+      "url": "monogram-green_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_roughness.png",
+      "url": "monogram-green_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_height.png",
+      "url": "monogram-green_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_normal.png",
+      "url": "monogram-green_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_ao.png",
+      "url": "monogram-green_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 70,
+    "sourceHeight": 120,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 9,
+      "y": 0,
+      "width": 55,
+      "height": 120
+    },
+    "mask": {
+      "backgroundColor": "#EDEDED",
+      "backgroundNoise": 31.257,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.109
+    },
+    "mapStats": {
+      "valueRange": 0.2659,
+      "heightP90Gradient": 0.02489,
+      "roughnessBase": 0.68,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.185,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#809D8F",
+      "#6D9482",
+      "#96A99F",
+      "#B0C0B7",
+      "#568672"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

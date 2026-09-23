@@ -1,0 +1,86 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.8,
+  "estimatedFidelity": 0.8,
+  "targetThreshold": 0.7,
+  "materialId": "plastic-navy",
+  "sourceImage": "/home/user/Gorras/reconstruction/crops/strap-navy.png",
+  "outDir": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy",
+  "palette": [
+    "#24293C",
+    "#292E41",
+    "#1C2030",
+    "#313649",
+    "#0B0D0E"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_albedo.png",
+      "url": "plastic-navy_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_roughness.png",
+      "url": "plastic-navy_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_height.png",
+      "url": "plastic-navy_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_normal.png",
+      "url": "plastic-navy_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_ao.png",
+      "url": "plastic-navy_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 160,
+    "sourceHeight": 50,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 160,
+      "height": 50
+    },
+    "mask": {
+      "backgroundColor": "#1F212F",
+      "backgroundNoise": 43.359,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.8445
+    },
+    "mapStats": {
+      "valueRange": 0.1134,
+      "heightP90Gradient": 0.05997,
+      "roughnessBase": 0.716,
+      "roughnessVariation": 0.113,
+      "normalStrength": 0.227,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#24293C",
+      "#292E41",
+      "#1C2030",
+      "#313649",
+      "#0B0D0E"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped",
+    "low value range weakens height/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

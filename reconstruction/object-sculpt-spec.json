@@ -1,0 +1,6406 @@
+{
+ "targetName": "Gorra Make Cumbres Chingon Again",
+ "targetId": "gorra-make-cumbres-chingon-again",
+ "schemaVersion": "2.1",
+ "terminologyProfile": {
+  "domain": "real-time procedural Three.js asset",
+  "geometryTerms": [
+   "silhouette",
+   "topology",
+   "primitive",
+   "bevel",
+   "chamfer",
+   "taper",
+   "bend",
+   "boolean cut",
+   "edge loop",
+   "surface normal",
+   "displacement"
+  ],
+  "materialTerms": [
+   "albedo",
+   "baseColor",
+   "roughness",
+   "metalness",
+   "normal map",
+   "bump map",
+   "ambient occlusion",
+   "cavity dirt",
+   "edge wear",
+   "clearcoat"
+  ],
+  "lightingTerms": [
+   "key light",
+   "fill light",
+   "rim light",
+   "HDRI/environment reflection",
+   "contact shadow"
+  ],
+  "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+ },
+ "sourceImage": "/home/user/Gorras/reconstruction/reference/gorra-4vistas.jpg",
+ "referenceCamera": {
+  "solved": false,
+  "fovDegrees": 40.0,
+  "aspect": 1.0,
+  "orientation": {
+   "yaw": 0.0,
+   "pitch": 0.0,
+   "roll": 0.0
+  },
+  "positionHint": [
+   0.0,
+   0.0,
+   3.0
+  ],
+  "note": "For likeness work, solve the reference camera (forge/stage1_intake/solve_camera_pose.py) so the review render aligns with the photo and the reference can be projected. Confirm by overlay review."
+ },
+ "suitability": "pass",
+ "scores": {
+  "object_isolation": 3,
+  "silhouette_readability": 3,
+  "depth_inference": 2,
+  "primitive_decomposition": 2,
+  "material_procedurality": 2,
+  "occlusion_risk": 1,
+  "interaction_fit": 3
+ },
+ "preSpecAssessment": {
+  "objectClass": {
+   "primaryType": "structured five-panel baseball cap with curved visor and plastic snapback closure",
+   "primaryDomain": "object",
+   "formLanguage": [
+    "fabric-like",
+    "organic over geometric structure"
+   ],
+   "structureKind": [
+    "compound object",
+    "layered shell"
+   ],
+   "motionPotential": [
+    "whole-object transform",
+    "detachable (visor, strap)"
+   ],
+   "materialFamilies": [
+    "cloth",
+    "plastic",
+    "mixed"
+   ],
+   "notes": "Assessed from four studio views (front, right, left, rear). Crown is a revolved fabric shell with a flatter front panel; visor is a thin arched plate; closure is a moulded plastic strap."
+  },
+  "complexity": {
+   "tier": "complex",
+   "scores": {
+    "silhouetteComplexity": 2,
+    "componentCount": 2,
+    "hierarchyDepth": 2,
+    "repetitionDensity": 1,
+    "materialLayerCount": 2,
+    "localDetailDensity": 2,
+    "occlusionRisk": 1,
+    "actionReadinessNeed": 1
+   },
+   "estimatedCounts": {
+    "macroComponents": 3,
+    "mesoComponents": 12,
+    "microFeatureGroups": 10,
+    "materialLayers": 6,
+    "repetitionSystems": 1
+   },
+   "reasoning": [
+    "Three macro masses (crown, visor, closure) with a dozen meso parts (button, liner, opening, panels with decals, patch, buckle).",
+    "Repeated systems: four embroidered eyelets, seven strap holes, six visor stitch rows, topstitched seams.",
+    "Six visually distinct materials: bone twill, navy thread, navy plastic, black liner, tricolour patch, green monogram thread.",
+    "Occlusion: visor underside and interior are hidden; inferred dark."
+   ]
+  },
+  "specDepthDecision": {
+   "requiredDepth": "complex",
+   "minimumComponentLevels": [
+    "macro",
+    "meso",
+    "micro"
+   ],
+   "needsRepetitionSystems": true,
+   "needsMaterialLocalOverrides": true,
+   "needsMultipleReviewViews": true,
+   "needsActionReadyHierarchy": true,
+   "rationale": "Complex: several hierarchy levels, repeated small systems (eyelets, holes, stitches) and six material responses; identity lives in embroidered decals on a simple macro form."
+  },
+  "unknownsToResolveBeforeImplementation": [],
+  "detailInventory": {
+   "scanMethod": "grid-3x3 over four views",
+   "targetMinDetails": 10,
+   "zonesDirs": [
+    "/home/user/Gorras/reconstruction/zones-front",
+    "/home/user/Gorras/reconstruction/zones-right",
+    "/home/user/Gorras/reconstruction/zones-left",
+    "/home/user/Gorras/reconstruction/zones-back"
+   ],
+   "details": [
+    {
+     "id": "d-front-text",
+     "kind": "decal",
+     "description": "three-line navy serif embroidery MAKE / CUMBRES / CHINGON AGAIN centred on the front panel",
+     "region": {
+      "x": 0.3,
+      "y": 0.22,
+      "width": 0.42,
+      "height": 0.42,
+      "units": "normalized"
+     },
+     "scale": "medium",
+     "affects": "albedo+relief",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "front-plate/decal-front-text"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/front.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-right-text",
+     "kind": "decal",
+     "description": "two-line navy embroidery ONE / COMMUNITY on the right side panel, lower rear third",
+     "region": {
+      "x": 0.55,
+      "y": 0.55,
+      "width": 0.3,
+      "height": 0.28,
+      "units": "normalized"
+     },
+     "scale": "medium",
+     "affects": "albedo+relief",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "right-plate/decal-right-text"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/right.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-monogram",
+     "kind": "decal",
+     "description": "green script monogram at the left front seam, partly cropped",
+     "region": {
+      "x": 0.27,
+      "y": 0.12,
+      "width": 0.12,
+      "height": 0.45,
+      "units": "normalized"
+     },
+     "scale": "medium",
+     "affects": "albedo+relief",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "monogram-plate/decal-monogram"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/left.png",
+     "confidence": 0.6
+    },
+    {
+     "id": "d-flag-patch",
+     "kind": "decal",
+     "description": "rectangular woven flag patch, green white red bands with eagle, merrowed edge",
+     "region": {
+      "x": 0.5,
+      "y": 0.42,
+      "width": 0.25,
+      "height": 0.3,
+      "units": "normalized"
+     },
+     "scale": "medium",
+     "affects": "albedo+relief",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "flag-patch/flag-bands-decal"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/left.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-strap-holes",
+     "kind": "hole",
+     "description": "seven round holes along the navy strap centreline",
+     "region": {
+      "x": 0.3,
+      "y": 0.78,
+      "width": 0.45,
+      "height": 0.12,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "geometry",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "strap/holes-7"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/back.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-buckle",
+     "kind": "fastener",
+     "description": "moulded buckle block at the strap end",
+     "region": {
+      "x": 0.7,
+      "y": 0.72,
+      "width": 0.1,
+      "height": 0.18,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "geometry",
+     "mapsTo": {
+      "type": "component",
+      "ref": "buckle"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/back.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-button",
+     "kind": "fastener",
+     "description": "fabric-covered apex button",
+     "region": {
+      "x": 0.44,
+      "y": 0.0,
+      "width": 0.12,
+      "height": 0.1,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "geometry",
+     "mapsTo": {
+      "type": "component",
+      "ref": "button"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/back.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-eyelets",
+     "kind": "hole",
+     "description": "embroidered eyelet on each side and rear panel, upper third",
+     "region": {
+      "x": 0.55,
+      "y": 0.25,
+      "width": 0.1,
+      "height": 0.12,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "albedo+relief",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "root/eyelet-row"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/right.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-visor-stitches",
+     "kind": "stitch",
+     "description": "six concentric stitch rows on the visor top following the outer edge",
+     "region": {
+      "x": 0.15,
+      "y": 0.7,
+      "width": 0.7,
+      "height": 0.28,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "albedo+bump",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "visor/stitch-rows"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/front.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-panel-seams",
+     "kind": "seam",
+     "description": "topstitched meridian seams between the five panels",
+     "region": {
+      "x": 0.2,
+      "y": 0.05,
+      "width": 0.6,
+      "height": 0.8,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "ao+ridge",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "root/panel-seams"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/front.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-tape-print",
+     "kind": "decal",
+     "description": "light grey ONE COMMUNITY print on the inner rear tape seen through the opening",
+     "region": {
+      "x": 0.42,
+      "y": 0.55,
+      "width": 0.22,
+      "height": 0.12,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "albedo",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "liner/tape-print"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/back.png",
+     "confidence": 0.7
+    },
+    {
+     "id": "d-arch-binding",
+     "kind": "seam",
+     "description": "bias binding around the inverted-U opening",
+     "region": {
+      "x": 0.33,
+      "y": 0.45,
+      "width": 0.4,
+      "height": 0.45,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "ridge",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "opening-panel/arch-binding"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/back.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-weave-grain",
+     "kind": "ridge",
+     "description": "fine diagonal twill weave grain over every bone surface",
+     "region": {
+      "x": 0.3,
+      "y": 0.1,
+      "width": 0.4,
+      "height": 0.3,
+      "units": "normalized"
+     },
+     "scale": "micro",
+     "affects": "normal+roughness",
+     "mapsTo": {
+      "type": "material.localOverrides",
+      "ref": "twill-bone/weave-grain"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/right.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-hole-gloss",
+     "kind": "gloss",
+     "description": "moulding gloss on the strap hole rims",
+     "region": {
+      "x": 0.3,
+      "y": 0.78,
+      "width": 0.45,
+      "height": 0.12,
+      "units": "normalized"
+     },
+     "scale": "micro",
+     "affects": "roughness",
+     "mapsTo": {
+      "type": "material.localOverrides",
+      "ref": "plastic-navy/hole-rims"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/back.png",
+     "confidence": 0.9
+    },
+    {
+     "id": "d-visor-edge",
+     "kind": "bevel",
+     "description": "rounded bound edge along the visor perimeter",
+     "region": {
+      "x": 0.05,
+      "y": 0.75,
+      "width": 0.9,
+      "height": 0.22,
+      "units": "normalized"
+     },
+     "scale": "small",
+     "affects": "geometry",
+     "mapsTo": {
+      "type": "component.localFeatures",
+      "ref": "visor/visor-edge-binding"
+     },
+     "evidenceRef": "/home/user/Gorras/reconstruction/views/front.png",
+     "confidence": 0.9
+    }
+   ]
+  },
+  "anatomy": {
+   "applies": false,
+   "styleHeads": 0.0,
+   "proportions": {
+    "headUnit": 0.0,
+    "torso": 0.0,
+    "legs": 0.0,
+    "shoulderWidth": 0.0,
+    "hipWidth": 0.0
+   },
+   "pose": {
+    "type": "unassessed",
+    "jointAngles": {}
+   },
+   "faceLandmarks": {
+    "eyeLine": 0.0,
+    "eyeSpacing": 0.0,
+    "noseBase": 0.0,
+    "mouthLine": 0.0,
+    "hairline": 0.0
+   },
+   "features": [],
+   "confidence": 0.0,
+   "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+  },
+  "sourceImage": "/home/user/Gorras/reconstruction/reference/gorra-4vistas.jpg"
+ },
+ "qualityContract": {
+  "qualityBar": "complex",
+  "definitionOfDone": [
+   "From the front the crown reads as a bone five-panel dome with a flat front panel carrying three lines of navy serif embroidery, over an arched visor that droops at both sides.",
+   "From either side the visor is a thin plate ~0.02 thick, and the side panel carries its decal (flag + monogram on the left, ONE COMMUNITY on the right) plus one eyelet.",
+   "From the rear the inverted-U opening is black with a navy seven-hole strap spanning it, and the apex button sits centred.",
+   "Bone twill reads matte with visible weave grain; embroidery reads as raised satin thread; the strap reads as satin plastic."
+  ],
+  "minimumSpecDepth": {
+   "macroComponents": 3,
+   "mesoComponents": 8,
+   "microFeatureGroups": 5,
+   "materialLayers": 3,
+   "repetitionSystems": 1,
+   "reviewViewpoints": 4
+  },
+  "featureGroups": [
+   {
+    "id": "overall-silhouette",
+    "name": "Overall silhouette and proportions",
+    "required": true,
+    "qualityCriteria": [
+     "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+    ],
+    "evidenceRefs": [
+     "full-object"
+    ],
+    "failureModes": [
+     "model reads as a generic placeholder instead of the reference object",
+     "major proportions are guessed without evidence"
+    ]
+   },
+   {
+    "id": "primary-structure",
+    "name": "Primary structure and hierarchy",
+    "required": true,
+    "qualityCriteria": [
+     "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+    ],
+    "evidenceRefs": [
+     "full-object"
+    ],
+    "failureModes": [
+     "large visible parts are merged into one mesh",
+     "component hierarchy is too shallow for the observed complexity"
+    ]
+   },
+   {
+    "id": "attachment-joint-correctness",
+    "name": "Attachment and joint correctness",
+    "required": true,
+    "qualityCriteria": [
+     "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+    ],
+    "evidenceRefs": [
+     "full-object"
+    ],
+    "failureModes": [
+     "child part root floats away from the parent",
+     "branch/limb/tube is centered in space instead of pivoting from its root",
+     "parent-child transform mixes world and local coordinates"
+    ]
+   },
+   {
+    "id": "surface-material-response",
+    "name": "Surface material response",
+    "required": true,
+    "qualityCriteria": [
+     "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+     "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+     "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+    ],
+    "evidenceRefs": [
+     "full-object"
+    ],
+    "failureModes": [
+     "surface looks like flat plastic",
+     "local material variation is missing or not tied to image evidence"
+    ]
+   },
+   {
+    "id": "reference-lookdev",
+    "name": "Reference color, material, and lighting response",
+    "required": true,
+    "qualityCriteria": [
+     "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+     "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+     "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+     "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+    ],
+    "evidenceRefs": [
+     "full-object"
+    ],
+    "failureModes": [
+     "model has acceptable shape but reads as flat shaded or plastic",
+     "colors are a generic average instead of reference-observed local color zones",
+     "lighting is evenly ambient and cannot reproduce the source value range"
+    ]
+   },
+   {
+    "id": "embroidery-decals",
+    "name": "Embroidered text and patch decals",
+    "required": true,
+    "qualityCriteria": [
+     "Front three-line text, right two-line text, left monogram and flag patch are placed on the correct panels with correct line count and colour."
+    ],
+    "evidenceRefs": [
+     "view-front",
+     "view-left",
+     "view-right"
+    ],
+    "failureModes": [
+     "decal on the wrong side",
+     "text rendered as a flat rectangle in the final pass",
+     "wrong colour"
+    ]
+   },
+   {
+    "id": "visor-form",
+    "name": "Visor plan and arch",
+    "required": true,
+    "qualityCriteria": [
+     "Annular-sector plan with rounded tip, 0.46 long, arched so both sides sit ~0.1 below the centre, thickness 0.02."
+    ],
+    "evidenceRefs": [
+     "view-right",
+     "view-front"
+    ],
+    "failureModes": [
+     "flat visor",
+     "visor too short or a rectangle",
+     "thick slab"
+    ]
+   },
+   {
+    "id": "closure-system",
+    "name": "Rear opening and snapback",
+    "required": true,
+    "qualityCriteria": [
+     "Black inverted-U opening 0.34 wide; navy strap with seven visible holes and a buckle at the wearer-left end."
+    ],
+    "evidenceRefs": [
+     "view-back"
+    ],
+    "failureModes": [
+     "no opening",
+     "strap floating away from the band",
+     "holes missing"
+    ]
+   }
+  ],
+  "visualDeltaChecks": [
+   "silhouette and negative-space delta",
+   "component hierarchy depth delta",
+   "repetition density and distribution delta",
+   "material albedo/roughness/normal response delta",
+   "local feature placement and scale delta"
+  ],
+  "antiShallowSpecRules": [
+   "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+   "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+   "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+   "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+   "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+   "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+   "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+   "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+   "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+   "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+   "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+   "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+   "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+  ],
+  "mustNotDo": [
+   "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+   "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+   "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+   "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+   "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+   "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+   "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+   "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+   "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+   "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+   "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+   "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+   "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+  ]
+ },
+ "qualityTargets": {
+  "targetFidelity": 0.7,
+  "mustMatch": [
+   "crown dome + arched visor silhouette from front and side",
+   "bone twill vs navy thread/plastic material response",
+   "front three-line embroidery, flag patch, ONE COMMUNITY and seven-hole strap on their correct panels"
+  ],
+  "niceToHave": [
+   "micro scratches, stains, chips, and dirt masks",
+   "secondary lighting match"
+  ],
+  "fpsTarget": 60,
+  "reviewViewpoints": [
+   "front",
+   "right-lateral",
+   "left-lateral",
+   "rear",
+   "three-quarter-front"
+  ]
+ },
+ "selfCorrectLoop": {
+  "enabled": true,
+  "visualAcceptance": {
+   "reviewer": "ai-vision",
+   "threshold": 0.7,
+   "comparisonArtifactRequired": true,
+   "layerScoresRequired": true,
+   "codePixelDiffIsAcceptanceAuthority": false,
+   "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+   "requiredLayerScores": [
+    "silhouetteProportion",
+    "componentStructure",
+    "formDetail",
+    "materialSurface",
+    "lightingCamera"
+   ],
+   "featureReviewPolicy": {
+    "enabled": true,
+    "reviewUnit": "semantic-subsystem",
+    "maxCriticalFeaturesPerPass": 5,
+    "maxImportantFeaturesPerPass": 3,
+    "criticalDefaultThreshold": 0.8,
+    "importantAverageThreshold": 0.65,
+    "adaptiveEscalation": true,
+    "singleImagePairOnly": true,
+    "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+   }
+  },
+  "reviewAfterPasses": [
+   "blockout",
+   "structural-pass",
+   "form-refinement",
+   "material-pass",
+   "surface-pass",
+   "lighting-pass",
+   "interaction-pass",
+   "optimization-pass"
+  ],
+  "allowedActions": [
+   "continue",
+   "refine-spec",
+   "refine-code",
+   "request-input",
+   "stop"
+  ],
+  "specRefineTriggers": [
+   "missing component",
+   "wrong primitive family",
+   "wrong proportions",
+   "material layer under-specified",
+   "local feature not traceable to viewEvidence",
+   "reference ambiguity discovered during implementation"
+  ],
+  "codeRefineTriggers": [
+   "spec is adequate but generated geometry/material does not match",
+   "browser render differs from reference",
+   "performance budget exceeded",
+   "lighting hides geometry or material response"
+  ],
+  "stopCriteria": [
+   "target fidelity reached or user accepts current approximation",
+   "remaining gaps require new reference images or manual art"
+  ],
+  "screenshotPolicy": {
+   "requiredForPasses": [
+    "blockout",
+    "structural-pass",
+    "form-refinement",
+    "material-pass",
+    "surface-pass",
+    "lighting-pass",
+    "interaction-pass"
+   ],
+   "preferredCapture": "in-app-browser-screenshot",
+   "fallbackCapture": "user-supplied-screenshot-path",
+   "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+   "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+   "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+  }
+ },
+ "featureReviewTargets": [
+  {
+   "id": "crown-visor-silhouette",
+   "name": "Crown dome and arched visor silhouette",
+   "tier": "critical",
+   "passIds": [
+    "blockout",
+    "form-refinement"
+   ],
+   "minimumScore": 0.8,
+   "mustPass": true,
+   "componentRefs": [
+    "root",
+    "visor"
+   ],
+   "evidenceRefs": [
+    "view-front",
+    "view-right"
+   ]
+  },
+  {
+   "id": "closure-structure",
+   "name": "Rear opening, strap and buckle",
+   "tier": "critical",
+   "passIds": [
+    "blockout",
+    "structural-pass"
+   ],
+   "minimumScore": 0.8,
+   "mustPass": true,
+   "componentRefs": [
+    "strap",
+    "opening-panel",
+    "buckle"
+   ],
+   "evidenceRefs": [
+    "view-back"
+   ]
+  },
+  {
+   "id": "panel-hardware",
+   "name": "Button, eyelets and patch placement",
+   "tier": "important",
+   "passIds": [
+    "structural-pass",
+    "form-refinement"
+   ],
+   "minimumScore": 0.65,
+   "mustPass": false,
+   "componentRefs": [
+    "button",
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4",
+    "flag-patch"
+   ],
+   "evidenceRefs": [
+    "view-left",
+    "view-back"
+   ]
+  },
+  {
+   "id": "embroidery-text",
+   "name": "Front and side embroidered text",
+   "tier": "critical",
+   "passIds": [
+    "material-pass",
+    "surface-pass"
+   ],
+   "minimumScore": 0.75,
+   "mustPass": true,
+   "componentRefs": [
+    "front-plate",
+    "right-plate",
+    "monogram-plate"
+   ],
+   "evidenceRefs": [
+    "view-front",
+    "view-right",
+    "view-left"
+   ]
+  },
+  {
+   "id": "twill-material",
+   "name": "Bone twill and navy plastic response",
+   "tier": "critical",
+   "passIds": [
+    "material-pass",
+    "surface-pass",
+    "lighting-pass"
+   ],
+   "minimumScore": 0.75,
+   "mustPass": true,
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap"
+   ],
+   "evidenceRefs": [
+    "view-front",
+    "view-back"
+   ]
+  }
+ ],
+ "sculptPipeline": {
+  "passGateMode": "locked-sequential",
+  "passOrder": [
+   "blockout",
+   "structural-pass",
+   "form-refinement",
+   "material-pass",
+   "surface-pass",
+   "lighting-pass",
+   "interaction-pass",
+   "optimization-pass"
+  ],
+  "currentPass": "blockout",
+  "completedPasses": [],
+  "lastCompletedPass": "",
+  "blockedReason": "",
+  "nextRequiredEvidence": [
+   "Silhouette reads correctly without materials.",
+   "Quality contract has named all required macro feature groups before code generation.",
+   "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold.",
+   "browser render screenshot from your agent's browser/screenshot tool",
+   "single side-by-side full reference/render comparison sheet",
+   "all critical semantic feature scores at or above their thresholds",
+   "self-correction review appended with action=continue before the next pass"
+  ]
+ },
+ "lookDevTargets": {
+  "qualityPriority": "reference-fidelity",
+  "materialPass": {
+   "albedoPaletteRequired": true,
+   "roughnessVariationRequired": true,
+   "normalOrBumpRequired": true,
+   "localOverridesRequired": true,
+   "minimumTextureResolution": 1024,
+   "preferredTextureResolution": 2048,
+   "independentMapChannels": [
+    "albedo",
+    "roughness",
+    "height",
+    "normal",
+    "ambient-occlusion"
+   ],
+   "requiredSurfaceFrequencyBands": [
+    "macro",
+    "meso",
+    "micro"
+   ],
+   "geometryReliefRequiredWhenSilhouetteAffected": true,
+   "referencePbrExtraction": {
+    "requiredWhenSourceImagePresent": true,
+    "targetThreshold": 0.7,
+    "stopOnLowConfidence": true,
+    "script": "forge/stage1_intake/extract_pbr_evidence.py",
+    "acceptedLimitation": "single-image extraction is reference-derived inference, not exact photogrammetry"
+   },
+   "mustAvoid": [
+    "single flat albedo per material",
+    "uniform roughness",
+    "albedo texture reused as roughness/height/normal/AO",
+    "single-frequency random noise",
+    "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+    "local color/detail described only in prose without material masks",
+    "claiming exact PBR recovery when confidence is below the target threshold"
+   ]
+  },
+  "lightingPass": {
+   "requiredTerms": [
+    "key light",
+    "fill light",
+    "rim or environment light",
+    "exposure",
+    "tone mapping",
+    "background",
+    "contact shadow"
+   ],
+   "mustAvoid": [
+    "ambient-only lighting",
+    "flat value range",
+    "missing contact shadow",
+    "reference lighting copied without separating material readability"
+   ]
+  },
+  "screenshotReview": [
+   "Compare albedo palette and local color zones.",
+   "Compare roughness/normal/bump response under light.",
+   "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+   "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+   "Capture a neutral-light render to verify material readability without reference lighting.",
+   "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+   "Capture a reference-matched render from the same camera framing as the source."
+  ]
+ },
+ "actionReadiness": {
+  "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+  "defaultRigType": "action-ready-static-rig",
+  "rootMotionNode": "root",
+  "requiredComponentFields": [
+   "id",
+   "parent",
+   "transform",
+   "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+   "actionProfile.animationRole",
+   "actionProfile.pivot",
+   "actionProfile.collider",
+   "actionProfile.destruction"
+  ],
+  "transformChannels": [
+   "translate",
+   "rotate",
+   "scale",
+   "bend",
+   "twist",
+   "detach",
+   "visibility",
+   "material-state"
+  ],
+  "authoringRules": [
+   "Do not collapse independently movable parts into one mesh.",
+   "Put transforms on component pivot groups, not only on raw meshes.",
+   "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+   "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+   "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+  ],
+  "destructionPolicy": {
+   "defaultBreakable": false,
+   "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+   "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+  }
+ },
+ "assumptions": [
+  "Visor underside is dark navy/charcoal twill (hidden in all four views).",
+  "Interior is black taping and mesh with a light grey printed tape (seen only through the rear opening).",
+  "Crown apex panel layout follows a standard five-panel construction (seen only obliquely).",
+  "Embroidered letterforms are approximated by generated canvas textures; exact reference letter spacing is not guaranteed."
+ ],
+ "coordinateFrame": {
+  "front": "+Z (visor points toward +Z)",
+  "up": "+Y",
+  "lateral": "+X is the wearer's left (ONE COMMUNITY side, as the front view shows it peeking at image-right); the flag and monogram sit on the wearer's right (-X). The sheet's two lateral photos both show the visor pointing left, so one of them is mirrored; the front view is taken as authoritative.",
+  "origin": "crown axis at eyelet height (y=0); crown band at y=-0.28, apex at y=+0.34",
+  "scaleReference": "crown band diameter = 1.0 unit"
+ },
+ "silhouette": {
+  "boundingShape": "truncated dome (crown) 1.0 wide x 0.62 tall over a thin arched plate (visor) extending 0.46 forward; total depth ~1.45",
+  "aspectRatios": [
+   "crown height / crown width = 0.62",
+   "visor length / crown width = 0.46",
+   "visor thickness / crown width = 0.02"
+  ],
+  "symmetry": "bilateral about the sagittal (YZ) plane; decals break the symmetry",
+  "dominantCurves": [
+   "crown dome profile (lathe): near-vertical sides (r 0.52) from the band up to y=0.10, then a rounded apex; a structured crown, not a sphere",
+   "visor arch: sides droop ~0.1 units below the centre",
+   "visor plan: D shape, outer edge a circle of r 0.52 centred 0.42 ahead of the crown axis"
+  ],
+  "negativeSpaces": [
+   "rear opening: inverted-U arch 0.34 wide x 0.16 tall above the band",
+   "gap between visor underside and band"
+  ],
+  "landmarks": [
+   "apex button",
+   "eyelets at y=0 on the four lateral/rear panels",
+   "front seam pair delimiting the front panel",
+   "strap spanning the rear opening"
+  ]
+ },
+ "viewEvidence": [
+  {
+   "id": "full-object",
+   "view": "sheet",
+   "imageRegion": {
+    "x": 0,
+    "y": 0,
+    "width": 1,
+    "height": 1,
+    "units": "normalized"
+   },
+   "observations": [
+    "four studio views of the same cap"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "view-front",
+   "view": "front",
+   "imageRegion": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 0.508,
+    "height": 0.452,
+    "units": "normalized"
+   },
+   "observations": [
+    "three-line navy embroidery centred on the front panel",
+    "visor arch visible as a downward curve at both sides",
+    "partial ONE COMMUNITY on the right side"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "view-right",
+   "view": "right-lateral",
+   "imageRegion": {
+    "x": 0.515,
+    "y": 0.0,
+    "width": 0.485,
+    "height": 0.452,
+    "units": "normalized"
+   },
+   "observations": [
+    "ONE / COMMUNITY two-line embroidery lower rear third",
+    "one eyelet upper third of the side panel",
+    "visor profile: thin plate ~0.02, slight downward curve to the tip",
+    "strap buckle peeking at the rear"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "view-left",
+   "view": "left-lateral",
+   "imageRegion": {
+    "x": 0.0,
+    "y": 0.505,
+    "width": 0.508,
+    "height": 0.495,
+    "units": "normalized"
+   },
+   "observations": [
+    "green script monogram at the front seam",
+    "rectangular tricolour flag patch lower rear third",
+    "one eyelet upper third"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "view-back",
+   "view": "rear",
+   "imageRegion": {
+    "x": 0.515,
+    "y": 0.505,
+    "width": 0.485,
+    "height": 0.495,
+    "units": "normalized"
+   },
+   "observations": [
+    "inverted-U opening with black interior",
+    "navy strap with seven holes spanning the opening bottom",
+    "light grey tape print ONE COMMUNITY inside",
+    "two eyelets on the rear panels",
+    "apex button"
+   ],
+   "confidence": 0.9
+  }
+ ],
+ "componentTree": [
+  {
+   "id": "root",
+   "name": "Crown (five-panel dome)",
+   "level": "macro",
+   "role": "body",
+   "importance": 1.0,
+   "confidence": 0.9,
+   "primitive": "lathe",
+   "topologyClass": "continuous-sculpt",
+   "topologyRationale": "A single revolved fabric shell: the dome profile varies smoothly from the band to the apex with no independent faces, so it is a lathe, never a box or sphere.",
+   "geometryDescriptor": {
+    "topologyIntent": "A single revolved fabric shell: the dome profile varies smoothly from the band to the apex with no independent faces, so it is a lathe, never a box or sphere.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "lathe UVs (u around, v along profile)",
+    "normalStrategy": "vertex normals from generated geometry",
+    "latheProfile": {
+     "points": [
+      [
+       0.52,
+       -0.28
+      ],
+      [
+       0.523,
+       -0.15
+      ],
+      [
+       0.518,
+       0.0
+      ],
+      [
+       0.5,
+       0.1
+      ],
+      [
+       0.462,
+       0.18
+      ],
+      [
+       0.4,
+       0.25
+      ],
+      [
+       0.3,
+       0.3
+      ],
+      [
+       0.17,
+       0.335
+      ],
+      [
+       0.0001,
+       0.346
+      ]
+     ],
+     "segments": 96
+    }
+   },
+   "parent": null,
+   "attachment": null,
+   "dimensions": {
+    "width": 1.0,
+    "height": 0.62,
+    "depth": 1.0,
+    "units": "relative",
+    "confidence": 0.9
+   },
+   "transform": {
+    "position": [
+     0,
+     0,
+     0
+    ],
+    "rotation": [
+     0,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "root",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "twill-bone"
+    }
+   },
+   "material": "twill-bone",
+   "materialLayers": [
+    "twill-bone"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "panel-seams",
+     "type": "seam line",
+     "placement": "five meridian seams: two delimiting the front panel at +-32 degrees, two at +-108 degrees, one at the rear centre",
+     "approximateSize": "width 0.006, full crown height",
+     "orientation": "follows the parent surface",
+     "materialEffect": "painted topstitch line + AO darkening + 0.004 raised ridge",
+     "geometryEffect": "painted topstitch line + AO darkening + 0.004 raised ridge",
+     "confidence": 0.85
+    },
+    {
+     "id": "eyelet-row",
+     "type": "hole or socket",
+     "placement": "four embroidered eyelets at y=0 at azimuths 55, 125, 235 and 305 degrees (side and rear panels)",
+     "approximateSize": "outer diameter 0.032",
+     "orientation": "follows the parent surface",
+     "materialEffect": "raised thread ring around a dark hole",
+     "geometryEffect": "raised thread ring around a dark hole",
+     "confidence": 0.85
+    },
+    {
+     "id": "front-panel-flat",
+     "type": "raised ridge",
+     "placement": "the front panel between the two front seams is flatter and 0.02 taller than the revolved profile",
+     "approximateSize": "width 0.48",
+     "orientation": "follows the parent surface",
+     "materialEffect": "geometry flattening of the lathe within the front sector",
+     "geometryEffect": "geometry flattening of the lathe within the front sector",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-front",
+    "view-left",
+    "view-right",
+    "view-back"
+   ],
+   "details": [],
+   "fidelityTier": "blockout",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(243, 240, 232, 1.0)",
+    "secondaryAlbedo": "rgba(226, 221, 209, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(243, 240, 232, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(226, 221, 209, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "visor",
+   "name": "Visor (curved plate)",
+   "level": "macro",
+   "role": "plate",
+   "importance": 0.95,
+   "confidence": 0.9,
+   "primitive": "extrude",
+   "topologyClass": "conforming-shell",
+   "topologyRationale": "A thin plate 0.02 thick, arched (hand refinement src/refine.ts, recorded in deformationStack): the plan is bounded by the crown circle (r 0.45) and a forward circle (r 0.58 centred 0.36 ahead) so the tip sits 0.42 beyond the band, the widest point is 1.16 crown widths and the plate meets the crown at its sides (about +-88 degrees), so the arched wings sweep down beside the crown as the front view shows; extruded to its thickness; the lateral arch (sides drooping 0.10) is a bend applied in form-refinement, recorded in deformationStack.",
+   "geometryDescriptor": {
+    "topologyIntent": "annular-sector plate with rounded tip, arched downward at the sides",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [
+     {
+      "type": "bend",
+      "axis": "lateral",
+      "formula": "dy = -0.42*x^2 (ends at x=+-0.54 drop 0.12)",
+      "appliedIn": "src/refine.ts applyRefinements"
+     },
+     {
+      "type": "bend",
+      "axis": "forward",
+      "formula": "dy = -0.15*(fwd-0.45)^2 beyond the band (tip drops 0.04)",
+      "appliedIn": "src/refine.ts applyRefinements"
+     }
+    ],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "profile2D": {
+     "points": [
+      [
+       -0.4878,
+       -0.0462
+      ],
+      [
+       -0.5275,
+       -0.1189
+      ],
+      [
+       -0.5565,
+       -0.1964
+      ],
+      [
+       -0.5741,
+       -0.2773
+      ],
+      [
+       -0.58,
+       -0.3598
+      ],
+      [
+       -0.5741,
+       -0.4424
+      ],
+      [
+       -0.5565,
+       -0.5233
+      ],
+      [
+       -0.5276,
+       -0.6008
+      ],
+      [
+       -0.488,
+       -0.6735
+      ],
+      [
+       -0.4384,
+       -0.7398
+      ],
+      [
+       -0.3799,
+       -0.7983
+      ],
+      [
+       -0.3136,
+       -0.8479
+      ],
+      [
+       -0.241,
+       -0.8876
+      ],
+      [
+       -0.1634,
+       -0.9165
+      ],
+      [
+       -0.0826,
+       -0.9341
+      ],
+      [
+       0.0,
+       -0.94
+      ],
+      [
+       0.0826,
+       -0.9341
+      ],
+      [
+       0.1634,
+       -0.9165
+      ],
+      [
+       0.241,
+       -0.8876
+      ],
+      [
+       0.3136,
+       -0.8479
+      ],
+      [
+       0.3799,
+       -0.7983
+      ],
+      [
+       0.4384,
+       -0.7398
+      ],
+      [
+       0.488,
+       -0.6735
+      ],
+      [
+       0.5276,
+       -0.6008
+      ],
+      [
+       0.5565,
+       -0.5233
+      ],
+      [
+       0.5741,
+       -0.4424
+      ],
+      [
+       0.58,
+       -0.3598
+      ],
+      [
+       0.5741,
+       -0.2773
+      ],
+      [
+       0.5565,
+       -0.1964
+      ],
+      [
+       0.5275,
+       -0.1189
+      ],
+      [
+       0.4878,
+       -0.0462
+      ],
+      [
+       0.4878,
+       -0.0463
+      ],
+      [
+       0.4809,
+       -0.094
+      ],
+      [
+       0.4693,
+       -0.1408
+      ],
+      [
+       0.4532,
+       -0.1862
+      ],
+      [
+       0.4328,
+       -0.2298
+      ],
+      [
+       0.4081,
+       -0.2712
+      ],
+      [
+       0.3795,
+       -0.31
+      ],
+      [
+       0.3472,
+       -0.3458
+      ],
+      [
+       0.3115,
+       -0.3782
+      ],
+      [
+       0.2728,
+       -0.407
+      ],
+      [
+       0.2315,
+       -0.4319
+      ],
+      [
+       0.188,
+       -0.4525
+      ],
+      [
+       0.1426,
+       -0.4688
+      ],
+      [
+       0.0958,
+       -0.4805
+      ],
+      [
+       0.0481,
+       -0.4876
+      ],
+      [
+       0.0,
+       -0.49
+      ],
+      [
+       -0.0481,
+       -0.4876
+      ],
+      [
+       -0.0958,
+       -0.4805
+      ],
+      [
+       -0.1426,
+       -0.4688
+      ],
+      [
+       -0.188,
+       -0.4525
+      ],
+      [
+       -0.2315,
+       -0.4319
+      ],
+      [
+       -0.2728,
+       -0.407
+      ],
+      [
+       -0.3115,
+       -0.3782
+      ],
+      [
+       -0.3472,
+       -0.3458
+      ],
+      [
+       -0.3795,
+       -0.31
+      ],
+      [
+       -0.4081,
+       -0.2712
+      ],
+      [
+       -0.4328,
+       -0.2298
+      ],
+      [
+       -0.4532,
+       -0.1862
+      ],
+      [
+       -0.4693,
+       -0.1408
+      ],
+      [
+       -0.4809,
+       -0.094
+      ],
+      [
+       -0.4878,
+       -0.0463
+      ]
+     ],
+     "depth": 0.02
+    }
+   },
+   "parent": "root",
+   "attachment": {
+    "parentId": "root",
+    "parentSocket": "band-front",
+    "contactType": "butt",
+    "contactNormal": [
+     0,
+     0,
+     1
+    ],
+    "overlap": 0.02,
+    "gapTolerance": 0.005,
+    "evidenceRefs": [
+     "view-right",
+     "view-left"
+    ]
+   },
+   "dimensions": {
+    "width": 1.0,
+    "height": 0.02,
+    "depth": 0.5,
+    "units": "relative",
+    "confidence": 0.9
+   },
+   "transform": {
+    "position": [
+     0,
+     -0.282,
+     0
+    ],
+    "rotation": [
+     -1.5707963267948966,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "twill-bone"
+    }
+   },
+   "material": "twill-bone",
+   "materialLayers": [
+    "twill-bone"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "stitch-rows",
+     "type": "fabric stitch",
+     "placement": "six concentric stitch arcs on the top face, 0.06 apart, following the outer edge",
+     "approximateSize": "line width 0.003",
+     "orientation": "follows the parent surface",
+     "materialEffect": "painted linework in darker bone + 0.01 bump",
+     "geometryEffect": "painted linework in darker bone + 0.01 bump",
+     "confidence": 0.85
+    },
+    {
+     "id": "visor-edge-binding",
+     "type": "raised ridge",
+     "placement": "outer edge of the plate",
+     "approximateSize": "radius 0.008",
+     "orientation": "follows the parent surface",
+     "materialEffect": "rounded edge treatment (chamfer segments 3)",
+     "geometryEffect": "rounded edge treatment (chamfer segments 3)",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-front",
+    "view-right",
+    "view-left"
+   ],
+   "details": [],
+   "fidelityTier": "blockout",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(243, 240, 232, 1.0)",
+    "secondaryAlbedo": "rgba(226, 221, 209, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(243, 240, 232, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(226, 221, 209, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "strap",
+   "name": "Snapback strap",
+   "level": "macro",
+   "role": "closure",
+   "importance": 0.85,
+   "confidence": 0.9,
+   "primitive": "extrude",
+   "topologyClass": "assembled-solid",
+   "topologyRationale": "A flat moulded plastic bar with seven round holes: a rounded-rectangle profile extruded 0.012, holes as real cutouts because they read as dark discs in the rear view.",
+   "geometryDescriptor": {
+    "topologyIntent": "A flat moulded plastic bar with seven round holes: a rounded-rectangle profile extruded 0.012, holes as real cutouts because they read as dark discs in the rear view.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [
+     {
+      "type": "bend",
+      "axis": "y",
+      "radius": 0.53,
+      "formula": "x -> R sin(x/R), z -> z - R(1-cos(x/R))",
+      "appliedIn": "src/refine.ts applyRefinements"
+     }
+    ],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "profile2D": {
+     "points": [
+      [
+       0.2,
+       0.011
+      ],
+      [
+       0.1993,
+       0.0162
+      ],
+      [
+       0.1973,
+       0.021
+      ],
+      [
+       0.1941,
+       0.0251
+      ],
+      [
+       0.19,
+       0.0283
+      ],
+      [
+       0.1852,
+       0.0303
+      ],
+      [
+       0.18,
+       0.031
+      ],
+      [
+       -0.18,
+       0.031
+      ],
+      [
+       -0.1852,
+       0.0303
+      ],
+      [
+       -0.19,
+       0.0283
+      ],
+      [
+       -0.1941,
+       0.0251
+      ],
+      [
+       -0.1973,
+       0.021
+      ],
+      [
+       -0.1993,
+       0.0162
+      ],
+      [
+       -0.2,
+       0.011
+      ],
+      [
+       -0.2,
+       -0.011
+      ],
+      [
+       -0.1993,
+       -0.0162
+      ],
+      [
+       -0.1973,
+       -0.021
+      ],
+      [
+       -0.1941,
+       -0.0251
+      ],
+      [
+       -0.19,
+       -0.0283
+      ],
+      [
+       -0.1852,
+       -0.0303
+      ],
+      [
+       -0.18,
+       -0.031
+      ],
+      [
+       0.18,
+       -0.031
+      ],
+      [
+       0.1852,
+       -0.0303
+      ],
+      [
+       0.19,
+       -0.0283
+      ],
+      [
+       0.1941,
+       -0.0251
+      ],
+      [
+       0.1973,
+       -0.021
+      ],
+      [
+       0.1993,
+       -0.0162
+      ],
+      [
+       0.2,
+       -0.011
+      ]
+     ],
+     "depth": 0.012,
+     "ovalHoles": [
+      {
+       "cx": -0.15,
+       "cy": 0.0,
+       "rx": 0.011,
+       "ry": 0.011
+      },
+      {
+       "cx": -0.1,
+       "cy": 0.0,
+       "rx": 0.011,
+       "ry": 0.011
+      },
+      {
+       "cx": -0.05,
+       "cy": 0.0,
+       "rx": 0.011,
+       "ry": 0.011
+      },
+      {
+       "cx": 0.0,
+       "cy": 0.0,
+       "rx": 0.011,
+       "ry": 0.011
+      },
+      {
+       "cx": 0.05,
+       "cy": 0.0,
+       "rx": 0.011,
+       "ry": 0.011
+      },
+      {
+       "cx": 0.1,
+       "cy": 0.0,
+       "rx": 0.011,
+       "ry": 0.011
+      },
+      {
+       "cx": 0.15,
+       "cy": 0.0,
+       "rx": 0.011,
+       "ry": 0.011
+      }
+     ]
+    }
+   },
+   "parent": "root",
+   "attachment": {
+    "parentId": "root",
+    "parentSocket": "band-rear",
+    "contactType": "overlap",
+    "contactNormal": [
+     0,
+     0,
+     -1
+    ],
+    "overlap": 0.006,
+    "gapTolerance": 0.004,
+    "evidenceRefs": [
+     "view-back"
+    ]
+   },
+   "dimensions": {
+    "width": 0.4,
+    "height": 0.062,
+    "depth": 0.012,
+    "units": "relative",
+    "confidence": 0.9
+   },
+   "transform": {
+    "position": [
+     0.0,
+     -0.205,
+     -0.536
+    ],
+    "rotation": [
+     0,
+     3.141592653589793,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "plastic-navy"
+    }
+   },
+   "material": "plastic-navy",
+   "materialLayers": [
+    "plastic-navy"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "holes-7",
+     "type": "hole or socket",
+     "placement": "seven holes on the strap centreline, 0.05 apart",
+     "approximateSize": "diameter 0.022",
+     "orientation": "follows the parent surface",
+     "materialEffect": "through cutouts with a moulding-gloss rim",
+     "geometryEffect": "through cutouts with a moulding-gloss rim",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-back",
+    "view-right"
+   ],
+   "details": [],
+   "fidelityTier": "blockout",
+   "colorMaterialRecipe": {
+    "materialClass": "plastic",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(47, 58, 95, 1.0)",
+    "secondaryAlbedo": "rgba(27, 34, 56, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(47, 58, 95, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(27, 34, 56, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "satin"
+   }
+  },
+  {
+   "id": "liner",
+   "name": "Interior liner (black taping)",
+   "level": "meso",
+   "role": "interior",
+   "importance": 0.5,
+   "confidence": 0.85,
+   "primitive": "lathe",
+   "topologyClass": "continuous-sculpt",
+   "topologyRationale": "A second revolved shell 0.018 inside the crown that shows as black through the rear opening and from below.",
+   "geometryDescriptor": {
+    "topologyIntent": "A second revolved shell 0.018 inside the crown that shows as black through the rear opening and from below.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "latheProfile": {
+     "points": [
+      [
+       0.502,
+       -0.27
+      ],
+      [
+       0.505,
+       -0.15
+      ],
+      [
+       0.5,
+       0.0
+      ],
+      [
+       0.482,
+       0.1
+      ],
+      [
+       0.444,
+       0.178
+      ],
+      [
+       0.382,
+       0.246
+      ],
+      [
+       0.282,
+       0.294
+      ],
+      [
+       0.152,
+       0.326
+      ],
+      [
+       0.0001,
+       0.334
+      ]
+     ],
+     "segments": 64
+    }
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.96,
+    "height": 0.5,
+    "depth": 0.96,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     0,
+     0,
+     0
+    ],
+    "rotation": [
+     0,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "liner-black"
+    }
+   },
+   "material": "liner-black",
+   "materialLayers": [
+    "liner-black"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "tape-print",
+     "type": "decal or label area",
+     "placement": "centre of the inner rear tape, visible through the opening",
+     "approximateSize": "width 0.12",
+     "orientation": "follows the parent surface",
+     "materialEffect": "light grey painted ONE COMMUNITY, no relief",
+     "geometryEffect": "light grey painted ONE COMMUNITY, no relief",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-back"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.8,
+    "dominantAlbedo": "rgba(34, 36, 42, 1.0)",
+    "secondaryAlbedo": "rgba(14, 15, 18, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(34, 36, 42, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(14, 15, 18, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "opening-panel",
+   "name": "Rear opening (inverted-U arch)",
+   "level": "meso",
+   "role": "opening",
+   "importance": 0.7,
+   "confidence": 0.85,
+   "primitive": "extrude",
+   "topologyClass": "material-only",
+   "topologyRationale": "The opening is a cutout in the rear panels; it is represented as a black arch plate riding on the crown surface, since the lathe cannot be booleaned.",
+   "geometryDescriptor": {
+    "topologyIntent": "The opening is a cutout in the rear panels; it is represented as a black arch plate riding on the crown surface, since the lathe cannot be booleaned.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [
+     {
+      "type": "bend",
+      "axis": "y",
+      "radius": 0.52,
+      "formula": "x -> R sin(x/R), z -> z - R(1-cos(x/R))",
+      "appliedIn": "src/refine.ts applyRefinements"
+     }
+    ],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "profile2D": {
+     "points": [
+      [
+       -0.17,
+       -0.1
+      ],
+      [
+       -0.17,
+       -0.07
+      ],
+      [
+       -0.1657,
+       -0.0322
+      ],
+      [
+       -0.1532,
+       0.0038
+      ],
+      [
+       -0.1329,
+       0.036
+      ],
+      [
+       -0.106,
+       0.0629
+      ],
+      [
+       -0.0738,
+       0.0832
+      ],
+      [
+       -0.0378,
+       0.0957
+      ],
+      [
+       0.0,
+       0.1
+      ],
+      [
+       0.0378,
+       0.0957
+      ],
+      [
+       0.0738,
+       0.0832
+      ],
+      [
+       0.106,
+       0.0629
+      ],
+      [
+       0.1329,
+       0.036
+      ],
+      [
+       0.1532,
+       0.0038
+      ],
+      [
+       0.1657,
+       -0.0322
+      ],
+      [
+       0.17,
+       -0.07
+      ],
+      [
+       0.17,
+       -0.1
+      ]
+     ],
+     "depth": 0.02
+    }
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.34,
+    "height": 0.2,
+    "depth": 0.02,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     0.0,
+     -0.16,
+     -0.53
+    ],
+    "rotation": [
+     0,
+     3.141592653589793,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "liner-black"
+    }
+   },
+   "material": "liner-black",
+   "materialLayers": [
+    "liner-black"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "arch-binding",
+     "type": "seam line",
+     "placement": "bias binding along the arch edge",
+     "approximateSize": "width 0.012",
+     "orientation": "follows the parent surface",
+     "materialEffect": "twill-coloured ridge 0.004 around the arch",
+     "geometryEffect": "twill-coloured ridge 0.004 around the arch",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-back"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.8,
+    "dominantAlbedo": "rgba(34, 36, 42, 1.0)",
+    "secondaryAlbedo": "rgba(14, 15, 18, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(34, 36, 42, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(14, 15, 18, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "button",
+   "name": "Apex button",
+   "level": "meso",
+   "role": "cap",
+   "importance": 0.5,
+   "confidence": 0.85,
+   "primitive": "sphere",
+   "topologyClass": "assembled-solid",
+   "topologyRationale": "A fabric-covered button: a small sphere at the apex, slightly flattened.",
+   "geometryDescriptor": {
+    "topologyIntent": "A fabric-covered button: a small sphere at the apex, slightly flattened.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry"
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.07,
+    "height": 0.05,
+    "depth": 0.07,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     0,
+     0.347,
+     0
+    ],
+    "rotation": [
+     0,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "twill-bone"
+    }
+   },
+   "material": "twill-bone",
+   "materialLayers": [
+    "twill-bone"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "button-cover-seam",
+     "type": "seam line",
+     "placement": "equator of the button",
+     "approximateSize": "width 0.003",
+     "orientation": "follows the parent surface",
+     "materialEffect": "AO darkening",
+     "geometryEffect": "AO darkening",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-back",
+    "view-right"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(243, 240, 232, 1.0)",
+    "secondaryAlbedo": "rgba(226, 221, 209, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(243, 240, 232, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(226, 221, 209, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "visor-underside",
+   "name": "Visor underside",
+   "level": "meso",
+   "role": "plate",
+   "importance": 0.4,
+   "confidence": 0.5,
+   "primitive": "extrude",
+   "topologyClass": "conforming-shell",
+   "topologyRationale": "A thin dark lamina under the visor plate with the same plan; the underside colour is inferred (hidden in every view).",
+   "geometryDescriptor": {
+    "topologyIntent": "A thin dark lamina under the visor plate with the same plan; the underside colour is inferred (hidden in every view).",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [
+     {
+      "type": "bend",
+      "axis": "lateral",
+      "formula": "dy = -0.42*x^2",
+      "appliedIn": "src/refine.ts applyRefinements (Visor* prefix)"
+     }
+    ],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "profile2D": {
+     "points": [
+      [
+       -0.4989,
+       -0.1057
+      ],
+      [
+       -0.5288,
+       -0.1758
+      ],
+      [
+       -0.5489,
+       -0.2492
+      ],
+      [
+       -0.5589,
+       -0.3248
+      ],
+      [
+       -0.5585,
+       -0.401
+      ],
+      [
+       -0.5478,
+       -0.4764
+      ],
+      [
+       -0.5269,
+       -0.5496
+      ],
+      [
+       -0.4963,
+       -0.6194
+      ],
+      [
+       -0.4565,
+       -0.6844
+      ],
+      [
+       -0.4082,
+       -0.7433
+      ],
+      [
+       -0.3524,
+       -0.7952
+      ],
+      [
+       -0.2901,
+       -0.839
+      ],
+      [
+       -0.2224,
+       -0.8739
+      ],
+      [
+       -0.1506,
+       -0.8994
+      ],
+      [
+       -0.076,
+       -0.9148
+      ],
+      [
+       0.0,
+       -0.92
+      ],
+      [
+       0.076,
+       -0.9148
+      ],
+      [
+       0.1506,
+       -0.8994
+      ],
+      [
+       0.2224,
+       -0.8739
+      ],
+      [
+       0.2901,
+       -0.839
+      ],
+      [
+       0.3524,
+       -0.7952
+      ],
+      [
+       0.4082,
+       -0.7433
+      ],
+      [
+       0.4565,
+       -0.6844
+      ],
+      [
+       0.4963,
+       -0.6194
+      ],
+      [
+       0.5269,
+       -0.5496
+      ],
+      [
+       0.5478,
+       -0.4764
+      ],
+      [
+       0.5585,
+       -0.401
+      ],
+      [
+       0.5589,
+       -0.3248
+      ],
+      [
+       0.5489,
+       -0.2492
+      ],
+      [
+       0.5288,
+       -0.1758
+      ],
+      [
+       0.4989,
+       -0.1057
+      ],
+      [
+       0.4989,
+       -0.1057
+      ],
+      [
+       0.4873,
+       -0.1505
+      ],
+      [
+       0.4716,
+       -0.1941
+      ],
+      [
+       0.4521,
+       -0.236
+      ],
+      [
+       0.4288,
+       -0.2761
+      ],
+      [
+       0.402,
+       -0.3138
+      ],
+      [
+       0.3719,
+       -0.349
+      ],
+      [
+       0.3387,
+       -0.3813
+      ],
+      [
+       0.3028,
+       -0.4104
+      ],
+      [
+       0.2643,
+       -0.4362
+      ],
+      [
+       0.2237,
+       -0.4583
+      ],
+      [
+       0.1812,
+       -0.4767
+      ],
+      [
+       0.1372,
+       -0.4912
+      ],
+      [
+       0.0921,
+       -0.5016
+      ],
+      [
+       0.0462,
+       -0.5079
+      ],
+      [
+       0.0,
+       -0.51
+      ],
+      [
+       -0.0462,
+       -0.5079
+      ],
+      [
+       -0.0921,
+       -0.5016
+      ],
+      [
+       -0.1372,
+       -0.4912
+      ],
+      [
+       -0.1812,
+       -0.4767
+      ],
+      [
+       -0.2237,
+       -0.4583
+      ],
+      [
+       -0.2643,
+       -0.4362
+      ],
+      [
+       -0.3028,
+       -0.4104
+      ],
+      [
+       -0.3387,
+       -0.3813
+      ],
+      [
+       -0.3719,
+       -0.349
+      ],
+      [
+       -0.402,
+       -0.3138
+      ],
+      [
+       -0.4288,
+       -0.2761
+      ],
+      [
+       -0.4521,
+       -0.236
+      ],
+      [
+       -0.4716,
+       -0.1941
+      ],
+      [
+       -0.4873,
+       -0.1505
+      ],
+      [
+       -0.4989,
+       -0.1057
+      ]
+     ],
+     "depth": 0.006
+    }
+   },
+   "parent": "root",
+   "attachment": {
+    "parentId": "root",
+    "parentSocket": "visor-bottom",
+    "contactType": "overlap",
+    "contactNormal": [
+     0,
+     -1,
+     0
+    ],
+    "overlap": 0.004,
+    "gapTolerance": 0.003,
+    "evidenceRefs": [
+     "view-right"
+    ]
+   },
+   "dimensions": {
+    "width": 1.0,
+    "height": 0.006,
+    "depth": 0.46,
+    "units": "relative",
+    "confidence": 0.5
+   },
+   "transform": {
+    "position": [
+     0,
+     -0.287,
+     0
+    ],
+    "rotation": [
+     -1.5707963267948966,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "liner-black"
+    }
+   },
+   "material": "liner-black",
+   "materialLayers": [
+    "liner-black"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-right",
+    "view-left"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.8,
+    "dominantAlbedo": "rgba(34, 36, 42, 1.0)",
+    "secondaryAlbedo": "rgba(14, 15, 18, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(34, 36, 42, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(14, 15, 18, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "buckle",
+   "name": "Strap buckle",
+   "level": "meso",
+   "role": "closure",
+   "importance": 0.45,
+   "confidence": 0.85,
+   "primitive": "box",
+   "topologyClass": "assembled-solid",
+   "topologyRationale": "A small rectangular moulded block at the wearer-left end of the strap.",
+   "geometryDescriptor": {
+    "topologyIntent": "A small rectangular moulded block at the wearer-left end of the strap.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry"
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.06,
+    "height": 0.07,
+    "depth": 0.022,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     -0.215,
+     -0.205,
+     -0.512
+    ],
+    "rotation": [
+     0,
+     -0.42,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "plastic-navy"
+    }
+   },
+   "material": "plastic-navy",
+   "materialLayers": [
+    "plastic-navy"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-back",
+    "view-right"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "plastic",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(47, 58, 95, 1.0)",
+    "secondaryAlbedo": "rgba(27, 34, 56, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(47, 58, 95, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(27, 34, 56, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "satin"
+   }
+  },
+  {
+   "id": "flag-patch",
+   "name": "Mexican flag patch",
+   "level": "meso",
+   "role": "decal",
+   "importance": 0.8,
+   "confidence": 0.85,
+   "primitive": "box",
+   "topologyClass": "assembled-solid",
+   "topologyRationale": "A thin rectangular woven patch 0.012 thick sitting proud of the wearer-right side panel (-X).",
+   "geometryDescriptor": {
+    "topologyIntent": "A thin rectangular woven patch 0.012 thick sitting proud of the wearer-right side panel (-X).",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry"
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.2,
+    "height": 0.13,
+    "depth": 0.012,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     -0.518,
+     -0.09,
+     -0.06
+    ],
+    "rotation": [
+     0,
+     -1.6907963267948967,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "patch-flag"
+    }
+   },
+   "material": "patch-flag",
+   "materialLayers": [
+    "patch-flag"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "flag-bands-decal",
+     "type": "decal or label area",
+     "placement": "whole patch face",
+     "approximateSize": "0.20 x 0.13",
+     "orientation": "follows the parent surface",
+     "materialEffect": "tricolour bands with eagle, merrowed edge ridge",
+     "geometryEffect": "tricolour bands with eagle, merrowed edge ridge",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-left"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.85,
+    "dominantAlbedo": "rgba(31, 138, 76, 1.0)",
+    "secondaryAlbedo": "rgba(200, 32, 46, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(31, 138, 76, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(200, 32, 46, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "front-plate",
+   "name": "Front embroidery carrier",
+   "level": "meso",
+   "role": "decal",
+   "importance": 1.0,
+   "confidence": 0.85,
+   "primitive": "plane-card",
+   "topologyClass": "material-only",
+   "topologyRationale": "Carrier for the three-line MAKE / CUMBRES / CHINGON AGAIN embroidery; a plane riding on the front panel, textured with an alpha canvas in the material pass.",
+   "geometryDescriptor": {
+    "topologyIntent": "Carrier for the three-line MAKE / CUMBRES / CHINGON AGAIN embroidery; a plane riding on the front panel, textured with an alpha canvas in the material pass.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry"
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.46,
+    "height": 0.22,
+    "depth": 0.01,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     0,
+     0.0,
+     0.524
+    ],
+    "rotation": [
+     -0.06,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "thread-navy"
+    }
+   },
+   "material": "thread-navy",
+   "materialLayers": [
+    "thread-navy"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "decal-front-text",
+     "type": "decal or label area",
+     "placement": "centred on the front panel, three lines: MAKE / CUMBRES / CHINGON AGAIN, serif capitals",
+     "approximateSize": "text block 0.40 x 0.18",
+     "orientation": "follows the parent surface",
+     "materialEffect": "navy satin-stitch letters with 0.006 relief",
+     "geometryEffect": "navy satin-stitch letters with 0.006 relief",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-front"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.85,
+    "dominantAlbedo": "rgba(42, 55, 87, 1.0)",
+    "secondaryAlbedo": "rgba(24, 34, 56, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(42, 55, 87, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(24, 34, 56, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "right-plate",
+   "name": "ONE COMMUNITY embroidery carrier",
+   "level": "meso",
+   "role": "decal",
+   "importance": 0.8,
+   "confidence": 0.85,
+   "primitive": "plane-card",
+   "topologyClass": "material-only",
+   "topologyRationale": "Carrier for the two-line ONE / COMMUNITY embroidery on the wearer-left side panel (+X).",
+   "geometryDescriptor": {
+    "topologyIntent": "Carrier for the two-line ONE / COMMUNITY embroidery on the wearer-left side panel (+X).",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry"
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.2,
+    "height": 0.09,
+    "depth": 0.01,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     0.514,
+     -0.11,
+     -0.1
+    ],
+    "rotation": [
+     0,
+     1.7207963267948965,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "thread-navy"
+    }
+   },
+   "material": "thread-navy",
+   "materialLayers": [
+    "thread-navy"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "decal-right-text",
+     "type": "decal or label area",
+     "placement": "lower rear third of the right side panel, two lines",
+     "approximateSize": "text block 0.18 x 0.08",
+     "orientation": "follows the parent surface",
+     "materialEffect": "navy satin-stitch letters",
+     "geometryEffect": "navy satin-stitch letters",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-right"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.85,
+    "dominantAlbedo": "rgba(42, 55, 87, 1.0)",
+    "secondaryAlbedo": "rgba(24, 34, 56, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(42, 55, 87, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(24, 34, 56, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "monogram-plate",
+   "name": "Script monogram carrier",
+   "level": "meso",
+   "role": "decal",
+   "importance": 0.6,
+   "confidence": 0.6,
+   "primitive": "plane-card",
+   "topologyClass": "material-only",
+   "topologyRationale": "Carrier for the green script monogram on the wearer-right side panel (-X), forward of the flag patch.",
+   "geometryDescriptor": {
+    "topologyIntent": "Carrier for the green script monogram on the wearer-right side panel (-X), forward of the flag patch.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry"
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.1,
+    "height": 0.17,
+    "depth": 0.01,
+    "units": "relative",
+    "confidence": 0.6
+   },
+   "transform": {
+    "position": [
+     -0.492,
+     0.0,
+     0.17
+    ],
+    "rotation": [
+     0,
+     -1.2207963267948965,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "monogram-green"
+    }
+   },
+   "material": "monogram-green",
+   "materialLayers": [
+    "monogram-green"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [
+    {
+     "id": "decal-monogram",
+     "type": "decal or label area",
+     "placement": "near the left front seam, vertical script letterforms",
+     "approximateSize": "0.09 x 0.16",
+     "orientation": "follows the parent surface",
+     "materialEffect": "green satin-stitch relief 0.006",
+     "geometryEffect": "green satin-stitch relief 0.006",
+     "confidence": 0.85
+    }
+   ],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-left"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.75,
+    "dominantAlbedo": "rgba(63, 181, 119, 1.0)",
+    "secondaryAlbedo": "rgba(35, 128, 79, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(63, 181, 119, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(35, 128, 79, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "eyelet-1",
+   "name": "Eyelet 1",
+   "level": "meso",
+   "role": "fastener",
+   "importance": 0.35,
+   "confidence": 0.85,
+   "primitive": "torus",
+   "topologyClass": "surface-relief",
+   "topologyRationale": "An embroidered eyelet: a small thread ring around a hole, standing 0.004 proud of the panel; a torus facing outward.",
+   "geometryDescriptor": {
+    "topologyIntent": "An embroidered eyelet: a small thread ring around a hole, standing 0.004 proud of the panel; a torus facing outward.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "torusTubeRatio": 0.3
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.032,
+    "height": 0.032,
+    "depth": 0.008,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     0.4276,
+     0.0,
+     0.2994
+    ],
+    "rotation": [
+     0,
+     0.9599310885968813,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "twill-bone"
+    }
+   },
+   "material": "twill-bone",
+   "materialLayers": [
+    "twill-bone"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-left",
+    "view-right",
+    "view-back"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(243, 240, 232, 1.0)",
+    "secondaryAlbedo": "rgba(226, 221, 209, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(243, 240, 232, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(226, 221, 209, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "eyelet-2",
+   "name": "Eyelet 2",
+   "level": "meso",
+   "role": "fastener",
+   "importance": 0.35,
+   "confidence": 0.85,
+   "primitive": "torus",
+   "topologyClass": "surface-relief",
+   "topologyRationale": "An embroidered eyelet: a small thread ring around a hole, standing 0.004 proud of the panel; a torus facing outward.",
+   "geometryDescriptor": {
+    "topologyIntent": "An embroidered eyelet: a small thread ring around a hole, standing 0.004 proud of the panel; a torus facing outward.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "torusTubeRatio": 0.3
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.032,
+    "height": 0.032,
+    "depth": 0.008,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     0.4276,
+     0.0,
+     -0.2994
+    ],
+    "rotation": [
+     0,
+     2.181661564992912,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "twill-bone"
+    }
+   },
+   "material": "twill-bone",
+   "materialLayers": [
+    "twill-bone"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-left",
+    "view-right",
+    "view-back"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(243, 240, 232, 1.0)",
+    "secondaryAlbedo": "rgba(226, 221, 209, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(243, 240, 232, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(226, 221, 209, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "eyelet-3",
+   "name": "Eyelet 3",
+   "level": "meso",
+   "role": "fastener",
+   "importance": 0.35,
+   "confidence": 0.85,
+   "primitive": "torus",
+   "topologyClass": "surface-relief",
+   "topologyRationale": "An embroidered eyelet: a small thread ring around a hole, standing 0.004 proud of the panel; a torus facing outward.",
+   "geometryDescriptor": {
+    "topologyIntent": "An embroidered eyelet: a small thread ring around a hole, standing 0.004 proud of the panel; a torus facing outward.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "torusTubeRatio": 0.3
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.032,
+    "height": 0.032,
+    "depth": 0.008,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     -0.4276,
+     0.0,
+     -0.2994
+    ],
+    "rotation": [
+     0,
+     4.101523742186674,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "twill-bone"
+    }
+   },
+   "material": "twill-bone",
+   "materialLayers": [
+    "twill-bone"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-left",
+    "view-right",
+    "view-back"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(243, 240, 232, 1.0)",
+    "secondaryAlbedo": "rgba(226, 221, 209, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(243, 240, 232, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(226, 221, 209, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  },
+  {
+   "id": "eyelet-4",
+   "name": "Eyelet 4",
+   "level": "meso",
+   "role": "fastener",
+   "importance": 0.35,
+   "confidence": 0.85,
+   "primitive": "torus",
+   "topologyClass": "surface-relief",
+   "topologyRationale": "An embroidered eyelet: a small thread ring around a hole, standing 0.004 proud of the panel; a torus facing outward.",
+   "geometryDescriptor": {
+    "topologyIntent": "An embroidered eyelet: a small thread ring around a hole, standing 0.004 proud of the panel; a torus facing outward.",
+    "edgeTreatment": {
+     "type": "none",
+     "bevelRadius": 0.0,
+     "segments": 1
+    },
+    "deformationStack": [],
+    "uvStrategy": "generated procedural coordinates",
+    "normalStrategy": "vertex normals from generated geometry",
+    "torusTubeRatio": 0.3
+   },
+   "parent": "root",
+   "attachment": null,
+   "dimensions": {
+    "width": 0.032,
+    "height": 0.032,
+    "depth": 0.008,
+    "units": "relative",
+    "confidence": 0.85
+   },
+   "transform": {
+    "position": [
+     -0.4276,
+     0.0,
+     0.2994
+    ],
+    "rotation": [
+     0,
+     5.323254218582705,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   "actionProfile": {
+    "animationRole": "static-part",
+    "pivot": {
+     "mode": "center",
+     "localPosition": [
+      0,
+      0,
+      0
+     ],
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "confidence": 0.5
+    },
+    "transformChannels": {
+     "translate": true,
+     "rotate": true,
+     "scale": true,
+     "bend": false,
+     "twist": false,
+     "detach": false,
+     "visibility": true,
+     "materialState": true
+    },
+    "sockets": [],
+    "collider": {
+     "type": "box",
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ],
+     "isTrigger": false,
+     "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+    },
+    "constraints": [],
+    "destruction": {
+     "breakable": false,
+     "fractureGroup": "root",
+     "seamRefs": [],
+     "detachableFragments": [],
+     "breakImpulse": 0.0,
+     "debrisMaterial": "twill-bone"
+    }
+   },
+   "material": "twill-bone",
+   "materialLayers": [
+    "twill-bone"
+   ],
+   "deformations": [],
+   "joints": [],
+   "seams": [],
+   "localFeatures": [],
+   "surfaceDetail": {
+    "macroRoughness": 0.0,
+    "microRoughness": 0.0,
+    "bumpAmplitude": 0.0,
+    "normalPattern": "",
+    "displacementPattern": "",
+    "occlusionPattern": "",
+    "edgeWearPattern": "",
+    "notes": ""
+   },
+   "evidenceRefs": [
+    "view-left",
+    "view-right",
+    "view-back"
+   ],
+   "details": [],
+   "fidelityTier": "structural-pass",
+   "colorMaterialRecipe": {
+    "materialClass": "fabric",
+    "materialClassConfidence": 0.9,
+    "dominantAlbedo": "rgba(243, 240, 232, 1.0)",
+    "secondaryAlbedo": "rgba(226, 221, 209, 1.0)",
+    "colorGradient": {
+     "type": "linear",
+     "stops": [
+      {
+       "position": 0.0,
+       "color": "rgba(243, 240, 232, 1.0)"
+      },
+      {
+       "position": 1.0,
+       "color": "rgba(226, 221, 209, 1.0)"
+      }
+     ]
+    },
+    "finishStyle": "matte"
+   }
+  }
+ ],
+ "materials": [
+  {
+   "id": "twill-bone",
+   "name": "Bone cotton twill (crown, visor top, button, eyelets)",
+   "type": "standard",
+   "shaderModel": "MeshStandardMaterial / PBR approximation",
+   "baseColor": "#ECE8DE",
+   "color": "#ECE8DE",
+   "albedo": {
+    "dominant": "#ECE8DE",
+    "secondary": [
+     "#E2DDD1",
+     "#F3F0E8"
+    ],
+    "samplingNotes": "sampled from reconstruction/crops"
+   },
+   "colorVariation": {
+    "palette": [
+     "#E0DED8",
+     "#DBD9D3",
+     "#E7E6E1"
+    ],
+    "pattern": "woven",
+    "amplitude": 0.06,
+    "heightCorrelation": 0.25
+   },
+   "textureResolution": 2048,
+   "textureProjection": {
+    "mode": "uv",
+    "repeat": [
+     6.0,
+     6.0
+    ],
+    "anisotropy": 8,
+    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
+   },
+   "surfaceFrequencyBands": [
+    {
+     "id": "macro",
+     "frequency": 2.0,
+     "amplitude": 0.06,
+     "role": "broad tonal breakup across panels"
+    },
+    {
+     "id": "meso",
+     "frequency": 14.0,
+     "amplitude": 0.12,
+     "role": "weave direction bands and seam shading"
+    },
+    {
+     "id": "micro",
+     "frequency": 64.0,
+     "amplitude": 0.1,
+     "role": "thread grain visible under grazing light"
+    }
+   ],
+   "roughness": {
+    "base": 0.9,
+    "variation": 0.06,
+    "map": "independent-procedural-field",
+    "localResponse": "slightly lower roughness on convex panel crests, higher in seams"
+   },
+   "metalness": {
+    "base": 0.0,
+    "variation": 0.0
+   },
+   "normal": {
+    "pattern": "fine diagonal weave grain",
+    "strength": 0.3,
+    "scale": 48.0,
+    "space": "tangent"
+   },
+   "bump": {
+    "pattern": "fine diagonal weave grain",
+    "amplitude": 0.02,
+    "scale": 48.0
+   },
+   "displacement": {
+    "pattern": "none",
+    "amplitude": 0.0,
+    "scale": 1.0,
+    "silhouetteAffects": false
+   },
+   "ambientOcclusion": {
+    "cavityStrength": 0.35,
+    "contactShadowBias": 0.4,
+    "notes": "darken seams, the band under the visor and the rear opening"
+   },
+   "wear": {
+    "edgeWear": 0.0,
+    "scratches": [],
+    "chips": []
+   },
+   "dirt": {
+    "amount": 0.0,
+    "cavityBias": 0.0,
+    "color": "#2F2A22"
+   },
+   "localOverrides": [
+    {
+     "id": "weave-grain",
+     "region": "all panels",
+     "changes": "diagonal twill grain as normal/bump; roughness 0.86-0.94",
+     "strength": 0.3,
+     "evidenceRefs": [
+      "view-front",
+      "view-right"
+     ]
+    },
+    {
+     "id": "seam-shadow",
+     "region": "along the five panel seams and the band",
+     "changes": "ambient occlusion darkening 0.35, roughness +0.04",
+     "strength": 0.35,
+     "evidenceRefs": [
+      "view-front"
+     ]
+    },
+    {
+     "id": "visor-stitch-lines",
+     "region": "visor top: six concentric arcs from the crown edge to the tip",
+     "changes": "painted linework in slightly darker bone (#D8D3C6) plus stitch bump 0.01",
+     "strength": 0.4,
+     "evidenceRefs": [
+      "view-front",
+      "view-right"
+     ]
+    }
+   ],
+   "shaderNotes": [
+    "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+    "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+    "Use normal/bump/displacement only when they map to observed surface relief.",
+    "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+   ],
+   "notes": "Bone cotton twill (crown, visor top, button, eyelets)",
+   "referencePbr": {
+    "usable": true,
+    "confidence": 0.716,
+    "estimatedFidelity": 0.716,
+    "sourceCrop": "/home/user/Gorras/reconstruction/crops/twill-crown.png",
+    "extractedBy": "forge/stage1_intake/extract_pbr_evidence.py",
+    "palette": [
+     "#E0DED8",
+     "#DBD9D3",
+     "#E7E6E1",
+     "#E4E2DC",
+     "#BDB9AD"
+    ],
+    "maps": {
+     "albedo": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_albedo.png",
+      "url": "twill-bone_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+     },
+     "roughness": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_roughness.png",
+      "url": "twill-bone_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+     },
+     "height": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_height.png",
+      "url": "twill-bone_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+     },
+     "normal": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_normal.png",
+      "url": "twill-bone_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+     },
+     "ao": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/twill-bone/twill-bone_ao.png",
+      "url": "twill-bone_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+     }
+    },
+    "limitation": "single-image inference, not inverse rendering"
+   },
+   "textureAnalysis": {
+    "finishClass": "plastic",
+    "recipe": {
+     "metalness": 0.05,
+     "roughness": 0.6,
+     "clearcoat": 0.2,
+     "clearcoatRoughness": 0.3,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 0.7,
+     "anisotropy": 0.0,
+     "procedural": "flat-clearcoat"
+    },
+    "palette": [
+     "#E5E4DF",
+     "#E2E1DB",
+     "#DFDDD8",
+     "#DEDBD6",
+     "#DBD8D3"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: plastic/rough 0.6 on a 120x80 crop; observed matte cotton twill with no specular hotspot, roughness kept at 0.9 (fabric)."
+   }
+  },
+  {
+   "id": "thread-navy",
+   "name": "Navy embroidery thread (front text, ONE COMMUNITY)",
+   "type": "standard",
+   "shaderModel": "MeshStandardMaterial / PBR approximation",
+   "baseColor": "#1F2A44",
+   "color": "#1F2A44",
+   "albedo": {
+    "dominant": "#1F2A44",
+    "secondary": [
+     "#182238",
+     "#2A3757"
+    ],
+    "samplingNotes": "sampled from reconstruction/crops"
+   },
+   "colorVariation": {
+    "palette": [
+     "#1F2A44",
+     "#182238",
+     "#2A3757"
+    ],
+    "pattern": "striated",
+    "amplitude": 0.06,
+    "heightCorrelation": 0.25
+   },
+   "textureResolution": 2048,
+   "textureProjection": {
+    "mode": "uv",
+    "repeat": [
+     6.0,
+     6.0
+    ],
+    "anisotropy": 8,
+    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
+   },
+   "surfaceFrequencyBands": [
+    {
+     "id": "macro",
+     "frequency": 2.0,
+     "amplitude": 0.06,
+     "role": "broad tonal breakup across panels"
+    },
+    {
+     "id": "meso",
+     "frequency": 14.0,
+     "amplitude": 0.12,
+     "role": "weave direction bands and seam shading"
+    },
+    {
+     "id": "micro",
+     "frequency": 64.0,
+     "amplitude": 0.1,
+     "role": "thread grain visible under grazing light"
+    }
+   ],
+   "roughness": {
+    "base": 0.6,
+    "variation": 0.08,
+    "map": "independent-procedural-field",
+    "localResponse": "slightly lower roughness on convex panel crests, higher in seams"
+   },
+   "metalness": {
+    "base": 0.0,
+    "variation": 0.0
+   },
+   "normal": {
+    "pattern": "satin stitch ridges",
+    "strength": 0.45,
+    "scale": 90.0,
+    "space": "tangent"
+   },
+   "bump": {
+    "pattern": "satin stitch ridges",
+    "amplitude": 0.02,
+    "scale": 90.0
+   },
+   "displacement": {
+    "pattern": "none",
+    "amplitude": 0.0,
+    "scale": 1.0,
+    "silhouetteAffects": false
+   },
+   "ambientOcclusion": {
+    "cavityStrength": 0.35,
+    "contactShadowBias": 0.4,
+    "notes": "darken seams, the band under the visor and the rear opening"
+   },
+   "wear": {
+    "edgeWear": 0.0,
+    "scratches": [],
+    "chips": []
+   },
+   "dirt": {
+    "amount": 0.0,
+    "cavityBias": 0.0,
+    "color": "#2F2A22"
+   },
+   "localOverrides": [
+    {
+     "id": "stitch-relief",
+     "region": "letter strokes",
+     "changes": "raised 1-2 mm satin stitch; roughness 0.55-0.65",
+     "strength": 0.45,
+     "evidenceRefs": [
+      "view-front"
+     ]
+    }
+   ],
+   "shaderNotes": [
+    "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+    "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+    "Use normal/bump/displacement only when they map to observed surface relief.",
+    "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+   ],
+   "notes": "Navy embroidery thread (front text, ONE COMMUNITY)",
+   "referencePbr": {
+    "usable": true,
+    "confidence": 0.831,
+    "estimatedFidelity": 0.831,
+    "sourceCrop": "/home/user/Gorras/reconstruction/crops/thread-navy.png",
+    "extractedBy": "forge/stage1_intake/extract_pbr_evidence.py",
+    "palette": [
+     "#363849",
+     "#2D2F40",
+     "#3F4153",
+     "#242637",
+     "#4C4E60"
+    ],
+    "maps": {
+     "albedo": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/thread-navy/thread-navy_albedo.png",
+      "url": "thread-navy_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+     },
+     "roughness": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/thread-navy/thread-navy_roughness.png",
+      "url": "thread-navy_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+     },
+     "height": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/thread-navy/thread-navy_height.png",
+      "url": "thread-navy_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+     },
+     "normal": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/thread-navy/thread-navy_normal.png",
+      "url": "thread-navy_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+     },
+     "ao": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/thread-navy/thread-navy_ao.png",
+      "url": "thread-navy_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+     }
+    },
+    "limitation": "single-image inference, not inverse rendering"
+   },
+   "textureAnalysis": {
+    "finishClass": "brushed-steel",
+    "recipe": {
+     "metalness": 1.0,
+     "roughness": 0.35,
+     "clearcoat": 0.0,
+     "clearcoatRoughness": 0.0,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 1.0,
+     "anisotropy": 1.0,
+     "procedural": "brushed"
+    },
+    "palette": [
+     "#93949C",
+     "#B4B4B8",
+     "#B2B1B7",
+     "#B7B6B9",
+     "#9D9CA2"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: brushed-steel because the crop mixes navy letters with bone background; observed satin-stitch thread, dielectric, roughness 0.6."
+   }
+  },
+  {
+   "id": "plastic-navy",
+   "name": "Navy moulded plastic (snapback strap, buckle)",
+   "type": "standard",
+   "shaderModel": "MeshStandardMaterial / PBR approximation",
+   "baseColor": "#232B4A",
+   "color": "#232B4A",
+   "albedo": {
+    "dominant": "#232B4A",
+    "secondary": [
+     "#1B2238",
+     "#2F3A5F"
+    ],
+    "samplingNotes": "sampled from reconstruction/crops"
+   },
+   "colorVariation": {
+    "palette": [
+     "#24293C",
+     "#292E41",
+     "#1C2030"
+    ],
+    "pattern": "uniform",
+    "amplitude": 0.06,
+    "heightCorrelation": 0.25
+   },
+   "textureResolution": 2048,
+   "textureProjection": {
+    "mode": "uv",
+    "repeat": [
+     6.0,
+     6.0
+    ],
+    "anisotropy": 8,
+    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
+   },
+   "surfaceFrequencyBands": [
+    {
+     "id": "macro",
+     "frequency": 2.0,
+     "amplitude": 0.06,
+     "role": "broad tonal breakup across panels"
+    },
+    {
+     "id": "meso",
+     "frequency": 14.0,
+     "amplitude": 0.12,
+     "role": "weave direction bands and seam shading"
+    },
+    {
+     "id": "micro",
+     "frequency": 64.0,
+     "amplitude": 0.1,
+     "role": "thread grain visible under grazing light"
+    }
+   ],
+   "roughness": {
+    "base": 0.45,
+    "variation": 0.05,
+    "map": "independent-procedural-field",
+    "localResponse": "slightly lower roughness on convex panel crests, higher in seams"
+   },
+   "metalness": {
+    "base": 0.0,
+    "variation": 0.0
+   },
+   "normal": {
+    "pattern": "none",
+    "strength": 0.05,
+    "scale": 8.0,
+    "space": "tangent"
+   },
+   "bump": {
+    "pattern": "none",
+    "amplitude": 0.02,
+    "scale": 8.0
+   },
+   "displacement": {
+    "pattern": "none",
+    "amplitude": 0.0,
+    "scale": 1.0,
+    "silhouetteAffects": false
+   },
+   "ambientOcclusion": {
+    "cavityStrength": 0.35,
+    "contactShadowBias": 0.4,
+    "notes": "darken seams, the band under the visor and the rear opening"
+   },
+   "wear": {
+    "edgeWear": 0.0,
+    "scratches": [],
+    "chips": []
+   },
+   "dirt": {
+    "amount": 0.0,
+    "cavityBias": 0.0,
+    "color": "#2F2A22"
+   },
+   "localOverrides": [
+    {
+     "id": "hole-rims",
+     "region": "rim of each of the seven holes",
+     "changes": "moulding gloss on the rims, AO inside the hole",
+     "roughness": 0.28,
+     "strength": 0.3,
+     "evidenceRefs": [
+      "view-back"
+     ]
+    }
+   ],
+   "shaderNotes": [
+    "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+    "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+    "Use normal/bump/displacement only when they map to observed surface relief.",
+    "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+   ],
+   "notes": "Navy moulded plastic (snapback strap, buckle)",
+   "referencePbr": {
+    "usable": true,
+    "confidence": 0.8,
+    "estimatedFidelity": 0.8,
+    "sourceCrop": "/home/user/Gorras/reconstruction/crops/strap-navy.png",
+    "extractedBy": "forge/stage1_intake/extract_pbr_evidence.py",
+    "palette": [
+     "#24293C",
+     "#292E41",
+     "#1C2030",
+     "#313649",
+     "#0B0D0E"
+    ],
+    "maps": {
+     "albedo": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_albedo.png",
+      "url": "plastic-navy_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+     },
+     "roughness": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_roughness.png",
+      "url": "plastic-navy_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+     },
+     "height": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_height.png",
+      "url": "plastic-navy_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+     },
+     "normal": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_normal.png",
+      "url": "plastic-navy_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+     },
+     "ao": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/plastic-navy/plastic-navy_ao.png",
+      "url": "plastic-navy_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+     }
+    },
+    "limitation": "single-image inference, not inverse rendering"
+   },
+   "textureAnalysis": {
+    "finishClass": "painted-metal",
+    "recipe": {
+     "metalness": 0.0,
+     "roughness": 0.5,
+     "clearcoat": 1.0,
+     "clearcoatRoughness": 0.05,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 1.0,
+     "anisotropy": 0.0,
+     "procedural": "flat-clearcoat"
+    },
+    "palette": [
+     "#0B0C0B",
+     "#242836",
+     "#252A3E",
+     "#23283A",
+     "#23283B"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: painted-metal rough 0.5; observed moulded plastic, dielectric, roughness 0.45."
+   }
+  },
+  {
+   "id": "liner-black",
+   "name": "Black interior taping and mesh",
+   "type": "standard",
+   "shaderModel": "MeshStandardMaterial / PBR approximation",
+   "baseColor": "#15161A",
+   "color": "#15161A",
+   "albedo": {
+    "dominant": "#15161A",
+    "secondary": [
+     "#0E0F12",
+     "#22242A"
+    ],
+    "samplingNotes": "sampled from reconstruction/crops"
+   },
+   "colorVariation": {
+    "palette": [
+     "#0A0C0B",
+     "#090B0A",
+     "#1B1D18"
+    ],
+    "pattern": "woven",
+    "amplitude": 0.06,
+    "heightCorrelation": 0.25
+   },
+   "textureResolution": 2048,
+   "textureProjection": {
+    "mode": "uv",
+    "repeat": [
+     6.0,
+     6.0
+    ],
+    "anisotropy": 8,
+    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
+   },
+   "surfaceFrequencyBands": [
+    {
+     "id": "macro",
+     "frequency": 2.0,
+     "amplitude": 0.06,
+     "role": "broad tonal breakup across panels"
+    },
+    {
+     "id": "meso",
+     "frequency": 14.0,
+     "amplitude": 0.12,
+     "role": "weave direction bands and seam shading"
+    },
+    {
+     "id": "micro",
+     "frequency": 64.0,
+     "amplitude": 0.1,
+     "role": "thread grain visible under grazing light"
+    }
+   ],
+   "roughness": {
+    "base": 0.9,
+    "variation": 0.05,
+    "map": "independent-procedural-field",
+    "localResponse": "slightly lower roughness on convex panel crests, higher in seams"
+   },
+   "metalness": {
+    "base": 0.0,
+    "variation": 0.0
+   },
+   "normal": {
+    "pattern": "fine mesh weave",
+    "strength": 0.25,
+    "scale": 70.0,
+    "space": "tangent"
+   },
+   "bump": {
+    "pattern": "fine mesh weave",
+    "amplitude": 0.02,
+    "scale": 70.0
+   },
+   "displacement": {
+    "pattern": "none",
+    "amplitude": 0.0,
+    "scale": 1.0,
+    "silhouetteAffects": false
+   },
+   "ambientOcclusion": {
+    "cavityStrength": 0.35,
+    "contactShadowBias": 0.4,
+    "notes": "darken seams, the band under the visor and the rear opening"
+   },
+   "wear": {
+    "edgeWear": 0.0,
+    "scratches": [],
+    "chips": []
+   },
+   "dirt": {
+    "amount": 0.0,
+    "cavityBias": 0.0,
+    "color": "#2F2A22"
+   },
+   "localOverrides": [
+    {
+     "id": "tape-print",
+     "region": "centre of the inner rear tape",
+     "changes": "painted decal ONE COMMUNITY in light grey (#9A9EA8), no relief",
+     "strength": 0.6,
+     "evidenceRefs": [
+      "view-back"
+     ]
+    }
+   ],
+   "shaderNotes": [
+    "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+    "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+    "Use normal/bump/displacement only when they map to observed surface relief.",
+    "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+   ],
+   "notes": "Black interior taping and mesh",
+   "referencePbr": {
+    "usable": true,
+    "confidence": 0.765,
+    "estimatedFidelity": 0.765,
+    "sourceCrop": "/home/user/Gorras/reconstruction/crops/interior-mesh.png",
+    "extractedBy": "forge/stage1_intake/extract_pbr_evidence.py",
+    "palette": [
+     "#0A0C0B",
+     "#090B0A",
+     "#1B1D18"
+    ],
+    "maps": {
+     "albedo": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/liner-black/liner-black_albedo.png",
+      "url": "liner-black_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+     },
+     "roughness": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/liner-black/liner-black_roughness.png",
+      "url": "liner-black_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+     },
+     "height": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/liner-black/liner-black_height.png",
+      "url": "liner-black_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+     },
+     "normal": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/liner-black/liner-black_normal.png",
+      "url": "liner-black_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+     },
+     "ao": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/liner-black/liner-black_ao.png",
+      "url": "liner-black_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+     }
+    },
+    "limitation": "single-image inference, not inverse rendering"
+   },
+   "textureAnalysis": {
+    "finishClass": "worn-composite",
+    "recipe": {
+     "metalness": 0.0,
+     "roughness": 0.9,
+     "clearcoat": 0.0,
+     "clearcoatRoughness": 0.0,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 0.5,
+     "anisotropy": 0.0,
+     "procedural": "mottle"
+    },
+    "palette": [
+     "#1A1B17",
+     "#0D0E0D",
+     "#0C0C0C",
+     "#0D0E0E",
+     "#0B0C0B"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: worn-composite rough 0.9; consistent with black taping/mesh."
+   }
+  },
+  {
+   "id": "patch-flag",
+   "name": "Woven tricolour flag patch",
+   "type": "standard",
+   "shaderModel": "MeshStandardMaterial / PBR approximation",
+   "baseColor": "#1F8A4C",
+   "color": "#1F8A4C",
+   "albedo": {
+    "dominant": "#1F8A4C",
+    "secondary": [
+     "#F2F2EE",
+     "#C8202E"
+    ],
+    "samplingNotes": "sampled from reconstruction/crops"
+   },
+   "colorVariation": {
+    "palette": [
+     "#1F8A4C",
+     "#F2F2EE",
+     "#C8202E"
+    ],
+    "pattern": "banded",
+    "amplitude": 0.06,
+    "heightCorrelation": 0.25
+   },
+   "textureResolution": 2048,
+   "textureProjection": {
+    "mode": "uv",
+    "repeat": [
+     6.0,
+     6.0
+    ],
+    "anisotropy": 8,
+    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
+   },
+   "surfaceFrequencyBands": [
+    {
+     "id": "macro",
+     "frequency": 2.0,
+     "amplitude": 0.06,
+     "role": "broad tonal breakup across panels"
+    },
+    {
+     "id": "meso",
+     "frequency": 14.0,
+     "amplitude": 0.12,
+     "role": "weave direction bands and seam shading"
+    },
+    {
+     "id": "micro",
+     "frequency": 64.0,
+     "amplitude": 0.1,
+     "role": "thread grain visible under grazing light"
+    }
+   ],
+   "roughness": {
+    "base": 0.55,
+    "variation": 0.08,
+    "map": "independent-procedural-field",
+    "localResponse": "slightly lower roughness on convex panel crests, higher in seams"
+   },
+   "metalness": {
+    "base": 0.0,
+    "variation": 0.0
+   },
+   "normal": {
+    "pattern": "fine woven thread",
+    "strength": 0.35,
+    "scale": 80.0,
+    "space": "tangent"
+   },
+   "bump": {
+    "pattern": "fine woven thread",
+    "amplitude": 0.02,
+    "scale": 80.0
+   },
+   "displacement": {
+    "pattern": "none",
+    "amplitude": 0.0,
+    "scale": 1.0,
+    "silhouetteAffects": false
+   },
+   "ambientOcclusion": {
+    "cavityStrength": 0.35,
+    "contactShadowBias": 0.4,
+    "notes": "darken seams, the band under the visor and the rear opening"
+   },
+   "wear": {
+    "edgeWear": 0.0,
+    "scratches": [],
+    "chips": []
+   },
+   "dirt": {
+    "amount": 0.0,
+    "cavityBias": 0.0,
+    "color": "#2F2A22"
+   },
+   "localOverrides": [
+    {
+     "id": "flag-bands",
+     "region": "three equal vertical bands green / white / red with a brown-gold eagle in the centre band",
+     "changes": "albedo decal, merrowed edge ridge 0.005",
+     "strength": 1.0,
+     "evidenceRefs": [
+      "view-left"
+     ]
+    }
+   ],
+   "shaderNotes": [
+    "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+    "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+    "Use normal/bump/displacement only when they map to observed surface relief.",
+    "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+   ],
+   "notes": "Woven tricolour flag patch",
+   "referencePbr": {
+    "usable": true,
+    "confidence": 0.86,
+    "estimatedFidelity": 0.86,
+    "sourceCrop": "/home/user/Gorras/reconstruction/crops/flag-patch.png",
+    "extractedBy": "forge/stage1_intake/extract_pbr_evidence.py",
+    "palette": [
+     "#9B2423",
+     "#2C6146",
+     "#52755D",
+     "#72503B",
+     "#C0B0A5"
+    ],
+    "maps": {
+     "albedo": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/patch-flag/patch-flag_albedo.png",
+      "url": "patch-flag_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+     },
+     "roughness": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/patch-flag/patch-flag_roughness.png",
+      "url": "patch-flag_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+     },
+     "height": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/patch-flag/patch-flag_height.png",
+      "url": "patch-flag_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+     },
+     "normal": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/patch-flag/patch-flag_normal.png",
+      "url": "patch-flag_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+     },
+     "ao": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/patch-flag/patch-flag_ao.png",
+      "url": "patch-flag_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+     }
+    },
+    "limitation": "single-image inference, not inverse rendering"
+   },
+   "textureAnalysis": {
+    "finishClass": "candy-coat",
+    "recipe": {
+     "metalness": 0.35,
+     "roughness": 0.18,
+     "clearcoat": 0.6,
+     "clearcoatRoughness": 0.15,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 0.7,
+     "anisotropy": 0.0,
+     "procedural": "gradient-smoke"
+    },
+    "palette": [
+     "#6D8D7B",
+     "#31694D",
+     "#9A8A7D",
+     "#9D2725",
+     "#C6A49E"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: candy-coat metal 0.35 rough 0.18 from saturated bands; observed woven polyester patch, dielectric, roughness 0.55."
+   }
+  },
+  {
+   "id": "monogram-green",
+   "name": "Green script monogram thread",
+   "type": "standard",
+   "shaderModel": "MeshStandardMaterial / PBR approximation",
+   "baseColor": "#2E9E63",
+   "color": "#2E9E63",
+   "albedo": {
+    "dominant": "#2E9E63",
+    "secondary": [
+     "#23804F",
+     "#3FB577"
+    ],
+    "samplingNotes": "sampled from reconstruction/crops"
+   },
+   "colorVariation": {
+    "palette": [
+     "#2E9E63",
+     "#23804F",
+     "#3FB577"
+    ],
+    "pattern": "striated",
+    "amplitude": 0.06,
+    "heightCorrelation": 0.25
+   },
+   "textureResolution": 2048,
+   "textureProjection": {
+    "mode": "uv",
+    "repeat": [
+     6.0,
+     6.0
+    ],
+    "anisotropy": 8,
+    "texelDensityIntent": "weave grain at constant object scale; do not stretch with component scale"
+   },
+   "surfaceFrequencyBands": [
+    {
+     "id": "macro",
+     "frequency": 2.0,
+     "amplitude": 0.06,
+     "role": "broad tonal breakup across panels"
+    },
+    {
+     "id": "meso",
+     "frequency": 14.0,
+     "amplitude": 0.12,
+     "role": "weave direction bands and seam shading"
+    },
+    {
+     "id": "micro",
+     "frequency": 64.0,
+     "amplitude": 0.1,
+     "role": "thread grain visible under grazing light"
+    }
+   ],
+   "roughness": {
+    "base": 0.6,
+    "variation": 0.08,
+    "map": "independent-procedural-field",
+    "localResponse": "slightly lower roughness on convex panel crests, higher in seams"
+   },
+   "metalness": {
+    "base": 0.0,
+    "variation": 0.0
+   },
+   "normal": {
+    "pattern": "satin stitch ridges",
+    "strength": 0.45,
+    "scale": 90.0,
+    "space": "tangent"
+   },
+   "bump": {
+    "pattern": "satin stitch ridges",
+    "amplitude": 0.02,
+    "scale": 90.0
+   },
+   "displacement": {
+    "pattern": "none",
+    "amplitude": 0.0,
+    "scale": 1.0,
+    "silhouetteAffects": false
+   },
+   "ambientOcclusion": {
+    "cavityStrength": 0.35,
+    "contactShadowBias": 0.4,
+    "notes": "darken seams, the band under the visor and the rear opening"
+   },
+   "wear": {
+    "edgeWear": 0.0,
+    "scratches": [],
+    "chips": []
+   },
+   "dirt": {
+    "amount": 0.0,
+    "cavityBias": 0.0,
+    "color": "#2F2A22"
+   },
+   "localOverrides": [],
+   "shaderNotes": [
+    "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+    "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+    "Use normal/bump/displacement only when they map to observed surface relief.",
+    "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+   ],
+   "notes": "Green script monogram thread",
+   "referencePbr": {
+    "usable": true,
+    "confidence": 0.855,
+    "estimatedFidelity": 0.855,
+    "sourceCrop": "/home/user/Gorras/reconstruction/crops/monogram-green.png",
+    "extractedBy": "forge/stage1_intake/extract_pbr_evidence.py",
+    "palette": [
+     "#809D8F",
+     "#6D9482",
+     "#96A99F",
+     "#B0C0B7",
+     "#568672"
+    ],
+    "maps": {
+     "albedo": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_albedo.png",
+      "url": "monogram-green_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+     },
+     "roughness": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_roughness.png",
+      "url": "monogram-green_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+     },
+     "height": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_height.png",
+      "url": "monogram-green_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+     },
+     "normal": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_normal.png",
+      "url": "monogram-green_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+     },
+     "ao": {
+      "path": "/home/user/Gorras/reconstruction/material-evidence/monogram-green/monogram-green_ao.png",
+      "url": "monogram-green_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+     }
+    },
+    "limitation": "single-image inference, not inverse rendering"
+   },
+   "textureAnalysis": {
+    "finishClass": "brushed-steel",
+    "recipe": {
+     "metalness": 1.0,
+     "roughness": 0.35,
+     "clearcoat": 0.0,
+     "clearcoatRoughness": 0.0,
+     "transmission": 0.0,
+     "ior": 1.5,
+     "envMapIntensity": 1.0,
+     "anisotropy": 1.0,
+     "procedural": "brushed"
+    },
+    "palette": [
+     "#EDEFED",
+     "#D6DCD7",
+     "#D4D7D4",
+     "#C8CFC7",
+     "#D8D7D2"
+    ],
+    "appliedScalars": "observed values kept; see note",
+    "note": "analyzer: brushed-steel because the crop is mostly bone background; observed green satin thread, dielectric, roughness 0.6."
+   }
+  }
+ ],
+ "repetitionSystems": [
+  {
+   "id": "eyelet-ring",
+   "name": "Embroidered eyelets",
+   "level": "meso",
+   "parent": "root",
+   "count": 4,
+   "primitive": "torus",
+   "elementComponentIds": [
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4"
+   ],
+   "material": "twill-bone",
+   "instanceScale": [
+    0.032,
+    0.032,
+    0.008
+   ],
+   "placement": {
+    "mode": "radial",
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "radius": 0.968,
+    "startAngleDeg": 55
+   },
+   "buildsGeometry": true,
+   "distributionRule": "one eyelet per side and rear panel at eyelet height (y=0); none on the front panel",
+   "evidenceRefs": [
+    "view-left",
+    "view-right",
+    "view-back"
+   ]
+  }
+ ],
+ "buildPasses": [
+  {
+   "id": "blockout",
+   "goal": "Match macro silhouette and proportions.",
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap"
+   ],
+   "acceptance": [
+    "Silhouette reads correctly without materials.",
+    "Quality contract has named all required macro feature groups before code generation.",
+    "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+   ]
+  },
+  {
+   "id": "structural-pass",
+   "goal": "Build the component hierarchy implied by the pre-spec complexity assessment.",
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap",
+    "liner",
+    "opening-panel",
+    "button",
+    "visor-underside",
+    "buckle",
+    "flag-patch",
+    "front-plate",
+    "right-plate",
+    "monogram-plate",
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4"
+   ],
+   "acceptance": [
+    "Macro, meso, and repeated structures meet qualityContract.minimumSpecDepth.",
+    "Parent-child relations, joints, seams, sockets, and contact points are explicit.",
+    "Every attached child appendage/connector has parentSocket, localStart/localEnd, contactType, embedDepth or overlap, and gapTolerance.",
+    "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+   ]
+  },
+  {
+   "id": "form-refinement",
+   "goal": "Refine shape, deformation, bevels, tapers, curves, asymmetry, and visible local geometry.",
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap",
+    "liner",
+    "opening-panel",
+    "button",
+    "visor-underside",
+    "buckle",
+    "flag-patch",
+    "front-plate",
+    "right-plate",
+    "monogram-plate",
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4"
+   ],
+   "acceptance": [
+    "Important visible forms are represented in component geometryDescriptor, deformations, localFeatures, or repetitionSystems.",
+    "Endpoint-based child parts are rooted at their attachment sockets and do not visibly float away from parents.",
+    "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+   ]
+  },
+  {
+   "id": "material-pass",
+   "goal": "Match material color, roughness, bump, and local variation.",
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap",
+    "liner",
+    "opening-panel",
+    "button",
+    "visor-underside",
+    "buckle",
+    "flag-patch",
+    "front-plate",
+    "right-plate",
+    "monogram-plate",
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4"
+   ],
+   "acceptance": [
+    "Reference-derived albedo palette records dominant, secondary, and accent colors per visible material.",
+    "Each important material defines roughness variation and at least one normal/bump/displacement response.",
+    "Local material overrides, dirt/wear/stains/moss/chips/scratches or equivalent masks are tied to evidenceRefs.",
+    "Thin, transparent, reflective, wet, or fibrous materials document alpha/transmission/clearcoat/metalness/fiber response when relevant.",
+    "Generated preview uses procedural albedo/roughness/bump texture or vertex color variation instead of one flat color.",
+    "Generated preview uses independent PBR maps at 1024px or higher for the quality-first tier.",
+    "If source pixels are available, referencePbr extraction passed at confidence >= 0.7 or the pass is stopped/requesting better references.",
+    "Macro, meso, and micro surface frequency bands are visible at the intended review distance without obvious tiling.",
+    "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+   ]
+  },
+  {
+   "id": "surface-pass",
+   "goal": "Add procedural surface locality such as normal/bump/displacement, AO, dirt, stains, chips, grain, moss, scratches, and wear.",
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap",
+    "liner",
+    "opening-panel",
+    "button",
+    "visor-underside",
+    "buckle",
+    "flag-patch",
+    "front-plate",
+    "right-plate",
+    "monogram-plate",
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4"
+   ],
+   "acceptance": [
+    "Every required material feature group has local overrides or surfaceDetail tied to evidenceRefs.",
+    "A grazing-angle close-up proves that normal/height detail breaks highlights naturally and does not read as smooth plastic.",
+    "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+   ]
+  },
+  {
+   "id": "lighting-pass",
+   "goal": "Make material and form readable under neutral turntable lighting plus optional reference lighting.",
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap",
+    "liner",
+    "opening-panel",
+    "button",
+    "visor-underside",
+    "buckle",
+    "flag-patch",
+    "front-plate",
+    "right-plate",
+    "monogram-plate",
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4"
+   ],
+   "acceptance": [
+    "lightingFromPhoto identifies key light direction/color/intensity, fill light, rim or environment light, and ambient color.",
+    "Exposure, tone mapping, background color/gradient, shadow softness, and contact shadow behavior are specified.",
+    "Lighting does not hide geometry/material gaps and screenshots can be compared fairly to the reference.",
+    "Neutral, grazing, and reference-matched lighting checks distinguish material errors from lighting errors.",
+    "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+   ]
+  },
+  {
+   "id": "interaction-pass",
+   "goal": "Make the model ready for future animation, transformation, physics, or destruction.",
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap",
+    "liner",
+    "opening-panel",
+    "button",
+    "visor-underside",
+    "buckle",
+    "flag-patch",
+    "front-plate",
+    "right-plate",
+    "monogram-plate",
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4"
+   ],
+   "acceptance": [
+    "Macro and movable meso components have stable pivot nodes.",
+    "Sockets, collider proxies, and destruction metadata are present for future runtime actions.",
+    "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+   ]
+  },
+  {
+   "id": "optimization-pass",
+   "goal": "Protect runtime performance after visual fidelity is accepted.",
+   "componentRefs": [
+    "root",
+    "visor",
+    "strap",
+    "liner",
+    "opening-panel",
+    "button",
+    "visor-underside",
+    "buckle",
+    "flag-patch",
+    "front-plate",
+    "right-plate",
+    "monogram-plate",
+    "eyelet-1",
+    "eyelet-2",
+    "eyelet-3",
+    "eyelet-4"
+   ],
+   "acceptance": [
+    "Triangle count, draw calls, instancing, LOD strategy, and FPS target are documented or verified.",
+    "Repeated detail is instanced or simplified where possible without breaking silhouette/material believability."
+   ]
+  }
+ ],
+ "visualEvidence": [
+  {
+   "timestamp": "2026-09-23T00:42:01.461639+00:00",
+   "passId": "blockout",
+   "estimatedFidelity": 0.3,
+   "aiVisionScore": null,
+   "visualAcceptanceThreshold": 0.7,
+   "layerScores": {},
+   "featureReviews": [],
+   "referenceScreenshot": "/home/user/Gorras/reconstruction/views/front.png",
+   "renderScreenshot": "/home/user/Gorras/reconstruction/renders/blockout-front.png",
+   "comparisonImage": "/home/user/Gorras/reconstruction/renders/cmp-blockout-front.png",
+   "cameraView": "front",
+   "notes": "",
+   "aiVisionNotes": ""
+  },
+  {
+   "timestamp": "2026-09-23T00:43:51.653401+00:00",
+   "passId": "blockout",
+   "estimatedFidelity": 0.5,
+   "aiVisionScore": 0.5,
+   "visualAcceptanceThreshold": 0.7,
+   "layerScores": {
+    "silhouetteProportion": 0.5,
+    "componentStructure": 0.6,
+    "formDetail": 0.3,
+    "materialSurface": 0.3,
+    "lightingCamera": 0.7
+   },
+   "featureReviews": [
+    {
+     "id": "crown-visor-silhouette",
+     "score": 0.55,
+     "notes": "dome too low, visor flat"
+    },
+    {
+     "id": "closure-structure",
+     "score": 0.3,
+     "notes": "strap hidden inside the crown"
+    }
+   ],
+   "referenceScreenshot": "/home/user/Gorras/reconstruction/views/front.png",
+   "renderScreenshot": "/home/user/Gorras/reconstruction/renders/blockout-front.png",
+   "comparisonImage": "/home/user/Gorras/reconstruction/renders/cmp-blockout-front.png",
+   "cameraView": "front",
+   "notes": "",
+   "aiVisionNotes": ""
+  },
+  {
+   "timestamp": "2026-09-23T00:58:27.194884+00:00",
+   "passId": "blockout",
+   "estimatedFidelity": 0.6,
+   "aiVisionScore": 0.6,
+   "visualAcceptanceThreshold": 0.7,
+   "layerScores": {
+    "silhouetteProportion": 0.65,
+    "componentStructure": 0.6,
+    "formDetail": 0.45,
+    "materialSurface": 0.3,
+    "lightingCamera": 0.7
+   },
+   "featureReviews": [
+    {
+     "id": "crown-visor-silhouette",
+     "score": 0.65,
+     "notes": "crown top too wide, visor wings missing beside the crown"
+    },
+    {
+     "id": "closure-structure",
+     "score": 0.7,
+     "notes": "strap wraps the band and shows seven holes"
+    }
+   ],
+   "referenceScreenshot": "/home/user/Gorras/reconstruction/views/front-matte.png",
+   "renderScreenshot": "/home/user/Gorras/reconstruction/renders/fit-front.png",
+   "comparisonImage": "/home/user/Gorras/reconstruction/renders/maskdiff-front.png",
+   "cameraView": "front",
+   "notes": "",
+   "aiVisionNotes": ""
+  }
+ ],
+ "reviewHistory": [
+  {
+   "timestamp": "2026-09-23T00:42:01.461639+00:00",
+   "passId": "blockout",
+   "estimatedFidelity": 0.3,
+   "aiVisionScore": null,
+   "visualAcceptanceThreshold": 0.7,
+   "layerScores": {},
+   "featureReviews": [],
+   "action": "refine-spec",
+   "summary": "Blockout attempt 1: visor plan wrapped to the crown sides and read as a bowler brim from the front; the first captured frame was black (shader/texture warm-up), so only the plain-material debug render was judged.",
+   "matched": [],
+   "mismatches": [
+    "visor outer circle too large (r 0.58 centred 0.36) so the plate met the crown at +-88 degrees",
+    "capture took the first rendered frame before textures uploaded"
+   ],
+   "specFixes": [
+    "outer circle r 0.54 centred 0.42 (meets crown at +-76 degrees, widest 1.08 crown widths)"
+   ],
+   "codeFixes": [
+    "viewer renders 8 warm-up frames before declaring READY"
+   ],
+   "evidence": [
+    "/home/user/Gorras/reconstruction/renders/debug-plain.png"
+   ],
+   "visualEvidence": {
+    "referenceScreenshot": "/home/user/Gorras/reconstruction/views/front.png",
+    "renderScreenshot": "/home/user/Gorras/reconstruction/renders/blockout-front.png",
+    "comparisonImage": "/home/user/Gorras/reconstruction/renders/cmp-blockout-front.png",
+    "cameraView": "front",
+    "notes": "",
+    "aiVisionNotes": ""
+   }
+  },
+  {
+   "timestamp": "2026-09-23T00:43:51.653401+00:00",
+   "passId": "blockout",
+   "estimatedFidelity": 0.5,
+   "aiVisionScore": 0.5,
+   "visualAcceptanceThreshold": 0.7,
+   "layerScores": {
+    "silhouetteProportion": 0.5,
+    "componentStructure": 0.6,
+    "formDetail": 0.3,
+    "materialSurface": 0.3,
+    "lightingCamera": 0.7
+   },
+   "featureReviews": [
+    {
+     "id": "crown-visor-silhouette",
+     "score": 0.55,
+     "notes": "dome too low, visor flat"
+    },
+    {
+     "id": "closure-structure",
+     "score": 0.3,
+     "notes": "strap hidden inside the crown"
+    }
+   ],
+   "action": "refine-spec",
+   "summary": "Blockout attempt 2: silhouette recognisable as a cap from the side and three-quarter, but the crown is too low (0.52 vs ~0.62 of the width in the reference) and the strap sits inside the crown surface so only its ends poke out in the rear view.",
+   "matched": [],
+   "mismatches": [
+    "crown apex too low and dome too flat",
+    "strap and opening plates positioned at r 0.476 inside the band circle r 0.506",
+    "visor still flat (arch deferred to form-refinement)"
+   ],
+   "specFixes": [
+    "crown profile apex 0.34 with steeper upper dome",
+    "strap at z -0.522 and opening plate at z -0.515, tangent to the band, with a bend deformation recorded for form-refinement"
+   ],
+   "codeFixes": [],
+   "evidence": [
+    "/home/user/Gorras/reconstruction/renders/cmp-blockout-right.png",
+    "/home/user/Gorras/reconstruction/renders/cmp-blockout-back.png",
+    "/home/user/Gorras/reconstruction/renders/blockout-quarter.png"
+   ],
+   "visualEvidence": {
+    "referenceScreenshot": "/home/user/Gorras/reconstruction/views/front.png",
+    "renderScreenshot": "/home/user/Gorras/reconstruction/renders/blockout-front.png",
+    "comparisonImage": "/home/user/Gorras/reconstruction/renders/cmp-blockout-front.png",
+    "cameraView": "front",
+    "notes": "",
+    "aiVisionNotes": ""
+   }
+  },
+  {
+   "timestamp": "2026-09-23T00:58:27.194884+00:00",
+   "passId": "blockout",
+   "estimatedFidelity": 0.6,
+   "aiVisionScore": 0.6,
+   "visualAcceptanceThreshold": 0.7,
+   "layerScores": {
+    "silhouetteProportion": 0.65,
+    "componentStructure": 0.6,
+    "formDetail": 0.45,
+    "materialSurface": 0.3,
+    "lightingCamera": 0.7
+   },
+   "featureReviews": [
+    {
+     "id": "crown-visor-silhouette",
+     "score": 0.65,
+     "notes": "crown top too wide, visor wings missing beside the crown"
+    },
+    {
+     "id": "closure-structure",
+     "score": 0.7,
+     "notes": "strap wraps the band and shows seven holes"
+    }
+   ],
+   "action": "refine-spec",
+   "summary": "Blockout attempt 3: with the visor arched and the strap wrapped, the front silhouette IoU against the derived matte reaches 0.82-0.85 (threshold 0.85) depending on framing. The mask overlay shows the crown apex too wide and, at both lower sides, the reference's visor wings sweeping down beside the crown where the current D plan (meeting the crown at +-72 degrees) has nothing.",
+   "matched": [],
+   "mismatches": [
+    "crown apex 0.40 wide vs 0.36 in the reference",
+    "visor wings absent beside the crown because the plate meets the crown too far forward",
+    "right view: total depth 1.42 vs ~1.55 (visor too short)"
+   ],
+   "specFixes": [
+    "visor plan meets the crown at its sides (outer circle r 0.58 centred 0.36) so the arched wings show beside the crown",
+    "apex radii reduced (0.40 at y=0.25, 0.30 at y=0.30, 0.17 at y=0.335)"
+   ],
+   "codeFixes": [],
+   "evidence": [
+    "/home/user/Gorras/reconstruction/renders/maskdiff-front.png"
+   ],
+   "visualEvidence": {
+    "referenceScreenshot": "/home/user/Gorras/reconstruction/views/front-matte.png",
+    "renderScreenshot": "/home/user/Gorras/reconstruction/renders/fit-front.png",
+    "comparisonImage": "/home/user/Gorras/reconstruction/renders/maskdiff-front.png",
+    "cameraView": "front",
+    "notes": "",
+    "aiVisionNotes": ""
+   }
+  }
+ ],
+ "lodPlan": [
+  {
+   "tier": "near",
+   "distance": 0,
+   "strategy": "full component tree and material layers"
+  },
+  {
+   "tier": "far",
+   "distance": 30,
+   "strategy": "merge static components and reduce local feature geometry"
+  }
+ ],
+ "performanceBudget": {
+  "qualityPriority": "reference-fidelity",
+  "targetTriangles": 250000,
+  "maxDrawCalls": 160,
+  "textureSize": 2048,
+  "fpsTarget": 30,
+  "optimizationPolicy": "Reach accepted visual fidelity first, then optimize without removing reference-critical geometry or surface layers."
+ },
+ "lightingFromPhoto": [
+  {
+   "id": "key",
+   "type": "directional",
+   "direction": "top-front, ~35 degrees elevation, slightly camera-left",
+   "intensity": 2.2,
+   "color": "#FFFFFF",
+   "notes": "soft studio key; ACES filmic tone mapping, exposure 1.0"
+  },
+  {
+   "id": "fill",
+   "type": "hemisphere",
+   "direction": "sky white / ground light grey",
+   "intensity": 0.9,
+   "color": "#F4F5F7",
+   "notes": "broad fill from the white sweep; exposure kept at 1.0 so bone stays below clipping"
+  },
+  {
+   "id": "rim",
+   "type": "directional",
+   "direction": "rear-top, camera-right",
+   "intensity": 0.6,
+   "color": "#EEF1F5",
+   "notes": "separates the crown from the background; tone mapping ACES"
+  },
+  {
+   "id": "environment",
+   "type": "environment",
+   "direction": "procedural studio softbox",
+   "intensity": 1.0,
+   "color": "#FFFFFF",
+   "notes": "soft reflections on the plastic strap; contact shadow under the visor and the band (ground shadow, ambient occlusion in seams)"
+  }
+ ],
+ "proceduralStrategy": [
+  "Blockout: lathe crown, swept visor, extruded strap.",
+  "Structural: liner, opening arch, button, eyelets, buckle, patch and decal carriers.",
+  "Form: visor edge rounding, eyelet relief.",
+  "Material: independent twill maps, canvas embroidery textures with alpha, flag decal.",
+  "Lighting: key/fill/rim with ACES and contact shadow."
+ ],
+ "animationAnchors": [
+  "root pivot node supports whole-object translation, rotation, scale, and visibility changes",
+  "component pivot groups support later local transforms without rebuilding geometry"
+ ],
+ "destructionAnchors": [
+  "actionProfile.destruction.fractureGroup marks detachable or breakable component sets",
+  "component seams and sockets define plausible break points instead of random explosions"
+ ],
+ "risks": [
+  "The lathe cannot flatten the front panel; approximated in form-refinement.",
+  "Embroidery text depends on generated canvas textures added in the material pass.",
+  "Visor underside colour is inferred."
+ ],
+ "localSpecSearch": {
+  "collection": "core_3d",
+  "query": "Gorra Make Cumbres Chingon Again baseball cap five panel crown curved visor brim stitching snapback plastic strap closure embroidery satin stitch thread relief cotton twill fabric roughness weave woven patch flag",
+  "index": {
+   "status": "hit",
+   "reason": "current",
+   "fingerprint": "62f2831e1d52eeb6dbb94a87c44fa25b1f4926626a7b1f8c2bcadc63e04e9471"
+  },
+  "matches": [
+   {
+    "record_id": "core.pbr-normal-map",
+    "file_path": "docs/raw/img2threejs-skill-dataset.json",
+    "heading": null,
+    "key_path": "categories.material_pbr[2]",
+    "score": 10.265261416266,
+    "snippets": [
+     "Tangent-space RGB texture that perturbs surface normals to simulate fine geometric detail (engravings, scratches, weave) without added polycount. Kết cấu RGB không gian tiếp tuyến làm lệch pháp tuyến bề mặt để mô phỏng chi tiết hình học nhỏ ..."
+    ],
+    "source_refs": [
+     {
+      "path": "docs/raw/img2threejs-skill-dataset.json",
+      "heading": null,
+      "key_path": "categories.material_pbr[2]"
+     }
+    ],
+    "evidence_refs": [
+     {
+      "kind": "source",
+      "ref": "docs/raw/img2threejs-skill-dataset.json",
+      "note": "img2threejs NotebookLM research distillation"
+     }
+    ]
+   },
+   {
+    "record_id": "core.shader-mapping-tubegeometry-straps-cables-belts",
+    "file_path": "docs/raw/img2threejs-skill-dataset.json",
+    "heading": null,
+    "key_path": "categories.rendering_shader_mapping[10]",
+    "score": 6.011364813411,
+    "snippets": [
+     "... các bộ phận mềm dẻo chạy theo một đường cong 3D. Recognition cues: Flexible, curve-following linear component — sling strap, pressure-switch cable, ammo belt draping into a receiver Dấu hiệu nhận diện: Bộ phận tuyến tính mềm dẻo chạy theo ..."
+    ],
+    "source_refs": [
+     {
+      "path": "docs/raw/img2threejs-skill-dataset.json",
+      "heading": null,
+      "key_path": "categories.rendering_shader_mapping[10]"
+     }
+    ],
+    "evidence_refs": [
+     {
+      "kind": "source",
+      "ref": "docs/raw/img2threejs-skill-dataset.json",
+      "note": "img2threejs NotebookLM research distillation"
+     }
+    ]
+   },
+   {
+    "record_id": "core.description-vra-core-40-attribute-value-schema",
+    "file_path": "docs/raw/img2threejs-skill-dataset.json",
+    "heading": null,
+    "key_path": "categories.description_conventions[1]",
+    "score": 4.474868164225,
+    "snippets": [
+     "XML-derived global attribute qualifiers (vocab, refid, xml:lang, extent) that make every described data element machine-readable and scoped. Các bộ định tính thuộc tính toàn cục có nguồn gốc XML (vocab, refid, xml:lang, extent) giúp mỗi phần tử ..."
+    ],
+    "source_refs": [
+     {
+      "path": "docs/raw/img2threejs-skill-dataset.json",
+      "heading": null,
+      "key_path": "categories.description_conventions[1]"
+     }
+    ],
+    "evidence_refs": [
+     {
+      "kind": "source",
+      "ref": "docs/raw/img2threejs-skill-dataset.json",
+      "note": "img2threejs NotebookLM research distillation"
+     }
+    ]
+   }
+  ]
+ },
+ "tier1Results": [
+  {
+   "passed": false,
+   "checks": {
+    "silhouetteIoU": 0.5953,
+    "aspectRatioDelta": 0.016,
+    "scaleDelta": 0.221,
+    "bilateralSymmetryError": 0.006,
+    "colorDelta": {
+     "checked": 16,
+     "maxDeltaE": 48.91,
+     "perComponent": [
+      {
+       "componentId": null,
+       "deltaE": 20.39
+      },
+      {
+       "componentId": null,
+       "deltaE": 20.39
+      },
+      {
+       "componentId": null,
+       "deltaE": 36.58
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.5
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.5
+      },
+      {
+       "componentId": null,
+       "deltaE": 20.39
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.5
+      },
+      {
+       "componentId": null,
+       "deltaE": 36.58
+      },
+      {
+       "componentId": null,
+       "deltaE": 48.32
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.64
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.64
+      },
+      {
+       "componentId": null,
+       "deltaE": 48.91
+      },
+      {
+       "componentId": null,
+       "deltaE": 20.39
+      },
+      {
+       "componentId": null,
+       "deltaE": 20.39
+      },
+      {
+       "componentId": null,
+       "deltaE": 20.39
+      },
+      {
+       "componentId": null,
+       "deltaE": 20.39
+      }
+     ],
+     "gated": false
+    }
+   },
+   "failures": [
+    "silhouette IoU 0.595 is below threshold 0.85",
+    "scale delta 0.221 exceeds threshold 0.08",
+    "blockout requires --map-stripped-render evidence"
+   ],
+   "maskWarnings": [
+    "reference: 3.6% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured"
+   ],
+   "renderHash": "970c8872f3eba2ac",
+   "passId": "blockout"
+  },
+  {
+   "passed": false,
+   "checks": {
+    "silhouetteIoU": 0.6158,
+    "aspectRatioDelta": 0.0408,
+    "scaleDelta": 0.1749,
+    "bilateralSymmetryError": 0.0062,
+    "colorDelta": {
+     "checked": 16,
+     "maxDeltaE": 48.95,
+     "perComponent": [
+      {
+       "componentId": null,
+       "deltaE": 25.14
+      },
+      {
+       "componentId": null,
+       "deltaE": 25.14
+      },
+      {
+       "componentId": null,
+       "deltaE": 36.68
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.65
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.65
+      },
+      {
+       "componentId": null,
+       "deltaE": 25.14
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.65
+      },
+      {
+       "componentId": null,
+       "deltaE": 36.68
+      },
+      {
+       "componentId": null,
+       "deltaE": 48.28
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.76
+      },
+      {
+       "componentId": null,
+       "deltaE": 35.76
+      },
+      {
+       "componentId": null,
+       "deltaE": 48.95
+      },
+      {
+       "componentId": null,
+       "deltaE": 25.14
+      },
+      {
+       "componentId": null,
+       "deltaE": 25.14
+      },
+      {
+       "componentId": null,
+       "deltaE": 25.14
+      },
+      {
+       "componentId": null,
+       "deltaE": 25.14
+      }
+     ],
+     "gated": false
+    }
+   },
+   "failures": [
+    "silhouette IoU 0.616 is below threshold 0.85",
+    "scale delta 0.175 exceeds threshold 0.08",
+    "blockout requires --map-stripped-render evidence"
+   ],
+   "maskWarnings": [
+    "reference: 3.6% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured"
+   ],
+   "renderHash": "dd57bd628ade3d41",
+   "passId": "blockout"
+  }
+ ]
+}

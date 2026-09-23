@@ -1,0 +1,32 @@
+{
+  "finishClass": "candy-coat",
+  "recipe": {
+    "metalness": 0.35,
+    "roughness": 0.18,
+    "clearcoat": 0.6,
+    "clearcoatRoughness": 0.15,
+    "transmission": 0.0,
+    "ior": 1.5,
+    "envMapIntensity": 0.7,
+    "anisotropy": 0.0,
+    "procedural": "gradient-smoke"
+  },
+  "palette": [
+    "#6D8D7B",
+    "#31694D",
+    "#9A8A7D",
+    "#9D2725",
+    "#C6A49E"
+  ],
+  "paletteHueRisk": [],
+  "gradientAxis": "horizontal",
+  "stats": {
+    "meanLum": 118.7,
+    "meanSaturation": 0.434,
+    "gradientStrength": 0.458,
+    "mottle": 0.068,
+    "streakRatio": 1.48,
+    "hueSpread": 0.633,
+    "specularFraction": 0.0
+  }
+}

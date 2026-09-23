@@ -1,0 +1,26 @@
+{
+  "referenceAreaFraction": 0.32446218487394957,
+  "angles": [
+    {
+      "path": "/home/user/Gorras/reconstruction/renders/blockout-right.png",
+      "areaFraction": 0.24953838037457135,
+      "ratio": 0.769083091983476,
+      "degenerate": false
+    },
+    {
+      "path": "/home/user/Gorras/reconstruction/renders/blockout-back.png",
+      "areaFraction": 0.32768929436626976,
+      "ratio": 1.00994602651022,
+      "degenerate": false
+    },
+    {
+      "path": "/home/user/Gorras/reconstruction/renders/blockout-quarter.png",
+      "areaFraction": 0.06336054421768708,
+      "ratio": 0.1952786708944281,
+      "degenerate": false
+    }
+  ],
+  "degenerate": false,
+  "collapseRatio": 0.15,
+  "note": "deterministic; zero token; a flat-plane-faking-a-volume collapses in silhouette area when orbited"
+}
